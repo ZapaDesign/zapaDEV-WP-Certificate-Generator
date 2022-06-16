@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b1f5ae8e-f4d7-4533-8c86-1ccfba704d55" name="FTP" url="https://masterclass.pl.ua">
+        <fileTransfer rootFolder="/www/masterclass.pl.ua/wp-content/plugins/zapadev-wp-certificate-generator" host="148.251.75.177" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
