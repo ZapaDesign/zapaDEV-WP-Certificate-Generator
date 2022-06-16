@@ -36,6 +36,14 @@ include( plugin_dir_path( __FILE__ ) . '/inc/ZPdevWPCG_Options.php');
 new ZPdevWPCG_Options();
 new ZPdevWPCG();
 
+//add_shortcode( 'ZPdevWPCG', 'add_plugin_shortcode' );
+//
+//function add_plugin_shortcode() {
+//    $content = 'zapaDEV WP Certificate Generator Shortcode';
+//    return $content;
+//}
+
+
 
 
 /**

@@ -9,12 +9,14 @@ class ZPdevWPCG
      */
     public function __construct()
     {
-        add_action( 'admin_menu', array( $this, 'add_plugin_admin_panel_page' ) );
-        add_shortcode( 'ZPdevWPCG', array( $this, 'add_shortcode' ) );
+        add_shortcode( 'ZPdevWPCG', array( $this, 'add_plugin_shortcode' ) );
     }
 
 
-    public function add_shortcode() {
-        return 'zapaDEV WP Certificate Generator Shortcode';
+    public function add_plugin_shortcode() {
+
+        $content = 'zapaDEV WP Certificate Generator Shortcode';
+
+        return $content;
     }
 }
