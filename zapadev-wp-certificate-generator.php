@@ -12,6 +12,7 @@
  */
 namespace ZPdevWPCG;
 use ZPdevWPCG\Options\ZPdevWPCG_Options;
+use ZPdevWPCG\Shortcode\ZPdevWPCG_Shortcode;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -32,8 +33,10 @@ add_action('wp_enqueue_scripts', function () {
 
 include( plugin_dir_path( __FILE__ ) . '/inc/ZPdevWPCG.php');
 include( plugin_dir_path( __FILE__ ) . '/inc/ZPdevWPCG_Options.php');
+include( plugin_dir_path( __FILE__ ) . '/inc/ZPdevWPCG_Shortcode.php');
 
 new ZPdevWPCG_Options();
+new ZPdevWPCG_Shortcode('ZPdevWPCG');
 new ZPdevWPCG();
 
 //add_shortcode( 'ZPdevWPCG', 'add_plugin_shortcode' );

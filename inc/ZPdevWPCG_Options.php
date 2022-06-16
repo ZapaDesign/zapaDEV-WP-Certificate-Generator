@@ -83,15 +83,9 @@ class ZPdevWPCG_Options
 				<?php
 				// This prints out all hidden setting fields
 				settings_fields( 'zpdevwpcg_settings_option_group' );
-//				do_settings_sections( 'zpdevwpcg_settings' );
-//				submit_button();
+				do_settings_sections( 'zpdevwpcg_settings' );
+				submit_button();
 				?>
-                <?php
-                    echo '<pre>';
-                    var_dump( $this );
-                    echo '</pre>';
-                ?>
-                <input type="submit" style="margin-bottom:10px !important;" name="submit" class="button button-primary button-md" value="<?php esc_attr_e('Save'); ?>" />
             </form>
 
             <?php
@@ -143,6 +137,16 @@ class ZPdevWPCG_Options
 
 
 
+        $id       = 'hours';
+        $title    = __( 'Number of hours','zapadev-wp-certificate-generator' );
+        $callback = array( $this, 'hours_callback' );
+        $page     = 'zpdevwpcg_settings';
+        $section  = 'setting_section_body_grid';
+
+		add_settings_field( $id, $title, $callback, $page, $section );
+
+
+
         $id       = 'director';
         $title    = __( 'Director','zapadev-wp-certificate-generator' );
         $callback = array( $this, 'director_callback' );
@@ -170,6 +174,9 @@ class ZPdevWPCG_Options
 	public function sanitize( $input )
 	{
 		$new_input = array();
+		if( isset( $input['hours'] ) )
+			$new_input['hours'] = sanitize_text_field( $input['hours'] );
+
 		if( isset( $input['director'] ) )
 			$new_input['director'] = sanitize_text_field( $input['director'] );
 
@@ -186,6 +193,18 @@ class ZPdevWPCG_Options
 	{
 		print __('Add Certificate Footer Data', 'zapadev-wp-certificate-generator');
 	}
+
+    /**
+     * Get the settings option array and print one of its values
+     */
+    public function hours_callback()
+    {
+        printf(
+            '<input type="text" id="hours" name="zpdevwpcg_option[hours]" value="%s" />',
+            isset( $this->options['hours'] ) ? esc_attr( $this->options['hours']) : ''
+        );
+    }
+
 
 	/**
 	 * Get the settings option array and print one of its values
