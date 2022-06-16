@@ -2,7 +2,7 @@
 
 namespace ZPdevWPCG\Options;
 
-class ZPdev_WPCG_Options
+class ZPdevWPCG_Options
 {
 	/**
 	 * Holds the values to be used in the fields callbacks

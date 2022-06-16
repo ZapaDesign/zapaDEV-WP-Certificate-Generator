@@ -11,7 +11,7 @@
  *
  */
 namespace ZPdevWPCG;
-use ZPdevWPCG\Options\ZPdev_WPCG_Options;
+use ZPdevWPCG\Options\ZPdevWPCG_Options;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -30,9 +30,11 @@ add_action('wp_enqueue_scripts', function () {
  * Plugin AdminPanel Options Page
  */
 
+include( plugin_dir_path( __FILE__ ) . '/inc/ZPdevWPCG.php');
 include( plugin_dir_path( __FILE__ ) . '/inc/ZPdevWPCG_Options.php');
 
-new ZPdev_WPCG_Options();
+new ZPdevWPCG_Options();
+new ZPdevWPCG();
 
 
 
