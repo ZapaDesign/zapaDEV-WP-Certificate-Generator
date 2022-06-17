@@ -1,6 +1,6 @@
 <?php
 
-namespace ZPdevWPCG\Options;
+namespace ZPdevWPCG;
 
 class ZPdevWPCG_Options
 {
@@ -8,6 +8,32 @@ class ZPdevWPCG_Options
 	 * Holds the values to be used in the fields callbacks
 	 */
 	private $options;
+
+
+    /**
+     * The single instance of the class.
+     * @var ZPdevWPCG_Options
+     *
+     * @since 1.0.0
+     */
+    protected static $instance = null;
+
+    /**
+     * Main ZPdevWPCG_Options instance.
+     *
+     * Ensures only one instance of ZPdevWPCG_Options is loaded or can be loaded.
+     *
+     * @static
+     * @return ZPdevWPCG_Options
+     * @since  1.0.0
+     */
+    public static function instance() {
+        if ( is_null( self::$instance ) ) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
 
 	/**
 	 * Start up

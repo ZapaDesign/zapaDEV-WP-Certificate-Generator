@@ -1,15 +1,40 @@
 <?php
 
-namespace ZPdevWPCG\Shortcode;
+namespace ZPdevWPCG;
 
 class ZPdevWPCG_Shortcode
 {
     private $title;
 
-    public function __construct($title)
+    /**
+     * The single instance of the class.
+     * @var ZPdevWPCG_Shortcode
+     *
+     * @since 1.0.0
+     */
+    protected static $instance = null;
+
+    /**
+     * Main ZPdevWPCG_Shortcode instance.
+     *
+     * Ensures only one instance of ZPdevWPCG_Shortcode is loaded or can be loaded.
+     *
+     * @static
+     * @return ZPdevWPCG_Shortcode
+     * @since  1.0.0
+     */
+    public static function instance() {
+        if ( is_null( self::$instance ) ) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+
+
+    public function __construct()
     {
-        $this->title = $title;
-        add_shortcode($title, array($this, 'render'));
+         add_shortcode('ZPdevWPCG', array($this, 'render'));
     }
 
     public function render()
