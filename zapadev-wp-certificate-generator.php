@@ -107,29 +107,3 @@ function ZPdevWPCG() {
 //});
 
 
-/**
- * Plugin AdminPanel Options Page
- */
-
-// include( plugin_dir_path( __FILE__ ) . '/inc/ZPdevWPCG.php');
-// include( plugin_dir_path( __FILE__ ) . '/inc/ZPdevWPCG_Options.php');
-// include( plugin_dir_path( __FILE__ ) . '/inc/ZPdevWPCG_Shortcode.php');
-
-// new ZPdevWPCG_Options();
-// new ZPdevWPCG_Shortcode('ZPdevWPCG');
-// new ZPdevWPCG();
-
-//add_shortcode( 'ZPdevWPCG', 'add_plugin_shortcode' );
-//
-//function add_plugin_shortcode() {
-//    $content = 'zapaDEV WP Certificate Generator Shortcode';
-//    return $content;
-//}
-
-
-/**
- * Plugin AdminPanel Options Page
- */
-//include( plugin_dir_path( __FILE__ ) . 'inc/options-page.php');
-
-
