@@ -2,110 +2,27 @@
 
 namespace ZPdevWPCG;
 
-class ZPdevWPCG_Shortcode
-{
-    private $title;
+if ( ! class_exists('ZPdevWPCG_Shortcode')) {
 
-    /**
-     * The single instance of the class.
-     * @var ZPdevWPCG_Shortcode
-     *
-     * @since 1.0.0
-     */
-    protected static $instance = null;
+    class ZPdevWPCG_Shortcode
+    {
+        private $title;
 
-    /**
-     * Main ZPdevWPCG_Shortcode instance.
-     *
-     * Ensures only one instance of ZPdevWPCG_Shortcode is loaded or can be loaded.
-     *
-     * @static
-     * @return ZPdevWPCG_Shortcode
-     * @since  1.0.0
-     */
-    public static function instance() {
-        if ( is_null( self::$instance ) ) {
-            self::$instance = new self();
+        use Instance;
+
+        public function __construct()
+        {
+            add_shortcode('ZPdevWPCG', array($this, 'render'));
         }
-        return self::$instance;
-    }
 
+        public function render()
+        {
+            $content = '';
+            ob_start();
+            include_once(DIR_PATH . '/templates/template-front.php');
+            $content .= ob_get_clean();
 
-
-    public function __construct()
-    {
-         add_shortcode('ZPdevWPCG', array($this, 'render'));
-    }
-
-    public function render()
-    {
-        $options = get_option('zpdevwpcg_option');
-        $content = '';
-        ob_start();?>
-
-        <div bp-layout="row stretch">
-            <div bp-layout="col 5@md 4@lg 3@xl">
-                <div class="zapadevwpcg__form">
-                    <form action="">
-                        <p>
-                            <label>Name</label>
-                            <input type="text" placeholder="Student Name">
-                        </p>
-
-                        <h3>Course dates:</h3>
-                        <p>
-                            <label>Start</label>
-                            <input type="month">
-                        </p>
-                        <p>
-                            <label>Finish</label>
-                            <input type="month">
-                        </p>
-
-                        <h3>Level</h3>
-                        <p>
-                            <select name="level" id="level">
-                                <option value="Primary 1">Primary 1</option>
-                                <option value="Primary 2">Primary 2</option>
-                                <option value="Primary 3">Primary 3</option>
-                                <option value="Primary 4">Primary 4</option>
-                                <option value="A1">A1</option>
-                                <option value="A2">A2</option>
-                                <option value="B1">B1</option>
-                                <option value="B2">B2</option>
-                            </select>
-                        </p>
-
-                        <p>
-                            <label><?php echo $options['hours'] . ':' ?></label>
-                            <input type="number" value="156">
-                        </p>
-                        <p>
-                            <label>Place of Study:</label>
-                            <input type="text" value="Poltava (UKRAINE)">
-                        </p>
-                        <p>
-                            <label>Date of issue:</label>
-                            <input type="date" value="">
-                        </p>
-                    </form>
-                    <button>Download</button>
-                    <button>Print</button>
-                </div>
-            </div>
-
-            <div bp-layout="col 7@md 8@lg 9@xl">
-                <div class="certificate-generator__preview">
-                    <h2>Preview</h2>
-                    <?php if( $image = get_field('certificate_image') ): ?>
-                        <img class="card__img no-lazy" src="<?php echo esc_url($image['sizes']['large']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-
-        <?php $content .= ob_get_clean();
-
-        return $content;
+            return $content;
+        }
     }
 }

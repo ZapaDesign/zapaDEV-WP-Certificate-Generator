@@ -1,0 +1,27 @@
+.zdcontainer {
+	padding-top: 5vh;
+	padding-bottom: 5vh;
+}
+
+.zdgrid {
+	display: flex;
+	flex-direction: column;
+}
+@media (min-width: 720px){
+	.zdgrid {
+		flex-direction: row;
+	}
+}
+
+.zdcell {
+	padding-left: 1vw;
+	padding-right: 1vw;
+}
+
+.zpwpcg__form {
+	width: 320px;
+}
+
+.zdwpcg__preview {
+
+}
