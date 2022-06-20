@@ -1,0 +1,73 @@
+.zdcontainer {
+	padding-top: 3vh;
+	padding-bottom: 3vh;
+}
+
+.zdgrid {
+	display: flex;
+	flex-direction: column;
+
+	@media (min-width: 720px){
+		flex-direction: row;
+	}
+}
+
+.zdcell {
+	padding-left: 1vw;
+	padding-right: 1vw;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
+}
+
+.zpwpcg {
+	&__form {
+		@media (min-width: 720px){
+			width: 320px;
+		}
+
+		label {
+			display: block;
+			padding-right: 20px;
+			flex: 1;
+		}
+
+		input,
+		select {
+			width: 100%;
+			height: 2em;
+			flex: 1;
+		}
+
+		form {
+			& > p {
+				display: flex;
+			}
+
+
+		}
+	}
+
+	&__buttons {
+		display: flex;
+		column-gap: 15px;
+
+		button {
+			flex: 1;
+		}
+	}
+
+	&__preview {
+		position: relative;
+
+		&-name {
+			position: absolute;
+			top: 25%;
+			width: 100%;
+			left: 5%;
+			font-size: 72px;
+			text-align: center;
+		}
+	}
+}
+
+

@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+
+  },
+  "scripts": {
+    "watch": "node-sass --watch assets/scss/zpdev-wpcg.scss -o assets/css --source-map true --output-style compressed",
+    "build:css": "node-sass assets/scss -o assets/css --output-style compressed && postcss --use autoprefixer -r assets/css/*.css --no-map",
+    "prefix": "postcss --use autoprefixer -r assets/css/*.css --no-map"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie >= 9",
+    "android >= 4.4",
+    "ios >= 7"
+  ]
+}

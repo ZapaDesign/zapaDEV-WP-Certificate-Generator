@@ -8,24 +8,23 @@ $cert_img_id = $options['img'];
     <div class="zdgrid">
         <div class="zdcell">
             <div class="zpwpcg__form">
-                  <form action="">
+                <form action="">
                     <p>
                         <label>Name</label>
-                        <input type="text" placeholder="Student Name">
+                        <input class="zpwpcg__form-name" type="text" placeholder="Student Name">
                     </p>
 
-                    <h3>Course dates:</h3>
-                    <p>
+                   <p>
                         <label>Start</label>
-                        <input type="month">
+                        <input type="month" value="<?php echo date('Y',strtotime ( '-1 year' , strtotime ( date('Y') ) )); ?>-09">
                     </p>
                     <p>
                         <label>Finish</label>
-                        <input type="month">
+                        <input type="month" value="<?php echo date('Y-m'); ?>">
                     </p>
 
-                    <h3>Level</h3>
                     <p>
+                        <label>Level</label>
                         <select name="level" id="level">
                             <option value="Primary 1">Primary 1</option>
                             <option value="Primary 2">Primary 2</option>
@@ -48,22 +47,22 @@ $cert_img_id = $options['img'];
                     </p>
                     <p>
                         <label>Date of issue:</label>
-                        <input type="date" value="">
+                        <input type="date" value="<?php echo date('Y-m-d'); ?>">
                     </p>
                 </form>
-                <button>Download</button>
-                <button>Print</button>
+                <div class="zpwpcg__buttons">
+                    <button id="zpwpcgDownload" class="button">Download</button>
+                    <button class="button">Print</button>
+                </div>
             </div>
         </div>
 
         <div class="zdcell">
-            <div
-                class="zdwpcg__preview"
-<!--                style="background-image: url("--><?php //echo wp_get_attachment_url($cert_img_id); ?><!--")"-->
-            >
-            <img src="<?php echo wp_get_attachment_url($cert_img_id); ?>" alt="">
-
+            <div class="zpwpcg__preview">
+                <img class="zdwpcg__preview-img" src="<?php echo wp_get_attachment_url($cert_img_id); ?>" alt="">
+                <div class="zpwpcg__preview-name"></div>
             </div>
         </div>
     </div>
 </div>
+
