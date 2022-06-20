@@ -1,27 +1,39 @@
 <?php
 
-$options = get_option('zpdevwpcg_option');
+$options     = get_option('zpdevwpcg_option');
 $cert_img_id = $options['img'];
-$cert_hours  = $options['hours'];
 
 ?>
-<div class="zdcontainer">
+
+<script type="importmap">
+  {
+    "imports": {
+      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+    }
+  }
+</script>
+
+<div id="zpdevwpcgFront" class="zdcontainer">
     <div class="zdgrid">
         <div class="zdcell">
             <div class="zpwpcg__form">
                 <form action="">
                     <p>
-                        <label>Name</label>
-                        <input class="zpwpcg__form--name" type="text" placeholder="Student Name">
+                        <label>{{nameLabel}}:</label>
+                        <input v-model="name" class="zpwpcg__form--name" type="text" placeholder="Student Name">
                     </p>
 
-                   <p>
+                    <p>
                         <label>Start</label>
-                        <input type="month" value="<?php echo date('Y',strtotime ( '-1 year' , strtotime ( date('Y') ) )); ?>-09">
+                        <input
+                            v-model="periodStart"
+                            type="month">
                     </p>
                     <p>
                         <label>Finish</label>
-                        <input type="month" value="<?php echo date('Y-m'); ?>">
+                        <input
+                            v-model="periodFinish"
+                            type="month">
                     </p>
 
                     <p>
@@ -39,16 +51,16 @@ $cert_hours  = $options['hours'];
                     </p>
 
                     <p>
-                        <label><?php echo $cert_hours . ':'; ?></label>
-                        <input class="zpwpcg__form--hours" type="number" value="156">
+                        <label>{{hoursLabel}}:</label>
+                        <input v-model="hours" class="zpwpcg__form--hours" type="number">
                     </p>
                     <p>
-                        <label>Place of Study:</label>
-                        <input type="text" value="Poltava (UKRAINE)">
+                        <label>{{placeLabel}}:</label>
+                        <input v-model="place" type="text">
                     </p>
                     <p>
-                        <label>Date of issue:</label>
-                        <input type="date" value="<?php echo date('Y-m-d'); ?>">
+                        <label>{{dateLabel}}:</label>
+                        <input v-model="date" type="date" value="<?php echo date('Y-m-d'); ?>">
                     </p>
                 </form>
                 <div class="zpwpcg__buttons">
@@ -59,15 +71,85 @@ $cert_hours  = $options['hours'];
         </div>
 
         <div class="zdcell">
-            <div class="zpwpcg__preview">
-                <img class="zdwpcg__preview-img" src="<?php echo wp_get_attachment_url($cert_img_id); ?>" alt="">
-                <div class="zpwpcg__preview-row zpwpcg__preview-row--name zpwpcg__preview--name"></div>
-                <div class="zpwpcg__preview-row zpwpcg__preview-row--hours">
-                    <span><?php echo $cert_hours . ':'; ?></span>
-                    <span class="zpwpcg__preview--hours"></span>
+            <div class="zpwpcg-preview">
+                <img class="zpwpcg-preview__img" src="<?php echo wp_get_attachment_url($cert_img_id); ?>" alt="">
+
+
+                <div class="zpwpcg-preview__header">
+
                 </div>
+
+
+                <div class="zpwpcg-preview__body">
+                    <div class="zpwpcg-preview__field zpwpcg-preview__field--name">{{name}}</div>
+                </div>
+
+
+                <div class="zpwpcg-preview__grid">
+                    <div class="zpwpcg-preview__grid-row">
+                        <span>{{periodLabel}}:</span>
+                        <span class="zpwpcg-preview__field">{{periodStart}}</span>
+                        <span>-</span>
+                        <span class="zpwpcg-preview__field">{{periodFinish}}</span>
+                    </div>
+                    <div class="zpwpcg-preview__grid-row">
+                        <span>{{levelLabel}}:</span>
+                        <span class="zpwpcg-preview__field">{{level}}</span>
+                    </div>
+                    <div class="zpwpcg-preview__grid-row">
+                        <span>{{hoursLabel}}:</span>
+                        <span class="zpwpcg-preview__field">{{hours}}</span>
+                    </div>
+                    <div class="zpwpcg-preview__grid-row">
+                        <span>{{placeLabel}}:</span>
+                        <span class="zpwpcg-preview__field">{{place}}</span>
+                    </div>
+                    <div class="zpwpcg-preview__grid-row">
+                        <span>{{dateLabel}}:</span>
+                        <span class="zpwpcg-preview__field">{{date}}</span>
+                    </div>
+
+                </div>
+
+
+                <div class="zpwpcg-preview__footer">
+
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+
+<script type="module">
+    import { createApp } from 'vue'
+
+    createApp({
+        data() {
+            return {
+                nameLabel: 'Name',
+                name: '',
+
+                periodLabel: 'Course dates',
+                periodStart: '<?php echo date('Y', strtotime('-1 year', strtotime(date('Y')))); ?>-09',
+                periodFinish: '<?php echo date('Y-m'); ?>',
+
+                levelLabel: 'Level',
+                level: 'B1',
+
+                hoursLabel: '<?php echo $options['hours']; ?>',
+                hours: 156,
+
+                placeLabel: 'Place of Study',
+                place: 'Poltava (UKRAINE)',
+
+                dateLabel: 'Date of issue',
+                date: '<?php echo date('Y-m-d'); ?>',
+
+
+                director: '<?php echo $options['director']; ?>',
+            }
+        }
+    }).mount('#zpdevwpcgFront')
+</script>
 
