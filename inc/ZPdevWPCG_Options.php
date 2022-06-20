@@ -215,13 +215,45 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
 
             add_settings_section($id, $title, $callback, $page);
 
-            $id       = 'hours';
-            $title    = __('Number of hours', 'zapadev-wp-certificate-generator');
-            $callback = array($this, 'hours_callback');
-            $page     = 'zpdevwpcg_settings';
-            $section  = 'setting_section_body_grid';
+                $id       = 'period';
+                $title    = __('Field (Course dates)', 'zapadev-wp-certificate-generator');
+                $callback = array($this, 'period_callback');
+                $page     = 'zpdevwpcg_settings';
+                $section  = 'setting_section_body_grid';
 
-            add_settings_field($id, $title, $callback, $page, $section);
+                add_settings_field($id, $title, $callback, $page, $section);
+
+                $id       = 'level';
+                $title    = __('Field (Level)', 'zapadev-wp-certificate-generator');
+                $callback = array($this, 'level_callback');
+                $page     = 'zpdevwpcg_settings';
+                $section  = 'setting_section_body_grid';
+
+                add_settings_field($id, $title, $callback, $page, $section);
+
+                $id       = 'hours';
+                $title    = __('Field (Number of hours)', 'zapadev-wp-certificate-generator');
+                $callback = array($this, 'hours_callback');
+                $page     = 'zpdevwpcg_settings';
+                $section  = 'setting_section_body_grid';
+
+                add_settings_field($id, $title, $callback, $page, $section);
+
+                $id       = 'place';
+                $title    = __('Field (Place of Study)', 'zapadev-wp-certificate-generator');
+                $callback = array($this, 'place_callback');
+                $page     = 'zpdevwpcg_settings';
+                $section  = 'setting_section_body_grid';
+
+                add_settings_field($id, $title, $callback, $page, $section);
+
+                $id       = 'date';
+                $title    = __('Field (Date of issue)', 'zapadev-wp-certificate-generator');
+                $callback = array($this, 'date_callback');
+                $page     = 'zpdevwpcg_settings';
+                $section  = 'setting_section_body_grid';
+
+                add_settings_field($id, $title, $callback, $page, $section);
 
 
             $id       = 'setting_section_footer';
@@ -257,8 +289,23 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
         public function sanitize($input)
         {
             $new_input = array();
+            if (isset($input['period'])) {
+                $new_input['period'] = sanitize_text_field($input['period']);
+            }
+
+            if (isset($input['level'])) {
+                $new_input['level'] = sanitize_text_field($input['level']);
+            }
+
             if (isset($input['hours'])) {
                 $new_input['hours'] = sanitize_text_field($input['hours']);
+            }
+
+            if (isset($input['place'])) {
+                $new_input['place'] = sanitize_text_field($input['place']);
+            }
+            if (isset($input['date'])) {
+                $new_input['date'] = sanitize_text_field($input['date']);
             }
 
             if (isset($input['img'])) {
@@ -317,10 +364,23 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             );
         }
 
+        public function period_callback()
+        {
+            printf(
+                '<input type="text" id="period" name="zpdevwpcg_option[period]" value="%s" />',
+                isset($this->options['period']) ? esc_attr($this->options['period']) : ''
+            );
+        }
 
-        /**
-         * Get the settings option array and print one of its values
-         */
+
+        public function level_callback()
+        {
+            printf(
+                '<input type="text" id="level" name="zpdevwpcg_option[level]" value="%s" />',
+                isset($this->options['level']) ? esc_attr($this->options['level']) : ''
+            );
+        }
+
         public function hours_callback()
         {
             printf(
@@ -329,10 +389,21 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             );
         }
 
+        public function place_callback()
+        {
+            printf(
+                '<input type="text" id="place" name="zpdevwpcg_option[place]" value="%s" />',
+                isset($this->options['place']) ? esc_attr($this->options['place']) : ''
+            );
+        }
+        public function date_callback()
+        {
+            printf(
+                '<input type="text" id="date" name="zpdevwpcg_option[date]" value="%s" />',
+                isset($this->options['date']) ? esc_attr($this->options['date']) : ''
+            );
+        }
 
-        /**
-         * Get the settings option array and print one of its values
-         */
         public function director_callback()
         {
             printf(

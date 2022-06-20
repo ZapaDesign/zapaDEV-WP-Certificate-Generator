@@ -37,7 +37,7 @@ $cert_img_id = $options['img'];
                     </p>
 
                     <p>
-                        <label>Level</label>
+                        <label>{{levelLabel}}</label>
                         <select name="level" id="level">
                             <option value="Primary 1">Primary 1</option>
                             <option value="Primary 2">Primary 2</option>
@@ -130,20 +130,20 @@ $cert_img_id = $options['img'];
                 nameLabel: 'Name',
                 name: '',
 
-                periodLabel: 'Course dates',
+                periodLabel: '<?php echo $options['period']; ?>',
                 periodStart: '<?php echo date('Y', strtotime('-1 year', strtotime(date('Y')))); ?>-09',
                 periodFinish: '<?php echo date('Y-m'); ?>',
 
-                levelLabel: 'Level',
+                levelLabel: '<?php echo $options['level']; ?>',
                 level: 'B1',
 
                 hoursLabel: '<?php echo $options['hours']; ?>',
                 hours: 156,
 
-                placeLabel: 'Place of Study',
+                placeLabel: '<?php echo $options['place']; ?>',
                 place: 'Poltava (UKRAINE)',
 
-                dateLabel: 'Date of issue',
+                dateLabel: '<?php echo $options['date']; ?>',
                 date: '<?php echo date('Y-m-d'); ?>',
 
 
