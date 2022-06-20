@@ -2,6 +2,7 @@
 
 $options = get_option('zpdevwpcg_option');
 $cert_img_id = $options['img'];
+$cert_hours  = $options['hours'];
 
 ?>
 <div class="zdcontainer">
@@ -11,7 +12,7 @@ $cert_img_id = $options['img'];
                 <form action="">
                     <p>
                         <label>Name</label>
-                        <input class="zpwpcg__form-name" type="text" placeholder="Student Name">
+                        <input class="zpwpcg__form--name" type="text" placeholder="Student Name">
                     </p>
 
                    <p>
@@ -38,8 +39,8 @@ $cert_img_id = $options['img'];
                     </p>
 
                     <p>
-                        <label><?php echo $options['hours'] . ':'; ?></label>
-                        <input type="number" value="156">
+                        <label><?php echo $cert_hours . ':'; ?></label>
+                        <input class="zpwpcg__form--hours" type="number" value="156">
                     </p>
                     <p>
                         <label>Place of Study:</label>
@@ -60,7 +61,11 @@ $cert_img_id = $options['img'];
         <div class="zdcell">
             <div class="zpwpcg__preview">
                 <img class="zdwpcg__preview-img" src="<?php echo wp_get_attachment_url($cert_img_id); ?>" alt="">
-                <div class="zpwpcg__preview-name"></div>
+                <div class="zpwpcg__preview-row zpwpcg__preview-row--name zpwpcg__preview--name"></div>
+                <div class="zpwpcg__preview-row zpwpcg__preview-row--hours">
+                    <span><?php echo $cert_hours . ':'; ?></span>
+                    <span class="zpwpcg__preview--hours"></span>
+                </div>
             </div>
         </div>
     </div>

@@ -58,16 +58,37 @@
 
 	&__preview {
 		position: relative;
+		overflow: hidden;
 
-		&-name {
-			position: absolute;
-			top: 25%;
-			width: 100%;
-			left: 5%;
-			font-size: 72px;
-			text-align: center;
+		&-row {
+			&--name {
+				position: absolute;
+				top: 25%;
+				width: 100%;
+				left: 5%;
+				font-size: 5vw;
+				text-align: center;
+			}
+
+			&--hours {
+				position: absolute;
+				top: 35%;
+				width: 100%;
+				left: 10%;
+				padding-left: 5vw;
+				font-size: 3vw;
+			}
+		}
+
+		&--name {
+
+		}
+
+		&--hours {
+
 		}
 	}
 }
+
 
 
