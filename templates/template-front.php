@@ -81,7 +81,10 @@ $cert_img_id = $options['img'];
 
 
                 <div class="zpwpcg-preview__body">
+                    <div class="zpwpcg-preview__field">{{topText}}</div>
                     <div class="zpwpcg-preview__field zpwpcg-preview__field--name">{{name}}</div>
+                    <div class="zpwpcg-preview__field">{{bottomText}}</div>
+                    <div class="zpwpcg-preview__field zpwpcg-preview__field--strong">{{bottomStrongText}}</div>
                 </div>
 
 
@@ -127,8 +130,12 @@ $cert_img_id = $options['img'];
     createApp({
         data() {
             return {
-                nameLabel: 'Name',
+
+                topText: '<?php echo $options['top_text']; ?>',
+                nameLabel: '<?php echo $options['name_label']; ?>',
                 name: '',
+                bottomText: '<?php echo $options['bottom_text']; ?>',
+                bottomStrongText: '<?php echo $options['bottom_strong_text']; ?>',
 
                 periodLabel: '<?php echo $options['period']; ?>',
                 periodStart: '<?php echo date('Y', strtotime('-1 year', strtotime(date('Y')))); ?>-09',

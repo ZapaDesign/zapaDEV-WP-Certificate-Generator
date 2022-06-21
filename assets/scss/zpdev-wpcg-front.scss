@@ -59,7 +59,7 @@
 			top: 25%;
 			width: 100%;
 			left: 5%;
-			font-size: 4vw;
+			font-size: 1.5vw;
 			text-align: center;
 		}
 
@@ -70,6 +70,16 @@
 			left: 5%;
 			padding-left: 4vw;
 			font-size: 1.5vw;
+		}
+
+		&__field {
+			&--name {
+				font-size: 4vw;
+			}
+
+			&--strong {
+				font-weight: bold;
+			}
 		}
 	}
 

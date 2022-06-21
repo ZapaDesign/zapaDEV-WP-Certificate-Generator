@@ -150,6 +150,39 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             add_settings_field($id, $title, $callback, $page, $section);
 
 
+                $id       = 'name_label';
+                $title    = __('Field (Name label)', 'zapadev-wp-certificate-generator');
+                $callback = array($this, 'name_label_callback');
+                $page     = 'zpdevwpcg_settings';
+                $section  = 'setting_section_body_main';
+
+                add_settings_field($id, $title, $callback, $page, $section);
+
+                $id       = 'top_text';
+                $title    = __('Field (Top text)', 'zapadev-wp-certificate-generator');
+                $callback = array($this, 'top_text_callback');
+                $page     = 'zpdevwpcg_settings';
+                $section  = 'setting_section_body_main';
+
+                add_settings_field($id, $title, $callback, $page, $section);
+
+                $id       = 'bottom_text';
+                $title    = __('Field (Bottom text)', 'zapadev-wp-certificate-generator');
+                $callback = array($this, 'bottom_text_callback');
+                $page     = 'zpdevwpcg_settings';
+                $section  = 'setting_section_body_main';
+
+                add_settings_field($id, $title, $callback, $page, $section);
+
+                $id       = 'bottom_strong_text';
+                $title    = __('Field (Bottom strong text)', 'zapadev-wp-certificate-generator');
+                $callback = array($this, 'bottom_strong_text_callback');
+                $page     = 'zpdevwpcg_settings';
+                $section  = 'setting_section_body_main';
+
+                add_settings_field($id, $title, $callback, $page, $section);
+
+
             $id       = 'setting_section_body_grid';
             $title    = __('Certificate Body Grid', 'zapadev-wp-certificate-generator');
             $callback = array($this, 'print_section_body_grid_info');
@@ -166,7 +199,7 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
                 add_settings_field($id, $title, $callback, $page, $section);
 
                 $id       = 'level_label';
-                $title    = __('Field (Level Label)', 'zapadev-wp-certificate-generator');
+                $title    = __('Field (Level label)', 'zapadev-wp-certificate-generator');
                 $callback = array($this, 'level_label_callback');
                 $page     = 'zpdevwpcg_settings';
                 $section  = 'setting_section_body_grid';
@@ -175,7 +208,7 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
 
 
                     $id       = 'level_value_arr';
-                    $title    = __('Field (Level Value)', 'zapadev-wp-certificate-generator');
+                    $title    = __('Field (Level value)', 'zapadev-wp-certificate-generator');
                     $callback = array($this, 'level_value_callback');
                     $page     = 'zpdevwpcg_settings';
                     $section  = 'setting_section_body_grid';
@@ -189,7 +222,7 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
 
 
                     $id       = 'level_desc';
-                    $title    = __('Field (Level Description)', 'zapadev-wp-certificate-generator');
+                    $title    = __('Field (Level description)', 'zapadev-wp-certificate-generator');
                     $callback = array($this, 'level_desc_callback');
                     $page     = 'zpdevwpcg_settings';
                     $section  = 'setting_section_body_grid';
@@ -250,10 +283,21 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
          public function sanitize($input)
         {
             $new_input = array();
+            if (isset($input['name_label'])) {
+                $new_input['name_label'] = sanitize_text_field($input['name_label']);
+            }
+            if (isset($input['top_text'])) {
+                $new_input['top_text'] = sanitize_text_field($input['top_text']);
+            }
+            if (isset($input['bottom_text'])) {
+                $new_input['bottom_text'] = sanitize_text_field($input['bottom_text']);
+            }
+            if (isset($input['bottom_strong_text'])) {
+                $new_input['bottom_strong_text'] = sanitize_text_field($input['bottom_strong_text']);
+            }
             if (isset($input['period'])) {
                 $new_input['period'] = sanitize_text_field($input['period']);
             }
-
             if (isset($input['level_label'])) {
                 $new_input['level_label'] = sanitize_text_field($input['level_label']);
             }
@@ -263,26 +307,21 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             if (isset($input['level_value'])) {
                 $new_input['level_value'] = sanitize_text_field($input['level_value']);
             }
-
             if (isset($input['hours'])) {
                 $new_input['hours'] = sanitize_text_field($input['hours']);
             }
-
             if (isset($input['place'])) {
                 $new_input['place'] = sanitize_text_field($input['place']);
             }
             if (isset($input['date'])) {
                 $new_input['date'] = sanitize_text_field($input['date']);
             }
-
             if (isset($input['img'])) {
                 $new_input['img'] = sanitize_text_field($input['img']);
             }
-
             if (isset($input['director'])) {
                 $new_input['director'] = sanitize_text_field($input['director']);
             }
-
             if (isset($input['address'])) {
                 $new_input['address'] = sanitize_text_field($input['address']);
             }
@@ -323,6 +362,38 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             printf(
                 '<input type="text" id="period" name="zpdevwpcg_option[period]" value="%s" />',
                 isset($this->options['period']) ? esc_attr($this->options['period']) : ''
+            );
+        }
+
+        public function name_label_callback()
+        {
+            printf(
+                '<input type="text" id="name_label" name="zpdevwpcg_option[name_label]" value="%s" />',
+                isset($this->options['name_label']) ? esc_attr($this->options['name_label']) : ''
+            );
+        }
+
+        public function top_text_callback()
+        {
+            printf(
+                '<textarea cols="40" rows="3" id="top_text" name="zpdevwpcg_option[top_text]">%s</textarea>',
+                isset($this->options['top_text']) ? esc_attr($this->options['top_text']) : ''
+            );
+        }
+
+        public function bottom_text_callback()
+        {
+            printf(
+                '<textarea cols="40" rows="3" id="bottom_text" name="zpdevwpcg_option[bottom_text]">%s</textarea>',
+                isset($this->options['bottom_text']) ? esc_attr($this->options['bottom_text']) : ''
+            );
+        }
+
+        public function bottom_strong_text_callback()
+        {
+            printf(
+                '<textarea cols="40" rows="3" id="bottom_strong_text" name="zpdevwpcg_option[bottom_strong_text]">%s</textarea>',
+                isset($this->options['bottom_strong_text']) ? esc_attr($this->options['bottom_strong_text']) : ''
             );
         }
 
