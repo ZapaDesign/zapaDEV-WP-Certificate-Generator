@@ -407,10 +407,6 @@
                     isset( $this->options['level_value']['a'] ) ? esc_attr( $this->options['level_value']['a'] ) : ''
                 );
     
-                printf(
-                    '<input type="text" id="level_value" name="zpdevwpcg_option[level_value][b]" value="%s" />',
-                    isset( $this->options['level_value']['b'] ) ? esc_attr( $this->options['level_value']['b'] ) : ''
-                );
                 
                 echo '<button type="button">Add Level</button>';
                 echo '<p>List</p>';
@@ -469,12 +465,12 @@
             
             public function director_callback() {
                 printf(
-                    '<input type="text" id="director_label" name="zpdevwpcg_option[director][label]" value="%s" />',
+                    '<input type="text" id="director_label" name="zpdevwpcg_option[director][label]" value="%s" placeholder="Label">',
                     isset( $this->options['director']['label'] ) ? esc_attr( $this->options['director']['label'] ) : ''
                 );
                 
                 printf(
-                    '<input type="text" id="director_value" name="zpdevwpcg_option[director][value]" value="%s" />',
+                    '<input type="text" id="director_value" name="zpdevwpcg_option[director][value]" value="%s" placeholder="Value">',
                     isset( $this->options['director']['value'] ) ? esc_attr( $this->options['director']['value'] ) : ''
                 );
             }
