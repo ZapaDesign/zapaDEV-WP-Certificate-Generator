@@ -1,7 +1,23 @@
 <?php
 
-$options     = get_option('zpdevwpcg_option');
-$cert_img_id = $options['img'];
+$options = get_option('zpdevwpcg_option');
+
+$img_url = $options['img'];
+
+$name_label = $options['name_label'];
+
+$top_text           = $options['top_text'];
+$bottom_text        = $options['bottom_text'];
+$bottom_strong_text = $options['bottom_strong_text'];
+
+$level_label = $options['level_label'];
+$levels      = $options['levels'];
+
+$logo_url       = $options['logo'];
+$address        = $options['address'];
+$signature_url  = $options['signature'];
+$director_label = $options['director']['label'];
+$director       = $options['director']['value'];
 
 ?>
 
@@ -11,6 +27,11 @@ $cert_img_id = $options['img'];
       "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
     }
   }
+
+
+
+
+
 </script>
 
 <div id="zpdevwpcgFront" class="zdcontainer">
@@ -19,7 +40,7 @@ $cert_img_id = $options['img'];
             <div class="zpwpcg__form">
                 <form action="">
                     <p>
-                        <label>{{nameLabel}}:</label>
+                        <label><?php echo $name_label . ':' ?></label>
                         <input v-model="name" class="zpwpcg__form--name" type="text" placeholder="Student Name">
                     </p>
 
@@ -37,16 +58,14 @@ $cert_img_id = $options['img'];
                     </p>
 
                     <p>
-                        <label>{{levelLabel}}</label>
-                        <select name="level" id="level">
-                            <option value="Primary 1">Primary 1</option>
-                            <option value="Primary 2">Primary 2</option>
-                            <option value="Primary 3">Primary 3</option>
-                            <option value="Primary 4">Primary 4</option>
-                            <option value="A1">A1</option>
-                            <option value="A2">A2</option>
-                            <option value="B1">B1</option>
-                            <option value="B2">B2</option>
+                        <label><?php echo $level_label . ':'; ?></label>
+                        <select v-model="level" name="level" id="level">
+
+                            <?php
+                                foreach ($levels as $level):
+                                printf('<option value="%s">%s</option>', $level['level'], $level['level']);
+                                endforeach;
+                            ?>
                         </select>
                     </p>
 
@@ -72,7 +91,7 @@ $cert_img_id = $options['img'];
 
         <div class="zdcell">
             <div class="zpwpcg-preview">
-                <img class="zpwpcg-preview__img" src="<?php echo wp_get_attachment_url($cert_img_id); ?>" alt="">
+                <img class="zpwpcg-preview__img" src="<?php echo $img_url; ?>" alt="">
 
 
                 <div class="zpwpcg-preview__header">
@@ -81,10 +100,10 @@ $cert_img_id = $options['img'];
 
 
                 <div class="zpwpcg-preview__body">
-                    <div class="zpwpcg-preview__field">{{topText}}</div>
+                    <div class="zpwpcg-preview__field"><?php echo $top_text; ?></div>
                     <div class="zpwpcg-preview__field zpwpcg-preview__field--name">{{name}}</div>
-                    <div class="zpwpcg-preview__field">{{bottomText}}</div>
-                    <div class="zpwpcg-preview__field zpwpcg-preview__field--strong">{{bottomStrongText}}</div>
+                    <div class="zpwpcg-preview__field"><?php echo $bottom_text; ?></div>
+                    <div class="zpwpcg-preview__field zpwpcg-preview__field--strong"><?php echo $bottom_strong_text; ?></div>
                 </div>
 
 
@@ -96,7 +115,7 @@ $cert_img_id = $options['img'];
                         <span class="zpwpcg-preview__field">{{periodFinish}}</span>
                     </div>
                     <div class="zpwpcg-preview__grid-row">
-                        <span class="zpwpcg-preview__label">{{levelLabel}}:</span>
+                        <span class="zpwpcg-preview__label"><?php echo $level_label . ':'; ?></span>
                         <span class="zpwpcg-preview__field">{{level}}</span>
                     </div>
                     <div class="zpwpcg-preview__grid-row">
@@ -117,13 +136,17 @@ $cert_img_id = $options['img'];
 
                 <div class="zpwpcg-preview__footer">
                     <div class="zpwpcg-preview__footer-row">
-                        <div class="zpwpcg-preview__field zpwpcg-preview__field--logo">{{logo}}</div>
-                        <div class="zpwpcg-preview__field zpwpcg-preview__field--address">{{address}}</div>
+                        <div class="zpwpcg-preview__field zpwpcg-preview__field--logo">
+                            <img src="<?php echo $logo_url; ?>" alt="Certificate logo">
+                        </div>
+                        <div class="zpwpcg-preview__field zpwpcg-preview__field--address"><?php echo $address; ?></div>
                     </div>
-                    <div class="zpwpcg-preview__field">{{signature}}</div>
+                    <div class="zpwpcg-preview__field zpwpcg-preview__field--signature">
+                        <img src="<?php echo $signature_url; ?>" alt="Certificate signature">
+                    </div>
                     <div class="zpwpcg-preview__footer-row zpwpcg-preview__footer-row--director">
-                        <div class="zpwpcg-preview__field">{{director}}</div>
-                        <div class="zpwpcg-preview__field">{{directorLabel}}</div>
+                        <div class="zpwpcg-preview__field"><?php echo $director; ?></div>
+                        <div class="zpwpcg-preview__field"><?php echo $director_label; ?></div>
                     </div>
                 </div>
 
@@ -133,24 +156,20 @@ $cert_img_id = $options['img'];
 </div>
 
 <script type="module">
-    import { createApp } from 'vue'
+    import {createApp} from 'vue'
 
     createApp({
         data() {
             return {
 
-                topText: '<?php echo $options['top_text']; ?>',
-                nameLabel: '<?php echo $options['name_label']; ?>',
                 name: '',
-                bottomText: '<?php echo $options['bottom_text']; ?>',
-                bottomStrongText: '<?php echo $options['bottom_strong_text']; ?>',
 
                 periodLabel: '<?php echo $options['period']; ?>',
                 periodStart: '<?php echo date('Y', strtotime('-1 year', strtotime(date('Y')))); ?>-09',
                 periodFinish: '<?php echo date('Y-m'); ?>',
 
-                levelLabel: '<?php echo $options['level_label']; ?>',
-                level: 'B1',
+                levelLabel: 'Level',
+                level: 'A1',
 
                 hoursLabel: '<?php echo $options['hours']; ?>',
                 hours: 156,
@@ -160,12 +179,6 @@ $cert_img_id = $options['img'];
 
                 dateLabel: '<?php echo $options['date']; ?>',
                 date: '<?php echo date('Y-m-d'); ?>',
-
-                logo: 'logo',
-                address: '<?php echo $options['address']; ?>',
-                signature: 'signature',
-                directorLabel: '<?php echo $options['director_label']; ?>',
-                director: '<?php echo $options['director']; ?>',
             }
         }
     }).mount('#zpdevwpcgFront')
