@@ -116,12 +116,17 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             $options = get_option('zpdevwpcg_option');
 
             $zpdevwpcg_img_id = $options['img'] ? $options['img'] : 0;
+            $zpdevwpcg_logo_id = $options['logo'] ? $options['logo'] : 0;
+            $zpdevwpcg_signature_id = $options['signature'] ? $options['signature'] : 0;
 
-            wp_enqueue_script('zpdev-wpcg-admin', ZPdevWPCG()->plugin_url() . '/assets/js/zpdev-wpcg-admin.js', ['jquery'], '1.0', true);
+            wp_enqueue_script('zpdev-wpcg-admin', ZPdevWPCG()->plugin_url() . '/assets/js/zpdev-wpcg-admin.js',
+                ['jquery'], '1.0', true);
 
-            wp_localize_script( 'zpdev-wpcg-admin', 'zpdevwpcg_img_id', [
-                'id' => $zpdevwpcg_img_id,
-            ] );
+            wp_localize_script('zpdev-wpcg-admin', 'zpdevwpcg_img_id', [
+                'img' => $zpdevwpcg_img_id,
+                'logo' => $zpdevwpcg_logo_id,
+                'signature' => $zpdevwpcg_signature_id,
+            ]);
         }
 
         public function page_init()
@@ -150,37 +155,37 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             add_settings_field($id, $title, $callback, $page, $section);
 
 
-                $id       = 'name_label';
-                $title    = __('Field (Name label)', 'zapadev-wp-certificate-generator');
-                $callback = array($this, 'name_label_callback');
-                $page     = 'zpdevwpcg_settings';
-                $section  = 'setting_section_body_main';
+            $id       = 'name_label';
+            $title    = __('Field (Name label)', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'name_label_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_body_main';
 
-                add_settings_field($id, $title, $callback, $page, $section);
+            add_settings_field($id, $title, $callback, $page, $section);
 
-                $id       = 'top_text';
-                $title    = __('Field (Top text)', 'zapadev-wp-certificate-generator');
-                $callback = array($this, 'top_text_callback');
-                $page     = 'zpdevwpcg_settings';
-                $section  = 'setting_section_body_main';
+            $id       = 'top_text';
+            $title    = __('Field (Top text)', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'top_text_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_body_main';
 
-                add_settings_field($id, $title, $callback, $page, $section);
+            add_settings_field($id, $title, $callback, $page, $section);
 
-                $id       = 'bottom_text';
-                $title    = __('Field (Bottom text)', 'zapadev-wp-certificate-generator');
-                $callback = array($this, 'bottom_text_callback');
-                $page     = 'zpdevwpcg_settings';
-                $section  = 'setting_section_body_main';
+            $id       = 'bottom_text';
+            $title    = __('Field (Bottom text)', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'bottom_text_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_body_main';
 
-                add_settings_field($id, $title, $callback, $page, $section);
+            add_settings_field($id, $title, $callback, $page, $section);
 
-                $id       = 'bottom_strong_text';
-                $title    = __('Field (Bottom strong text)', 'zapadev-wp-certificate-generator');
-                $callback = array($this, 'bottom_strong_text_callback');
-                $page     = 'zpdevwpcg_settings';
-                $section  = 'setting_section_body_main';
+            $id       = 'bottom_strong_text';
+            $title    = __('Field (Bottom strong text)', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'bottom_strong_text_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_body_main';
 
-                add_settings_field($id, $title, $callback, $page, $section);
+            add_settings_field($id, $title, $callback, $page, $section);
 
 
             $id       = 'setting_section_body_grid';
@@ -190,70 +195,75 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
 
             add_settings_section($id, $title, $callback, $page);
 
-                $id       = 'period';
-                $title    = __('Field (Course dates)', 'zapadev-wp-certificate-generator');
-                $callback = array($this, 'period_callback');
-                $page     = 'zpdevwpcg_settings';
-                $section  = 'setting_section_body_grid';
+            $id       = 'period';
+            $title    = __('Field (Course dates)', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'period_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_body_grid';
 
-                add_settings_field($id, $title, $callback, $page, $section);
+            add_settings_field($id, $title, $callback, $page, $section);
 
-                $id       = 'level_label';
-                $title    = __('Field (Level label)', 'zapadev-wp-certificate-generator');
-                $callback = array($this, 'level_label_callback');
-                $page     = 'zpdevwpcg_settings';
-                $section  = 'setting_section_body_grid';
+            $id       = 'level_label';
+            $title    = __('Field (Level label)', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'level_label_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_body_grid';
 
-                add_settings_field($id, $title, $callback, $page, $section);
-
-
-                    $id       = 'level_value_arr';
-                    $title    = __('Field (Level value)', 'zapadev-wp-certificate-generator');
-                    $callback = array($this, 'level_value_callback');
-                    $page     = 'zpdevwpcg_settings';
-                    $section  = 'setting_section_body_grid';
-                    $arr      = array(
-                        'label' => 'level_label',
-                        'value' => [],
-                        'desc'  => 'level_desc'
-                    );
-
-                    add_settings_field($id, $title, $callback, $page, $section, $arr);
+            add_settings_field($id, $title, $callback, $page, $section);
 
 
-                    $id       = 'level_desc';
-                    $title    = __('Field (Level description)', 'zapadev-wp-certificate-generator');
-                    $callback = array($this, 'level_desc_callback');
-                    $page     = 'zpdevwpcg_settings';
-                    $section  = 'setting_section_body_grid';
+            $id       = 'level_value_arr';
+            $title    = __('Field (Level value)', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'level_value_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_body_grid';
+            $arr      = array(
+                'label' => 'level_label',
+                'value' => [],
+                'desc'  => 'level_desc'
+            );
 
-                    add_settings_field($id, $title, $callback, $page, $section, $arr);
+            add_settings_field($id, $title, $callback, $page, $section, $arr);
 
 
-                $id       = 'hours';
-                $title    = __('Field (Number of hours)', 'zapadev-wp-certificate-generator');
-                $callback = array($this, 'hours_callback');
-                $page     = 'zpdevwpcg_settings';
-                $section  = 'setting_section_body_grid';
+            $id       = 'level_desc';
+            $title    = __('Field (Level description)', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'level_desc_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_body_grid';
 
-                add_settings_field($id, $title, $callback, $page, $section);
+            add_settings_field($id, $title, $callback, $page, $section, $arr);
 
-                $id       = 'place';
-                $title    = __('Field (Place of Study)', 'zapadev-wp-certificate-generator');
-                $callback = array($this, 'place_callback');
-                $page     = 'zpdevwpcg_settings';
-                $section  = 'setting_section_body_grid';
 
-                add_settings_field($id, $title, $callback, $page, $section);
+            $id       = 'hours';
+            $title    = __('Field (Number of hours)', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'hours_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_body_grid';
 
-                $id       = 'date';
-                $title    = __('Field (Date of issue)', 'zapadev-wp-certificate-generator');
-                $callback = array($this, 'date_callback');
-                $page     = 'zpdevwpcg_settings';
-                $section  = 'setting_section_body_grid';
+            add_settings_field($id, $title, $callback, $page, $section);
 
-                add_settings_field($id, $title, $callback, $page, $section);
+            $id       = 'place';
+            $title    = __('Field (Place of Study)', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'place_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_body_grid';
 
+            add_settings_field($id, $title, $callback, $page, $section);
+
+            $id       = 'date';
+            $title    = __('Field (Date of issue)', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'date_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_body_grid';
+
+            add_settings_field($id, $title, $callback, $page, $section);
+
+
+            /*
+             * Certificate footer section
+             *
+             * */
 
             $id       = 'setting_section_footer';
             $title    = __('Certificate Footer', 'zapadev-wp-certificate-generator');
@@ -262,9 +272,10 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
 
             add_settings_section($id, $title, $callback, $page);
 
-            $id       = 'director';
-            $title    = __('Director', 'zapadev-wp-certificate-generator');
-            $callback = array($this, 'director_callback');
+
+            $id       = 'logo';
+            $title    = __('Logo', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'logo_callback');
             $page     = 'zpdevwpcg_settings';
             $section  = 'setting_section_footer';
 
@@ -278,9 +289,35 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             $section  = 'setting_section_footer';
 
             add_settings_field($id, $title, $callback, $page, $section);
+
+
+            $id       = 'signature';
+            $title    = __('Signature', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'signature_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_footer';
+
+            add_settings_field($id, $title, $callback, $page, $section);
+
+
+            $id       = 'director_label';
+            $title    = __('Director Label', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'director_label_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_footer';
+
+            add_settings_field($id, $title, $callback, $page, $section);
+
+            $id       = 'director';
+            $title    = __('Director', 'zapadev-wp-certificate-generator');
+            $callback = array($this, 'director_callback');
+            $page     = 'zpdevwpcg_settings';
+            $section  = 'setting_section_footer';
+
+            add_settings_field($id, $title, $callback, $page, $section);
         }
 
-         public function sanitize($input)
+        public function sanitize($input)
         {
             $new_input = array();
             if (isset($input['name_label'])) {
@@ -319,11 +356,20 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             if (isset($input['img'])) {
                 $new_input['img'] = sanitize_text_field($input['img']);
             }
-            if (isset($input['director'])) {
-                $new_input['director'] = sanitize_text_field($input['director']);
+            if (isset($input['logo'])) {
+                $new_input['logo'] = sanitize_text_field($input['logo']);
+            }
+            if (isset($input['signature'])) {
+                $new_input['signature'] = sanitize_text_field($input['signature']);
             }
             if (isset($input['address'])) {
                 $new_input['address'] = sanitize_text_field($input['address']);
+            }
+            if (isset($input['director'])) {
+                $new_input['director'] = sanitize_text_field($input['director']);
+            }
+            if (isset($input['director_label'])) {
+                $new_input['director_label'] = sanitize_text_field($input['director_label']);
             }
 
             return $new_input;
@@ -347,12 +393,23 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
         public function img_callback()
         {
 
-            echo '<div class="image-preview-wrapper"><img id="image-preview" src="' . wp_get_attachment_url($this->options['img']) . '" height="300"></div>';
-            echo '<input id="upload_image_button" type="button" class="button" value="' . __('Upload image',
-                    'zapadev-wp-certificate-generator') . '"/>';
+            ?>
+<!---->
+<!--            <div class="image-preview-wrapper">-->
+<!--                <img id="profile-picture-preview-img" src="--><?php //echo $this->options['img']; ?><!--" height="300" alt="">-->
+<!--            </div>-->
+<!--            <input type="button" class="button button-secondary upload-button" value="Upload image" data-item="img">-->
+<!--            <input type="hidden" name="profile_picture" id="profile-picture-img" value="--><?php // ?><!--">-->
+
+<?php
+
+
+            echo '<div class="image-preview-wrapper"><img id="picture-preview-img" src="' . $this->options['img'] . '" height="300" alt=""></div>';
+            echo '<input id="upload_image_button" data-item="img" type="button" class="button" value="' . __('Upload image',
+                    'zapadev-wp-certificate-generator') . '">';
 
             printf(
-                '<input type="hidden" id="img" name="zpdevwpcg_option[img]" value="%s" />',
+                '<input type="hidden" id="picture-url-img" name="zpdevwpcg_option[img]" value="%s" />',
                 isset($this->options['img']) ? esc_attr($this->options['img']) : ''
             );
         }
@@ -453,11 +510,16 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             );
         }
 
-        public function director_callback()
+        public function logo_callback()
         {
+
+            echo '<div class="image-preview-wrapper"><img id="image-preview" src="' . wp_get_attachment_url($this->options['logo']) . '" height="200"></div>';
+            echo '<input id="upload_image_button" data-item="logo" type="button" class="button" value="' . __('Upload image',
+                    'zapadev-wp-certificate-generator') . '"/>';
+
             printf(
-                '<input type="text" id="director" name="zpdevwpcg_option[director]" value="%s" />',
-                isset($this->options['director']) ? esc_attr($this->options['director']) : ''
+                '<input type="hidden" id="logo" name="zpdevwpcg_option[logo]" value="%s" />',
+                isset($this->options['logo']) ? esc_attr($this->options['logo']) : ''
             );
         }
 
@@ -466,6 +528,40 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             printf(
                 '<textarea cols="40" rows="4" id="address" name="zpdevwpcg_option[address]">%s</textarea>',
                 isset($this->options['address']) ? esc_attr($this->options['address']) : ''
+            );
+        }
+
+        public function director_callback()
+        {
+            printf(
+                '<input type="text" id="director" name="zpdevwpcg_option[director]" value="%s" />',
+                isset($this->options['director']) ? esc_attr($this->options['director']) : ''
+            );
+        }
+
+        public function signature_callback()
+        {
+
+            ?>
+            <input type="button" class="button button-secondary upload-button" value="Upload Profile Picture" data-group="2">
+            <input type="hidden" name="profile_picture2" id="profile-picture2" value="'.$picture2.'">
+<?php
+
+            echo '<div class="image-preview-wrapper"><img id="image-preview" src="' . wp_get_attachment_url($this->options['signature']) . '" height="200"></div>';
+            echo '<input id="upload_image_button" data-item="signature" type="button" class="button" value="' . __('Upload image',
+                    'zapadev-wp-certificate-generator') . '"/>';
+
+            printf(
+                '<input type="hidden" id="signature" name="zpdevwpcg_option[signature]" value="%s" />',
+                isset($this->options['signature']) ? esc_attr($this->options['signature']) : ''
+            );
+        }
+
+        public function director_label_callback()
+        {
+            printf(
+                '<input type="text" id="director_label" name="zpdevwpcg_option[director_label]" value="%s" />',
+                isset($this->options['director_label']) ? esc_attr($this->options['director_label']) : ''
             );
         }
     }

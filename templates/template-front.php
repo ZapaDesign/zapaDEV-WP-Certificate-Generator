@@ -90,25 +90,25 @@ $cert_img_id = $options['img'];
 
                 <div class="zpwpcg-preview__grid">
                     <div class="zpwpcg-preview__grid-row">
-                        <span>{{periodLabel}}:</span>
+                        <span class="zpwpcg-preview__label">{{periodLabel}}:</span>
                         <span class="zpwpcg-preview__field">{{periodStart}}</span>
                         <span>-</span>
                         <span class="zpwpcg-preview__field">{{periodFinish}}</span>
                     </div>
                     <div class="zpwpcg-preview__grid-row">
-                        <span>{{levelLabel}}:</span>
+                        <span class="zpwpcg-preview__label">{{levelLabel}}:</span>
                         <span class="zpwpcg-preview__field">{{level}}</span>
                     </div>
                     <div class="zpwpcg-preview__grid-row">
-                        <span>{{hoursLabel}}:</span>
+                        <span class="zpwpcg-preview__label">{{hoursLabel}}:</span>
                         <span class="zpwpcg-preview__field">{{hours}}</span>
                     </div>
                     <div class="zpwpcg-preview__grid-row">
-                        <span>{{placeLabel}}:</span>
+                        <span class="zpwpcg-preview__label">{{placeLabel}}:</span>
                         <span class="zpwpcg-preview__field">{{place}}</span>
                     </div>
                     <div class="zpwpcg-preview__grid-row">
-                        <span>{{dateLabel}}:</span>
+                        <span class="zpwpcg-preview__label">{{dateLabel}}:</span>
                         <span class="zpwpcg-preview__field">{{date}}</span>
                     </div>
 
@@ -116,7 +116,15 @@ $cert_img_id = $options['img'];
 
 
                 <div class="zpwpcg-preview__footer">
-
+                    <div class="zpwpcg-preview__footer-row">
+                        <div class="zpwpcg-preview__field zpwpcg-preview__field--logo">{{logo}}</div>
+                        <div class="zpwpcg-preview__field zpwpcg-preview__field--address">{{address}}</div>
+                    </div>
+                    <div class="zpwpcg-preview__field">{{signature}}</div>
+                    <div class="zpwpcg-preview__footer-row zpwpcg-preview__footer-row--director">
+                        <div class="zpwpcg-preview__field">{{director}}</div>
+                        <div class="zpwpcg-preview__field">{{directorLabel}}</div>
+                    </div>
                 </div>
 
             </div>
@@ -153,7 +161,10 @@ $cert_img_id = $options['img'];
                 dateLabel: '<?php echo $options['date']; ?>',
                 date: '<?php echo date('Y-m-d'); ?>',
 
-
+                logo: 'logo',
+                address: '<?php echo $options['address']; ?>',
+                signature: 'signature',
+                directorLabel: '<?php echo $options['director_label']; ?>',
                 director: '<?php echo $options['director']; ?>',
             }
         }
