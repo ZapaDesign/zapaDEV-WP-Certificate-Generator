@@ -134,7 +134,7 @@ $cert_img_id = $options['img'];
                 periodStart: '<?php echo date('Y', strtotime('-1 year', strtotime(date('Y')))); ?>-09',
                 periodFinish: '<?php echo date('Y-m'); ?>',
 
-                levelLabel: '<?php echo $options['level']; ?>',
+                levelLabel: '<?php echo $options['level_label']; ?>',
                 level: 'B1',
 
                 hoursLabel: '<?php echo $options['hours']; ?>',
