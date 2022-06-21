@@ -264,13 +264,13 @@
                 add_settings_field( $id, $title, $callback, $page, $section );
                 
                 
-                $id       = 'director_label';
-                $title    = __( 'Director Label', 'zapadev-wp-certificate-generator' );
-                $callback = array( $this, 'director_label_callback' );
-                $page     = 'zpdevwpcg_settings';
-                $section  = 'setting_section_footer';
-                
-                add_settings_field( $id, $title, $callback, $page, $section );
+//                $id       = 'director_label';
+//                $title    = __( 'Director Label', 'zapadev-wp-certificate-generator' );
+//                $callback = array( $this, 'director_label_callback' );
+//                $page     = 'zpdevwpcg_settings';
+//                $section  = 'setting_section_footer';
+//
+//                add_settings_field( $id, $title, $callback, $page, $section );
                 
                 $id       = 'director';
                 $title    = __( 'Director', 'zapadev-wp-certificate-generator' );
@@ -305,7 +305,7 @@
                     $new_input['level_desc'] = sanitize_text_field( $input['level_desc'] );
                 }
                 if ( isset( $input['level_value'] ) ) {
-                    $new_input['level_value'] = sanitize_text_field( $input['level_value'] );
+                    $new_input['level_value'] =  $input['level_value'] ;
                 }
                 if ( isset( $input['hours'] ) ) {
                     $new_input['hours'] = sanitize_text_field( $input['hours'] );
@@ -329,7 +329,7 @@
                     $new_input['address'] = sanitize_text_field( $input['address'] );
                 }
                 if ( isset( $input['director'] ) ) {
-                    $new_input['director'] = sanitize_text_field( $input['director'] );
+                    $new_input['director'] =  $input['director'] ;
                 }
                 if ( isset( $input['director_label'] ) ) {
                     $new_input['director_label'] = sanitize_text_field( $input['director_label'] );
@@ -403,15 +403,22 @@
             
             public function level_value_callback() {
                 printf(
-                    '<input type="text" id="level_value" name="zpdevwpcg_option[level_value]" value="%s" />',
-                    isset( $this->options['level_value'] ) ? esc_attr( $this->options['level_value'] ) : ''
+                    '<input type="text" id="level_value" name="zpdevwpcg_option[level_value][a]" value="%s" />',
+                    isset( $this->options['level_value']['a'] ) ? esc_attr( $this->options['level_value']['a'] ) : ''
                 );
+    
+                printf(
+                    '<input type="text" id="level_value" name="zpdevwpcg_option[level_value][b]" value="%s" />',
+                    isset( $this->options['level_value']['b'] ) ? esc_attr( $this->options['level_value']['b'] ) : ''
+                );
+                
                 echo '<button type="button">Add Level</button>';
                 echo '<p>List</p>';
                 echo '<ul>';
                 echo '<li>';
                 $options = get_option( 'zpdevwpcg_option' );
-                echo $options['level_value'];
+                echo $options['level_value']['a'] . '</br>';
+                echo $options['level_value']['b'] . '</br>';
                 echo '</li>';
                 echo '</ul>';
             }
@@ -462,8 +469,13 @@
             
             public function director_callback() {
                 printf(
-                    '<input type="text" id="director" name="zpdevwpcg_option[director]" value="%s" />',
-                    isset( $this->options['director'] ) ? esc_attr( $this->options['director'] ) : ''
+                    '<input type="text" id="director_label" name="zpdevwpcg_option[director][label]" value="%s" />',
+                    isset( $this->options['director']['label'] ) ? esc_attr( $this->options['director']['label'] ) : ''
+                );
+                
+                printf(
+                    '<input type="text" id="director_value" name="zpdevwpcg_option[director][value]" value="%s" />',
+                    isset( $this->options['director']['value'] ) ? esc_attr( $this->options['director']['value'] ) : ''
                 );
             }
             
@@ -476,11 +488,6 @@
                     isset( $this->options['signature'] ) ? esc_attr( $this->options['signature'] ) : '' );
             }
             
-            public function director_label_callback() {
-                printf(
-                    '<input type="text" id="director_label" name="zpdevwpcg_option[director_label]" value="%s" />',
-                    isset( $this->options['director_label'] ) ? esc_attr( $this->options['director_label'] ) : ''
-                );
-            }
+
         }
     }
