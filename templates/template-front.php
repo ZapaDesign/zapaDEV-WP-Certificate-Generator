@@ -1,19 +1,11 @@
 <?php
 
 $options = get_option('zpdevwpcg_option');
-
-$img_url = $options['img'];
-
-$name_label = $options['name_label'];
+echo '<script>let options = ' . json_encode($options) . ';</script>';
 
 $top_text           = $options['top_text'];
 $bottom_text        = $options['bottom_text'];
 $bottom_strong_text = $options['bottom_strong_text'];
-
-$level_label = $options['level_label'];
-$levels      = $options['levels'];
-$place_label = $options['place_label'];
-$place = $options['place'];
 
 $logo_url       = $options['logo'];
 $address        = $options['address'];
@@ -34,6 +26,7 @@ $director       = $options['director']['value'];
 
 
 
+
 </script>
 
 <div id="zpdevwpcgFront" class="zdcontainer">
@@ -42,8 +35,11 @@ $director       = $options['director']['value'];
             <div class="zpwpcg__form">
                 <form action="">
                     <p>
-                        <label><?php echo $name_label . ':' ?></label>
-                        <input id="zpwpcg__form--name" class="zpwpcg__form--name" type="text" placeholder="Student Name">
+                        <label><?php echo $options['name']['label'] . ':' ?></label>
+                        <input id="zpwpcg__form--name"
+                               class="zpwpcg__form--name"
+                               type="text"
+                               placeholder="Student Name">
                     </p>
                     <p>
                         <label>Start</label>
@@ -58,32 +54,42 @@ $director       = $options['director']['value'];
                             type="month">
                     </p>
                     <p>
-                        <label><?php echo $level_label . ':'; ?></label>
-                        <select @change="onChange" name="level" id="level">
-
+                        <label><?php echo $options['levels']['label'] . ':'; ?></label>
+                        <select
+                            name="level"
+                            id="zpwpcg-front__level-select">
                             <?php
-                                foreach ($levels as $level):
-                                printf('<option value="%s" data-level="%s" data-desc="%s">%s</option>', $level['level'], $level['level'], $level['desc'], $level['level']);
-                                endforeach;
+
+                            $levels_arr = $options['levels']['list'];
+
+                            foreach ($levels_arr as $level):
+                                printf('<option value="%s" data-level="%s" data-desc="%s">%s</option>',
+                                    $level['value'], $level['value'], $level['desc'], $level['value']);
+                            endforeach;
                             ?>
                         </select>
                     </p>
                     <p>
-                        <label>{{hoursLabel}}:</label>
-                        <input id="zpwpcg__form--hours" class="zpwpcg__form--hours" type="number" value="156">
+                        <label><?php echo $options['hours']['label'] . ':'; ?></label>
+                        <input id="zpwpcg-front__hours-input"
+                               class="zpwpcg__form--hours"
+                               type="number"
+                               value="<?php echo $options['hours']['value']; ?>">
                     </p>
                     <p>
-                        <label><?php echo $place_label; ?></label>
-                        <input id="zpwpcg__form--place" type="text" value="!!!">
+                        <label><?php echo $options['place']['label'] . ':'; ?></label>
+                        <input id="zpwpcg-front__place-input" type="text" value="<?php echo $options['place']['value']; ?>">
                     </p>
                     <p>
-                        <label>{{dateLabel}}:</label>
-                        <input v-model="date" type="date" value="<?php echo date('Y-m-d'); ?>">
+                        <label><?php echo $options['date']['label']; ?></label>
+                        <input id="zpwpcg-front__date-input" type="date" value="<?php echo date('Y-m-d'); ?>">
                     </p>
                 </form>
                 <div class="zpwpcg__buttons">
-                    <a href="#" class="zpwpcg-front__btn zpwpcg-front__btn--download button"><?php echo __('Download', 'zapadev-wp-certificate-generator') ?></a>
-                    <button class="zpwpcg-front__btn button"><?php echo __('Print', 'zapadev-wp-certificate-generator'); ?></button>
+                    <button id="zpwpcg-front__btn--download" class="zpwpcg-front__btn zpwpcg-front__btn--download button"><?php echo __('Download',
+                            'zapadev-wp-certificate-generator') ?></button>
+                    <button class="zpwpcg-front__btn button"><?php echo __('Print',
+                            'zapadev-wp-certificate-generator'); ?></button>
                 </div>
             </div>
         </div>
@@ -93,14 +99,14 @@ $director       = $options['director']['value'];
                 <canvas
                     class="zpwpcg-canvas"
                     id="zpwpcg-canvas"
-                    data-imgsrc="<?php echo $img_url; ?>"
+                    data-imgsrc="<?php echo $options['img']; ?>"
                     width="2480"
                     height="3508"
                 ></canvas>
             </div>
-            
-            <div class="zpwpcg-preview">
-                <img class="zpwpcg-preview__img" src="<?php echo $img_url; ?>" alt="">
+
+            <!--            <div class="zpwpcg-preview">
+                <img class="zpwpcg-preview__img" src="<?php /*echo $img_url; */ ?>" alt="">
 
                 <div class="zpwpcg-preview__field zpwpcg-preview__field--cert-number">{{certNumber}}</div>
                 
@@ -109,10 +115,10 @@ $director       = $options['director']['value'];
                 </div>
 
                 <div class="zpwpcg-preview__body">
-                    <div class="zpwpcg-preview__field"><?php echo $top_text; ?></div>
+                    <div class="zpwpcg-preview__field zpwpcg-preview__field--top-text"><?php /*echo $top_text; */ ?></div>
                     <div class="zpwpcg-preview__field zpwpcg-preview__field--name">{{name}}</div>
-                    <div class="zpwpcg-preview__field"><?php echo $bottom_text; ?></div>
-                    <div class="zpwpcg-preview__field zpwpcg-preview__field--strong"><?php echo $bottom_strong_text; ?></div>
+                    <div class="zpwpcg-preview__field"><?php /*echo $bottom_text; */ ?></div>
+                    <div class="zpwpcg-preview__field zpwpcg-preview__field--strong"><?php /*echo $bottom_strong_text; */ ?></div>
                 </div>
 
                 <div class="zpwpcg-preview__grid">
@@ -126,7 +132,7 @@ $director       = $options['director']['value'];
                             </td>
                         </tr>
                         <tr>
-                            <td class="zpwpcg-preview__label"><?php echo $level_label . ':'; ?></td>
+                            <td class="zpwpcg-preview__label"><?php /*echo $level_label . ':'; */ ?></td>
                             <td>
                                 <div class="zpwpcg-preview__field">{{level}}</div>
                                 <div class="zpwpcg-preview__field zpwpcg-preview__field--level-desc">{{levelDesc}}</div>
@@ -147,24 +153,23 @@ $director       = $options['director']['value'];
                     </table>
                 </div>
 
-
                 <div class="zpwpcg-preview__footer">
                     <div class="zpwpcg-preview__footer-row">
                         <div class="zpwpcg-preview__field zpwpcg-preview__field--logo">
-                            <img src="<?php echo $logo_url; ?>" alt="Certificate logo">
+                            <img src="<?php /*echo $logo_url; */ ?>" alt="Certificate logo">
                         </div>
-                        <div class="zpwpcg-preview__field zpwpcg-preview__field--address"><?php echo $address; ?></div>
+                        <div class="zpwpcg-preview__field zpwpcg-preview__field--address"><?php /*echo $address; */ ?></div>
                     </div>
                     <div class="zpwpcg-preview__field zpwpcg-preview__field--signature">
-                        <img src="<?php echo $signature_url; ?>" alt="Certificate signature">
+                        <img src="<?php /*echo $signature_url; */ ?>" alt="Certificate signature">
                     </div>
                     <div class="zpwpcg-preview__footer-row zpwpcg-preview__footer-row--director">
-                        <div class="zpwpcg-preview__field"><?php echo $director; ?></div>
-                        <div class="zpwpcg-preview__field"><?php echo $director_label; ?></div>
+                        <div class="zpwpcg-preview__field"><?php /*echo $director; */ ?></div>
+                        <div class="zpwpcg-preview__field"><?php /*echo $director_label; */ ?></div>
                     </div>
                 </div>
 
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
@@ -199,28 +204,7 @@ $director       = $options['director']['value'];
                     this.levelDesc = theTarget.desc
                 }
             },
-            // updateCanvas: function (){
-            //     var canvas = document.getElementById('zpwpcg-canvas'),
-            //         ctx = canvas.getContext('2d');
-            //     ctx.clearRect(0,0,canvas.width,canvas.height);
-            //     ctx.fillStyle = "black";
-            //     ctx.font="20px Georgia";
-            //     ctx.fillText(this.name,10,50);
-            //     ctx.fillText(this.hours,20,100);
-            // }
         },
-
-        // watch: {
-        //     name: function(val, oldVal) {
-        //         this.updateCanvas();
-        //     },
-        //     hours: function(val, oldVal) {
-        //         this.updateCanvas();
-        //     }
-        // },
-        // mounted: function (){
-        //     this.updateCanvas();
-        // }
     }).mount('#zpdevwpcgFront')
 </script>
 

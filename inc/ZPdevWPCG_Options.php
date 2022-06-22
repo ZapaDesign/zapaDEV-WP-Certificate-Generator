@@ -127,9 +127,9 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             add_settings_field($id, $title, $callback, $page, $section);
 
 
-            $id       = 'name_label';
+            $id       = 'name';
             $title    = __('Field (Name label)', 'zapadev-wp-certificate-generator');
-            $callback = array($this, 'name_label_callback');
+            $callback = array($this, 'name_callback');
             $page     = 'zpdevwpcg_settings';
             $section  = 'setting_section_body_main';
 
@@ -175,27 +175,11 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
 
             add_settings_field($id, $title, $callback, $page, $section);
 
-            $id       = 'level_label';
-            $title    = __('Field (Level label)', 'zapadev-wp-certificate-generator');
-            $callback = array($this, 'level_label_callback');
-            $page     = 'zpdevwpcg_settings';
-            $section  = 'setting_section_body_grid';
-
-            add_settings_field($id, $title, $callback, $page, $section);
 
 
             $id       = 'levels';
-            $title    = __('Field (Levels value)', 'zapadev-wp-certificate-generator');
+            $title    = __('Field (Levels)', 'zapadev-wp-certificate-generator');
             $callback = array($this, 'levels_callback');
-            $page     = 'zpdevwpcg_settings';
-            $section  = 'setting_section_body_grid';
-
-            add_settings_field($id, $title, $callback, $page, $section);
-
-
-            $id       = 'level_desc';
-            $title    = __('Field (Level description)', 'zapadev-wp-certificate-generator');
-            $callback = array($this, 'level_desc_callback');
             $page     = 'zpdevwpcg_settings';
             $section  = 'setting_section_body_grid';
 
@@ -279,8 +263,8 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
         public function sanitize($input)
         {
             $new_input = array();
-            if (isset($input['name_label'])) {
-                $new_input['name_label'] = sanitize_text_field($input['name_label']);
+            if (isset($input['name'])) {
+                $new_input['name'] = $input['name'];
             }
             if (isset($input['top_text'])) {
                 $new_input['top_text'] = sanitize_text_field($input['top_text']);
@@ -292,29 +276,24 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
                 $new_input['bottom_strong_text'] = sanitize_text_field($input['bottom_strong_text']);
             }
             if (isset($input['period'])) {
-                $new_input['period'] = sanitize_text_field($input['period']);
-            }
-            if (isset($input['level_label'])) {
-                $new_input['level_label'] = sanitize_text_field($input['level_label']);
-            }
-            if (isset($input['level_desc'])) {
-                $new_input['level_desc'] = sanitize_text_field($input['level_desc']);
+                $new_input['period'] = $input['period'];
             }
             if (isset($input['levels'])) {
                 $new_input['levels'] = $input['levels'];
             }
             if (isset($input['hours'])) {
-                $new_input['hours'] = sanitize_text_field($input['hours']);
+                $new_input['hours'] = $input['hours'];
             }
             if (isset($input['place'])) {
-                $new_input['place'] = sanitize_text_field($input['place']);
+                $new_input['place'] = $input['place'];
             }
             if (isset($input['date'])) {
-                $new_input['date'] = sanitize_text_field($input['date']);
+                $new_input['date'] = $input['date'];
             }
             if (isset($input['img'])) {
                 $new_input['img'] = sanitize_text_field($input['img']);
             }
+
             if (isset($input['logo'])) {
                 $new_input['logo'] = sanitize_text_field($input['logo']);
             }
@@ -362,16 +341,16 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
         public function period_callback()
         {
             printf(
-                '<input type="text" id="period" name="zpdevwpcg_option[period]" value="%s" />',
-                isset($this->options['period']) ? esc_attr($this->options['period']) : ''
+                '<input type="text" id="period" name="zpdevwpcg_option[period][label]" value="%s" />',
+                isset($this->options['period']['label']) ? esc_attr($this->options['period']['label']) : ''
             );
         }
 
-        public function name_label_callback()
+        public function name_callback()
         {
             printf(
-                '<input type="text" id="name_label" name="zpdevwpcg_option[name_label]" value="%s" />',
-                isset($this->options['name_label']) ? esc_attr($this->options['name_label']) : ''
+                '<input type="text" name="zpdevwpcg_option[name][label]" value="%s" placeholder="%s">',
+                isset($this->options['name']['label']) ? esc_attr($this->options['name']['label']) : '', __('Label')
             );
         }
 
@@ -399,46 +378,43 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             );
         }
 
-        public function level_label_callback()
-        {
-            printf(
-                '<input type="text" id="level_label" name="zpdevwpcg_option[level_label]" value="%s" />',
-                isset($this->options['level_label']) ? esc_attr($this->options['level_label']) : ''
-            );
-        }
-
         public function levels_callback()
         {
+            printf(
+                '<input type="text" name="zpdevwpcg_option[levels][label]" value="%s" placeholder="%s"/>',
+                isset($this->options['levels']['label']) ? esc_attr($this->options['levels']['label']) : '', __('Label')
+            );
 
             $all_options = get_option('zpdevwpcg_option');
-            $options = $all_options['levels'];
+            $options     = $all_options['levels']['list'];
             echo '<div class="repeatable-wrap"><ul id="tracks-repeatable" class="repeatable-fields-list">';
-            if(! empty( $options )):
+            if ( ! empty($options)):
 
                 $i = 1;
                 foreach ($options as $option):
-                    if ( $this->options['levels']['level-' . $i] !== null ): ?>
+//                    if ($this->options['levels']['list']['level-' . $i]['value'] !== null): ?>
                         <li>
                             <input type="text"
-                                   name="zpdevwpcg_option[levels][level-<?php echo $i; ?>][level]"
-                                   value="<?php echo isset($this->options['levels']['level-' . $i]['level']) ? esc_attr($this->options['levels']['level-' . $i]['level']) : ''; ?>">
+                                   name="zpdevwpcg_option[levels][list][level-<?php echo $i; ?>][value]"
+                                   value="<?php echo isset($this->options['levels']['list']['level-' . $i]['value']) ?
+                                       esc_attr($this->options['levels']['list']['level-' . $i]['value']) : ''; ?>">
                             <input type="text"
                                    width="500"
-                                   name="zpdevwpcg_option[levels][level-<?php echo $i; ?>][desc]"
-                                   value="<?php echo isset($this->options['levels']['level-' . $i]['desc']) ? esc_attr($this->options['levels']['level-' . $i]['desc']) : ''; ?>">
+                                   name="zpdevwpcg_option[levels][list][level-<?php echo $i; ?>][desc]"
+                                   value="<?php echo isset($this->options['levels']['list']['level-' . $i]['desc']) ? esc_attr($this->options['levels']['list']['level-' . $i]['desc']) : ''; ?>">
                             <a class="repeatable-field-remove button" href="#">X</a>
                         </li>
                         <?php $i++;
-                    endif;
+//                    endif;
                 endforeach;
             else: ?>
                 <li>
                     <input type="text"
-                           name="zpdevwpcg_option[levels][level-1]"
-                           value="<?php echo isset($this->options['levels']['level-1']) ? esc_attr($this->options['levels']['level-1']) : ''; ?>">
+                           name="zpdevwpcg_option[levels][list][level-1][value]"
+                           value="<?php echo isset($this->options['levels']['list']['level-1']['value']) ? esc_attr($this->options['levels']['list']['level-1']['value']) : ''; ?>">
                     <input type="text"
-                           name="zpdevwpcg_option[levels][level-desc-1]"
-                           value="<?php echo isset($this->options['levels']['level-desc-1']) ? esc_attr($this->options['levels']['level-desc-1']) : ''; ?>">
+                           name="zpdevwpcg_option[levels][list][level-1][desc]"
+                           value="<?php echo isset($this->options['levels']['list']['level-1']['desc']) ? esc_attr($this->options['levels']['list']['level-1']['desc']) : ''; ?>">
                     <a class="repeatable-field-remove button" href="#">X</a>
                 </li>
             <?php endif; ?>
@@ -446,35 +422,37 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             <?php
         }
 
-        public function level_desc_callback()
-        {
-            printf(
-                '<textarea cols="40" rows="3" id="level_desc" name="zpdevwpcg_option[level_desc]">%s</textarea>',
-                isset($this->options['level_desc']) ? esc_attr($this->options['level_desc']) : ''
-            );
-        }
-
         public function hours_callback()
         {
             printf(
-                '<input type="text" id="hours" name="zpdevwpcg_option[hours]" value="%s" />',
-                isset($this->options['hours']) ? esc_attr($this->options['hours']) : ''
+                '<input type="text" name="zpdevwpcg_option[hours][label]" value="%s" placeholder="%s"/>',
+                isset($this->options['hours']['label']) ? esc_attr($this->options['hours']['label']) : '', __('Label')
+            );
+
+            printf(
+                '<input type="text" name="zpdevwpcg_option[hours][value]" value="%s" placeholder="%s"/>',
+                isset($this->options['hours']['value']) ? esc_attr($this->options['hours']['value']) : '', __('Default value')
             );
         }
 
         public function place_callback()
         {
             printf(
-                '<input type="text" id="place" name="zpdevwpcg_option[place]" value="%s" />',
-                isset($this->options['place']) ? esc_attr($this->options['place']) : ''
+                '<input type="text" name="zpdevwpcg_option[place][label]" value="%s" placeholder="%s"/>',
+                isset($this->options['place']['label']) ? esc_attr($this->options['place']['label']) : '', __('Label')
+            );
+
+            printf(
+                '<input type="text" name="zpdevwpcg_option[place][value]" value="%s" placeholder="%s"/>',
+                isset($this->options['place']['value']) ? esc_attr($this->options['place']['value']) : '', __('Default value')
             );
         }
 
         public function date_callback()
         {
             printf(
-                '<input type="text" id="date" name="zpdevwpcg_option[date]" value="%s" />',
-                isset($this->options['date']) ? esc_attr($this->options['date']) : ''
+                '<input type="text" name="zpdevwpcg_option[date][label]" value="%s" placeholder="%s">',
+                isset($this->options['date']['label']) ? esc_attr($this->options['date']['label']) : '', __('Label')
             );
         }
 

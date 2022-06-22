@@ -180,4 +180,29 @@
 }
 
 
+@media print {
+	header, footer, h1,
+	.zpwpcg__form,
+	.grecaptcha-badge,
+	.footer__copyright {
+		display: none!important;
+		padding: 0!important;
+		margin: 0!important;
+
+	}
+	.site-content,
+	.zdcontainer,
+	.zdcell {
+		padding: 0!important;
+		margin: 0!important;
+	}
+
+	.zpwpcg-canvas {
+		display: block!important;
+		margin: 0!important;
+		padding: 0!important;
+
+	}
+}
+
 
