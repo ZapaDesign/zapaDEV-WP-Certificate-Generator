@@ -168,7 +168,6 @@ $director       = $options['director']['value'];
                 periodStart: '<?php echo date('Y', strtotime('-1 year', strtotime(date('Y')))); ?>-09',
                 periodFinish: '<?php echo date('Y-m'); ?>',
 
-                levelLabel: 'Level',
                 level: 'A1',
 
                 hoursLabel: '<?php echo $options['hours']; ?>',
