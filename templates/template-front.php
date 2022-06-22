@@ -43,7 +43,6 @@ $director       = $options['director']['value'];
                         <label><?php echo $name_label . ':' ?></label>
                         <input v-model="name" class="zpwpcg__form--name" type="text" placeholder="Student Name">
                     </p>
-
                     <p>
                         <label>Start</label>
                         <input
@@ -56,19 +55,17 @@ $director       = $options['director']['value'];
                             v-model="periodFinish"
                             type="month">
                     </p>
-
                     <p>
                         <label><?php echo $level_label . ':'; ?></label>
-                        <select v-model="level" name="level" id="level">
+                        <select @change="onChange" name="level" id="level">
 
                             <?php
                                 foreach ($levels as $level):
-                                printf('<option value="%s">%s</option>', $level['level'], $level['level']);
+                                printf('<option value="%s" data-level="%s" data-desc="%s">%s</option>', $level['level'], $level['level'], $level['desc'], $level['level']);
                                 endforeach;
                             ?>
                         </select>
                     </p>
-
                     <p>
                         <label>{{hoursLabel}}:</label>
                         <input v-model="hours" class="zpwpcg__form--hours" type="number">
@@ -93,11 +90,11 @@ $director       = $options['director']['value'];
             <div class="zpwpcg-preview">
                 <img class="zpwpcg-preview__img" src="<?php echo $img_url; ?>" alt="">
 
-
+                <div class="zpwpcg-preview__field zpwpcg-preview__field--cert-number">{{certNumber}}</div>
+                
                 <div class="zpwpcg-preview__header">
 
                 </div>
-
 
                 <div class="zpwpcg-preview__body">
                     <div class="zpwpcg-preview__field"><?php echo $top_text; ?></div>
@@ -106,31 +103,36 @@ $director       = $options['director']['value'];
                     <div class="zpwpcg-preview__field zpwpcg-preview__field--strong"><?php echo $bottom_strong_text; ?></div>
                 </div>
 
-
                 <div class="zpwpcg-preview__grid">
-                    <div class="zpwpcg-preview__grid-row">
-                        <span class="zpwpcg-preview__label">{{periodLabel}}:</span>
-                        <span class="zpwpcg-preview__field">{{periodStart}}</span>
-                        <span>-</span>
-                        <span class="zpwpcg-preview__field">{{periodFinish}}</span>
-                    </div>
-                    <div class="zpwpcg-preview__grid-row">
-                        <span class="zpwpcg-preview__label"><?php echo $level_label . ':'; ?></span>
-                        <span class="zpwpcg-preview__field">{{level}}</span>
-                    </div>
-                    <div class="zpwpcg-preview__grid-row">
-                        <span class="zpwpcg-preview__label">{{hoursLabel}}:</span>
-                        <span class="zpwpcg-preview__field">{{hours}}</span>
-                    </div>
-                    <div class="zpwpcg-preview__grid-row">
-                        <span class="zpwpcg-preview__label">{{placeLabel}}:</span>
-                        <span class="zpwpcg-preview__field">{{place}}</span>
-                    </div>
-                    <div class="zpwpcg-preview__grid-row">
-                        <span class="zpwpcg-preview__label">{{dateLabel}}:</span>
-                        <span class="zpwpcg-preview__field">{{date}}</span>
-                    </div>
-
+                    <table>
+                        <tr>
+                            <td class="zpwpcg-preview__label">{{periodLabel}}:</td>
+                            <td>
+                                <span class="zpwpcg-preview__field">{{periodStart}}</span>
+                                <span>-</span>
+                                <span class="zpwpcg-preview__field">{{periodFinish}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="zpwpcg-preview__label"><?php echo $level_label . ':'; ?></td>
+                            <td>
+                                <div class="zpwpcg-preview__field">{{level}}</div>
+                                <div class="zpwpcg-preview__field zpwpcg-preview__field--level-desc">{{levelDesc}}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="zpwpcg-preview__label">{{hoursLabel}}:</td>
+                            <td>{{hours}}</td>
+                        </tr>
+                        <tr>
+                            <td class="zpwpcg-preview__label">{{placeLabel}}:</td>
+                            <td>{{place}}</td>
+                        </tr>
+                        <tr>
+                            <td class="zpwpcg-preview__label">{{dateLabel}}:</td>
+                            <td>{{date}}</td>
+                        </tr>
+                    </table>
                 </div>
 
 
@@ -161,6 +163,8 @@ $director       = $options['director']['value'];
     createApp({
         data() {
             return {
+                
+                certNumber: '555/22',
 
                 name: '',
 
@@ -168,7 +172,8 @@ $director       = $options['director']['value'];
                 periodStart: '<?php echo date('Y', strtotime('-1 year', strtotime(date('Y')))); ?>-09',
                 periodFinish: '<?php echo date('Y-m'); ?>',
 
-                level: 'A1',
+                level: 'Primary 1',
+                levelDesc: '',
 
                 hoursLabel: '<?php echo $options['hours']; ?>',
                 hours: 156,
@@ -178,6 +183,15 @@ $director       = $options['director']['value'];
 
                 dateLabel: '<?php echo $options['date']; ?>',
                 date: '<?php echo date('Y-m-d'); ?>',
+            }
+        },
+        methods: {
+            onChange(e) {
+                if (e.target.options.selectedIndex > -1) {
+                    const theTarget = e.target.options[e.target.options.selectedIndex].dataset;
+                    this.level = theTarget.level
+                    this.levelDesc = theTarget.desc
+                }
             }
         }
     }).mount('#zpdevwpcgFront')

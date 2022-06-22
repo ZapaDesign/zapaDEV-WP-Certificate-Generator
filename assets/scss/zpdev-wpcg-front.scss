@@ -74,11 +74,20 @@
 
 		&__grid {
 			position: absolute;
-			bottom: 25%;
+			top: 60%;
 			width: 100%;
 			padding-left: 5.6vw;
 			padding-right: 2vw;
-			font-size: 1.5vw;
+			font-size: 1.25vw;
+			display: table;
+
+			table {
+				tr {
+					td:first-child {
+						width: 25%;
+					}
+				}
+			}
 		}
 
 		&__footer {
@@ -104,10 +113,21 @@
 		}
 
 		&__label {
-			font-size: 1.125vw;
+			font-size: .875vw;
 		}
 
 		&__field {
+
+			&--cert-number {
+				position: absolute;
+				width: 100%;
+				text-align: center;
+				left: 0;
+				top: 12.5%;
+				padding-left: 5.6vw;
+				padding-right: 2vw;
+			}
+
 			&--name {
 				font-size: 4vw;
 				color: var(--accTextColor);
@@ -115,6 +135,10 @@
 
 			&--strong {
 				font-weight: bold;
+			}
+
+			&--level-desc {
+				font-size: 1vw
 			}
 
 			&--logo,
