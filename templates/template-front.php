@@ -12,6 +12,8 @@ $bottom_strong_text = $options['bottom_strong_text'];
 
 $level_label = $options['level_label'];
 $levels      = $options['levels'];
+$place_label = $options['place_label'];
+$place = $options['place'];
 
 $logo_url       = $options['logo'];
 $address        = $options['address'];
@@ -41,7 +43,7 @@ $director       = $options['director']['value'];
                 <form action="">
                     <p>
                         <label><?php echo $name_label . ':' ?></label>
-                        <input v-model="name" class="zpwpcg__form--name" type="text" placeholder="Student Name">
+                        <input id="zpwpcg__form--name" class="zpwpcg__form--name" type="text" placeholder="Student Name">
                     </p>
                     <p>
                         <label>Start</label>
@@ -68,11 +70,11 @@ $director       = $options['director']['value'];
                     </p>
                     <p>
                         <label>{{hoursLabel}}:</label>
-                        <input v-model="hours" class="zpwpcg__form--hours" type="number">
+                        <input id="zpwpcg__form--hours" class="zpwpcg__form--hours" type="number" value="156">
                     </p>
                     <p>
-                        <label>{{placeLabel}}:</label>
-                        <input v-model="place" type="text">
+                        <label><?php echo $place_label; ?></label>
+                        <input id="zpwpcg__form--place" type="text" value="!!!">
                     </p>
                     <p>
                         <label>{{dateLabel}}:</label>
@@ -80,13 +82,23 @@ $director       = $options['director']['value'];
                     </p>
                 </form>
                 <div class="zpwpcg__buttons">
-                    <button id="zpwpcgDownload" class="button">Download</button>
-                    <button class="button">Print</button>
+                    <a href="#" class="zpwpcg-front__btn zpwpcg-front__btn--download button"><?php echo __('Download', 'zapadev-wp-certificate-generator') ?></a>
+                    <button class="zpwpcg-front__btn button"><?php echo __('Print', 'zapadev-wp-certificate-generator'); ?></button>
                 </div>
             </div>
         </div>
 
         <div class="zdcell">
+            <div class="zpwpcg-canvas__wrap">
+                <canvas
+                    class="zpwpcg-canvas"
+                    id="zpwpcg-canvas"
+                    data-imgsrc="<?php echo $img_url; ?>"
+                    width="2480"
+                    height="3508"
+                ></canvas>
+            </div>
+            
             <div class="zpwpcg-preview">
                 <img class="zpwpcg-preview__img" src="<?php echo $img_url; ?>" alt="">
 
@@ -163,26 +175,20 @@ $director       = $options['director']['value'];
     createApp({
         data() {
             return {
-                
                 certNumber: '555/22',
-
                 name: '',
-
                 periodLabel: '<?php echo $options['period']; ?>',
                 periodStart: '<?php echo date('Y', strtotime('-1 year', strtotime(date('Y')))); ?>-09',
                 periodFinish: '<?php echo date('Y-m'); ?>',
-
                 level: 'Primary 1',
                 levelDesc: '',
-
                 hoursLabel: '<?php echo $options['hours']; ?>',
                 hours: 156,
-
                 placeLabel: '<?php echo $options['place']; ?>',
                 place: 'Poltava (UKRAINE)',
-
                 dateLabel: '<?php echo $options['date']; ?>',
                 date: '<?php echo date('Y-m-d'); ?>',
+
             }
         },
         methods: {
@@ -192,8 +198,29 @@ $director       = $options['director']['value'];
                     this.level = theTarget.level
                     this.levelDesc = theTarget.desc
                 }
-            }
-        }
+            },
+            // updateCanvas: function (){
+            //     var canvas = document.getElementById('zpwpcg-canvas'),
+            //         ctx = canvas.getContext('2d');
+            //     ctx.clearRect(0,0,canvas.width,canvas.height);
+            //     ctx.fillStyle = "black";
+            //     ctx.font="20px Georgia";
+            //     ctx.fillText(this.name,10,50);
+            //     ctx.fillText(this.hours,20,100);
+            // }
+        },
+
+        // watch: {
+        //     name: function(val, oldVal) {
+        //         this.updateCanvas();
+        //     },
+        //     hours: function(val, oldVal) {
+        //         this.updateCanvas();
+        //     }
+        // },
+        // mounted: function (){
+        //     this.updateCanvas();
+        // }
     }).mount('#zpdevwpcgFront')
 </script>
 

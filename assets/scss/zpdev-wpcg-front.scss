@@ -27,6 +27,7 @@
 }
 
 .zpwpcg {
+
 	&__form {
 		position: sticky;
 		top: 150px;
@@ -54,6 +55,16 @@
 			}
 
 
+		}
+	}
+
+	&-canvas {
+		width: 100%;
+
+
+		&__wrap {
+			width: 100%;
+			overflow: auto;
 		}
 	}
 
