@@ -34,10 +34,10 @@ function drawImage() {
     drawScaleImage(logo, 15, 88, 400)
     drawScaleImage(signature, 65, 88, 400)
 
-    drawText(options.top_text, 'center',54.5, 24, 'normal', 130, 'Helvetica');
+    drawText(options.text.after, 'center',54.5, 24, 'normal', 130, 'Helvetica');
     drawText(nameInput.value, 'center',54.5, 32, 'bold', 200, 'Helvetica', '#333');
-    drawText(options.bottom_text, 'center',54.5, 40, 'normal', 130, 'Helvetica');
-    drawText(options.bottom_strong_text, 'center',54.5, 46, 'bold', 130, 'Helvetica');
+    drawText(options.text.before, 'center',54.5, 40, 'normal', 130, 'Helvetica');
+    drawText(options.text.before_strong, 'center',54.5, 46, 'bold', 130, 'Helvetica');
     drawText(options.address, undefined,15, 93, 'normal', 32, 'Helvetica');
     drawText(options.director.value, 'end',94, 92.5, 'normal', 32, 'Helvetica');
     drawText(options.director.label, 'end',94, 94.5, 'normal', 32, 'Helvetica');

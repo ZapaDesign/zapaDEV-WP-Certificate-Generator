@@ -13,7 +13,7 @@
     namespace ZPdevWPCG;
     
     if ( ! defined( 'ABSPATH' ) ) {
-        exit; // Exit if accessed directly
+        exit;
     }
     
     define( 'DIR_PATH', plugin_dir_path( __FILE__ ) );
@@ -50,11 +50,13 @@
                 
                 ZPdevWPCG_Options::instance();
                 ZPdevWPCG_Shortcode::instance();
+                ZPdevWPCG_Certificate::instance();
             }
             
             public function includes() {
                 require_once( 'inc/ZPdevWPCG_Options.php' );
                 require_once( 'inc/ZPdevWPCG_Shortcode.php' );
+                require_once( 'inc/ZPdevWPCG_Certificate.php' );
             }
         }
     }
