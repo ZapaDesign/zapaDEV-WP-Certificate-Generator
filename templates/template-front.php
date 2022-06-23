@@ -2,9 +2,9 @@
 
 $options = get_option('zpdevwpcg_option');
 echo '<script>let options = ' . json_encode($options) . ';</script>';
-?>
 
-<div id="zpdevwpcgFront" class="zdcontainer">
+if($options): ?>
+    <div id="zpdevwpcgFront" class="zdcontainer">
     <div class="zdgrid">
         <div class="zdcell">
             <div class="zpwpcg__form">
@@ -17,14 +17,14 @@ echo '<script>let options = ' . json_encode($options) . ';</script>';
                                placeholder="Student Name">
                     </p>
                     <p>
-                        <label>Start</label>
+                        <label><?php echo $options['period']['start'] . ':'; ?></label>
                         <input
                             id="zpwpcg-front__start-input"
                             value="<?php echo date('Y', strtotime('-1 year', strtotime(date('Y')))) . '-09'; ?>"
                             type="month">
                     </p>
                     <p>
-                        <label>Finish</label>
+                        <label><?php echo $options['period']['finish'] . ':'; ?></label>
                         <input
                             id="zpwpcg-front__finish-input"
                             value="<?php echo date('Y-m'); ?>"
@@ -150,5 +150,10 @@ echo '<script>let options = ' . json_encode($options) . ';</script>';
         </div>
     </div>
 </div>
-
-
+<?php else: ?>
+    <h2><?php echo __('Plugin not configured', TR_ID); ?></h2>
+    <p><?php  ?>
+        
+        <?php printf('') ?>
+        <?php echo __('Plugin <b>' . PL_NAME . '</b>', TR_ID ); ?></p>
+<<?php endif; ?>

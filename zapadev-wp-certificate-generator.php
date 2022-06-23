@@ -16,9 +16,11 @@
         exit;
     }
     
+    define( 'PL_NAME', 'zapaDEV WP Cerificate Generator' );
     define( 'DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'TR_ID', 'zapadev-wp-certificate-generator' );
     define( 'PREFIX', 'zpdevwpcg_' );
+    define( 'SHORTCODE', 'ZPdevWPCG' );
     
     trait Instance {
         protected static $instance = null;
@@ -50,13 +52,11 @@
                 
                 ZPdevWPCG_Options::instance();
                 ZPdevWPCG_Shortcode::instance();
-                ZPdevWPCG_Certificate::instance();
             }
             
             public function includes() {
                 require_once( 'inc/ZPdevWPCG_Options.php' );
                 require_once( 'inc/ZPdevWPCG_Shortcode.php' );
-                require_once( 'inc/ZPdevWPCG_Certificate.php' );
             }
         }
     }

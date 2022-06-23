@@ -5,19 +5,17 @@ namespace ZPdevWPCG;
 if ( ! class_exists( 'ZPdevWPCG_Certificate' ) ) {
     class ZPdevWPCG_Certificate {
         
-        use Instance;
+        private $id;
         
-        private $id = 0;
+        private $student;
         
-        private $student = '';
+        private $period;
+        private $level;
+        private $hours;
+        private $place;
+        private $date;
         
-        private $period = [];
-        private $level = [];
-        private $hours = 0;
-        private $place = '0';
-        private $date = '';
-        
-        public function __construct($id, $student, $period, $level, $hours, $place, $date) {
+        public function __construct( $id,  $student,  $period,  $level,  $hours,  $place,  $date) {
             $this->id = $id;
             $this->student = $student;
             $this->period = $period;
