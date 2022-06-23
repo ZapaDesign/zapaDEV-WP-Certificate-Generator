@@ -196,14 +196,12 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
 
         public function img_callback()
         {
-            ?>
-            <div class="zpwpcg-adm-picture__preview-wrapper">
-                <img src="<?php echo $this->options['img']; ?>" id="zpwpcg-adm-picture-img" class="zpwpcg-adm-picture__preview--img" alt="Certificate Image" width="300">
-            </div>
-            <input type="button" class="zpwpcg-adm-picture__upload-button" data-item="img" value="<?php echo __('Upload image', TR_ID); ?>">
-            <input type="hidden" id="zpwpcg-adm-picture-src-img" name="zpdevwpcg_option[img]" value="<?php echo isset($this->options['img']) ? esc_attr($this->options['img']) : ''; ?>" >
-            <?php
-
+            printf('<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--img" src="%s" height="300" alt=""></div>',
+                $this->options['img']);
+            printf('<input class="zpwpcg-adm-picture__upload-button" data-item="img" type="button"  value="%s">',
+                __('Upload image', TR_ID));
+            printf('<input type="hidden" id="img" name="zpdevwpcg_option[img]" value="%s" />',
+                isset($this->options['img']) ? esc_attr($this->options['img']) : '');
         }
 
         public function period_callback()
@@ -352,13 +350,12 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
 
         public function logo_callback()
         {
-            ?>
-                <div class="zpwpcg-adm-picture__preview-wrapper">
-                    <img src="<?php echo $this->options['logo']; ?>" id="zpwpcg-adm-picture-logo" class="zpwpcg-adm-picture__preview--logo" alt="Certificate Logo" width="300">
-                </div>
-                <input type="button" class="zpwpcg-adm-picture__upload-button" data-item="logo" value="<?php echo __('Upload image', TR_ID); ?>">
-                <input type="hidden" id="zpwpcg-adm-picture-src-logo" name="zpdevwpcg_option[logo]" value="<?php echo isset($this->options['logo']) ? esc_attr($this->options['logo']) : ''; ?>" >
-            <?php
+             printf('<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--logo" src="%s" width="300" alt=""></div>',
+                $this->options['logo']);
+            printf('<input class="zpwpcg-adm-picture__upload-button" data-item="logo" type="button"  value="%s">',
+                __('Upload image', TR_ID));
+            printf('<input type="hidden" id="logo" name="zpdevwpcg_option[logo]" value="%s" />',
+                isset($this->options['logo']) ? esc_attr($this->options['logo']) : '');
         }
 
         public function address_callback()
@@ -387,13 +384,12 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
 
         public function signature_callback()
         {
-            ?>
-            <div class="zpwpcg-adm-picture__preview-wrapper">
-                <img src="<?php echo $this->options['signature']; ?>" id="zpwpcg-adm-picture-signature" class="zpwpcg-adm-picture__preview--signature" alt="Certificate Signature" width="200">
-            </div>
-            <input type="button" class="zpwpcg-adm-picture__upload-button" data-item="signature" value="<?php echo __('Upload image', TR_ID); ?>">
-            <input type="hidden" id="zpwpcg-adm-picture-src-signature" name="zpdevwpcg_option[signature]" value="<?php echo isset($this->options['signature']) ? esc_attr($this->options['signature']) : ''; ?>" >
-            <?php
+            printf('<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--signature" src="%s" width="300" alt=""></div>',
+                $this->options['signature']);
+            printf('<input class="zpwpcg-adm-picture__upload-button" data-item="signature" type="button"  value="%s">',
+                __('Upload image', TR_ID));
+            printf('<input type="hidden" id="signature" name="zpdevwpcg_option[signature]" value="%s" />',
+                isset($this->options['signature']) ? esc_attr($this->options['signature']) : '');
         }
     }
 }

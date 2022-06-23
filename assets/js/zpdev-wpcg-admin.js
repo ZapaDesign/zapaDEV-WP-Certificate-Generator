@@ -22,8 +22,8 @@
 
             mediaUploader.on('select', function () {
                 attachment = mediaUploader.state().get('selection').first().toJSON();
-                $('#zpwpcg-adm-picture-src-' + buttonID).val(attachment.url);
-                $('#zpwpcg-adm-picture-' + buttonID).attr('src', attachment.url);
+                $('#' + buttonID).val(attachment.url);
+                $('.zpwpcg-adm-picture__preview--' + buttonID).attr('src', attachment.url);
             });
             mediaUploader.open();
         });
