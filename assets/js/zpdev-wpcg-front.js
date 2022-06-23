@@ -1,80 +1,106 @@
-(function ($) {
-    $(document).ready(function () {
+// @param options
 
+const canvas = document.getElementById('zpwpcg-canvas'),
+    ctx = canvas.getContext('2d')
 
-        console.log(options);
+let canvasWidth = 2480,
+    canvasHeight = 3508,
+    heightRatio = canvasHeight / canvasWidth
 
-        const canvas = document.getElementById('zpwpcg-canvas')
-        const canvasImgSrc = canvas.dataset.imgsrc
-        const ctx = canvas.getContext('2d')
-        let canvasWidth = 2480,
-            canvasHeight = 3508,
-            heightRatio = canvasHeight / canvasWidth
-        canvas.height = canvas.width * heightRatio
+canvas.height = canvas.width * heightRatio
 
-        const nameInput = document.getElementById('zpwpcg__form--name')
+const nameInput = document.getElementById('zpwpcg__form--name'),
+    startInput = document.getElementById('zpwpcg-front__start-input'),
+    finishInput = document.getElementById('zpwpcg-front__finish-input'),
+    levelSelect = document.getElementById('zpwpcg-front__level-select'),
+    hoursInput = document.getElementById('zpwpcg-front__hours-input'),
+    placeInput = document.getElementById('zpwpcg-front__place-input'),
+    dateInput = document.getElementById('zpwpcg-front__date-input'),
+    downloadBtn = document.getElementById('zpwpcg-front__btn--download')
 
-        const levelSelect = document.getElementById('zpwpcg-front__level-select')
-        const hoursInput = document.getElementById('zpwpcg-front__hours-input')
-        const placeInput = document.getElementById('zpwpcg-front__place-input')
-        const dateInput = document.getElementById('zpwpcg-front__date-input')
+const image = new Image(),
+    logo = new Image(),
+    signature = new Image()
 
+image.src = options.img
+logo.src = options.logo
+signature.src = options.signature
+image.onload = () => { drawImage() }
 
-        const downloadBtn = document.getElementById('zpwpcg-front__btn--download')
+function drawImage() {
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+    drawScaleImage(logo, 15, 88, 400)
+    drawScaleImage(signature, 64, 88, 400)
 
-        const image = new Image()
-        image.src = canvasImgSrc
-        image.onload = function () {
-            drawImage()
-        }
+    drawText(options.top_text, 'center',54.5, 24, 'normal', 130, 'Helvetica');
+    drawText(nameInput.value, 'center',54.5, 32, 'bold', 200, 'Helvetica', '#333');
+    drawText(options.bottom_text, 'center',54.5, 40, 'normal', 130, 'Helvetica');
+    drawText(options.bottom_strong_text, 'center',54.5, 46, 'bold', 130, 'Helvetica');
+    drawText(options.address, undefined,15, 93, 'normal', 32, 'Helvetica', undefined, 500);
 
-        function drawImage() {
-            // ctx.textBaseline = 'middle';
-            // ctx.textAlign = "center";
-            ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+    drawText(options.period.label + ': ' + dateFormat(startInput.value, 'month') + ' - ' + dateFormat(finishInput.value, 'month'), undefined,15, 62, 'normal', 80, 'Helvetica');
+    drawText(options.levels.label + ': ' + levelSelect.value, undefined,15, 66, 'normal', 80, 'Helvetica');
+    drawText(options.hours.label + ': ' + hoursInput.value, undefined, 15, 70, 'normal', 80, 'Helvetica');
+    drawText(options.place.label + ': ' + placeInput.value, undefined, 15, 74, 'normal', 80, 'Helvetica');
+    drawText(options.date.label + ': ' + dateFormat(dateInput.value), undefined, 15, 78, 'normal', 80, 'Helvetica');
+}
 
-            drawText(options.top_text, canvasWidth / 2 + 112, 900, 'normal', 130, 'Helvetica');
-            drawText(nameInput.value, canvasWidth / 2 + 112, 1200, 'bold', 200, 'Helvetica', '#333');
-            drawText(options.bottom_text, canvasWidth / 2 + 112, 1500, 'normal', 130, 'Helvetica');
-            drawText(options.bottom_strong_text, canvasWidth / 2 + 112, 1700, 'bold', 130, 'Helvetica');
+nameInput.addEventListener('input', () => drawImage())
+startInput.addEventListener('change', () => drawImage())
+finishInput.addEventListener('change', () => drawImage())
+levelSelect.addEventListener('change', () => drawImage())
+hoursInput.addEventListener('input', () => drawImage())
+placeInput.addEventListener('input', () => drawImage())
+dateInput.addEventListener('change', () => drawImage())
 
-            drawText(options.period.label + ': ', canvasWidth / 2 + 112, canvasHeight - 1500, 'normal', 100, 'Helvetica');
-            drawText(options.levels.label + ': ' + levelSelect.value, canvasWidth / 2 + 112, canvasHeight - 1400, 'normal', 100, 'Helvetica');
-            drawText(options.hours.label + ': ' + hoursInput.value, canvasWidth / 2 + 112, canvasHeight - 1300, 'normal', 100, 'Helvetica');
-            drawText(options.place.label + ': ' + placeInput.value, canvasWidth / 2 + 112, canvasHeight - 1200, 'normal', 100, 'Helvetica');
-            drawText(options.date.label + ': ' + dateInput.value, canvasWidth / 2 + 112, canvasHeight - 1100, 'normal', 100, 'Helvetica');
-        }
+downloadBtn.addEventListener('click', function (e) {
 
-        nameInput.addEventListener('input', () => drawImage())
-        levelSelect.addEventListener('change', () => drawImage())
-        hoursInput.addEventListener('input', () => drawImage())
-        placeInput.addEventListener('input', () => drawImage())
-        dateInput.addEventListener('change', () => drawImage())
+    const image = canvas.toDataURL("image/png").replace("image/jpg", "image/octet-stream")
+    let element = document.createElement('a'),
+        filename = 'Certificate - ' + nameInput.value + '.jpg';
+    element.setAttribute('href', image);
+    element.setAttribute('download', filename);
+    element.click();
+})
 
-        downloadBtn.addEventListener('click', function (e) {
+function drawText(text, alignment = 'start', pX, pY, fontweight, fontsize, fontface, color = '#4c4c4c', maxwidth = 0) {
+    if(alignment == 'center') {
+        ctx.save();
+        ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = color;
+        ctx.fillText(text, canvas.width*pX/100, canvas.height*pY/100, maxwidth);
+        ctx.restore();
+    }
+    if(alignment == 'start') {
+        ctx.save();
+        ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface;
+        ctx.fillStyle = color;
+        ctx.fillText(text, canvas.width*pX/100, canvas.height*pY/100, maxwidth);
+        ctx.restore();
+    }
+    if(alignment == 'end') {
+        ctx.save();
+        ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface;
+        ctx.fillStyle = color;
+        ctx.fillText(text, canvas.width*pX/100, canvas.height*pY/100);
+        ctx.restore();
+    }
+}
 
-            var image = canvas.toDataURL("image/png").replace("image/jpg", "image/octet-stream");
-            var element = document.createElement('a');
-            var filename = 'Certificate - ' + nameInput.value + '.jpg';
-            element.setAttribute('href', image);
-            element.setAttribute('download', filename);
+function drawScaleImage(img, pX = 0, pY = 0, width, height = 0){
+    if(height) {
+        ctx.drawImage(img, canvas.width*pX/100, canvas.height*pY/100, width, height)
+    } else {
+        ctx.drawImage(img, canvas.width*pX/100, canvas.height*pY/100, width, width * img.height / img.width)
+    }
+}
 
-            element.click();
-        })
-        //     downloadBtn.href = canvas.toDataURL(toDataURL('image/jpg'))
-        //     downloadBtn.download = 'Certificate - ' + nameInput.value
-        // })
-
-        function drawText(text, centerX, centerY, fontweight, fontsize, fontface, color= '#4c4c4c') {
-            ctx.save();
-            ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillStyle = color;
-            ctx.fillText(text, centerX, centerY);
-            ctx.restore();
-        }
-
-
-    })
-})(jQuery)
+function dateFormat(date, deap) {
+    let d = new Date(date),
+        ye = new Intl.DateTimeFormat('en', {year: 'numeric'}).format(d),
+        mo = new Intl.DateTimeFormat('en', {month: 'long'}).format(d),
+        da = new Intl.DateTimeFormat('en', {day: '2-digit'}).format(d)
+    return deap == 'month' ?  `${mo} ${ye}` : `${da} ${mo} ${ye}`
+}

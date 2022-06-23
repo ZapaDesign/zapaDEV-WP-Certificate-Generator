@@ -44,13 +44,15 @@ $director       = $options['director']['value'];
                     <p>
                         <label>Start</label>
                         <input
-                            v-model="periodStart"
+                            id="zpwpcg-front__start-input"
+                            value="<?php echo date('Y', strtotime('-1 year', strtotime(date('Y')))) . '-09'; ?>"
                             type="month">
                     </p>
                     <p>
                         <label>Finish</label>
                         <input
-                            v-model="periodFinish"
+                            id="zpwpcg-front__finish-input"
+                            value="<?php echo date('Y-m'); ?>"
                             type="month">
                     </p>
                     <p>
@@ -183,10 +185,8 @@ $director       = $options['director']['value'];
                 certNumber: '555/22',
                 name: '',
                 periodLabel: '<?php echo $options['period']; ?>',
-                periodStart: '<?php echo date('Y', strtotime('-1 year', strtotime(date('Y')))); ?>-09',
-                periodFinish: '<?php echo date('Y-m'); ?>',
-                level: 'Primary 1',
-                levelDesc: '',
+
+
                 hoursLabel: '<?php echo $options['hours']; ?>',
                 hours: 156,
                 placeLabel: '<?php echo $options['place']; ?>',
