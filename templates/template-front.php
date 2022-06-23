@@ -2,32 +2,7 @@
 
 $options = get_option('zpdevwpcg_option');
 echo '<script>let options = ' . json_encode($options) . ';</script>';
-
-$top_text           = $options['top_text'];
-$bottom_text        = $options['bottom_text'];
-$bottom_strong_text = $options['bottom_strong_text'];
-
-$logo_url       = $options['logo'];
-$address        = $options['address'];
-$signature_url  = $options['signature'];
-$director_label = $options['director']['label'];
-$director       = $options['director']['value'];
-
 ?>
-
-<script type="importmap">
-  {
-    "imports": {
-      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-    }
-  }
-
-
-
-
-
-
-</script>
 
 <div id="zpdevwpcgFront" class="zdcontainer">
     <div class="zdgrid">
@@ -176,35 +151,4 @@ $director       = $options['director']['value'];
     </div>
 </div>
 
-<script type="module">
-    import {createApp} from 'vue'
-
-    createApp({
-        data() {
-            return {
-                certNumber: '555/22',
-                name: '',
-                periodLabel: '<?php echo $options['period']; ?>',
-
-
-                hoursLabel: '<?php echo $options['hours']; ?>',
-                hours: 156,
-                placeLabel: '<?php echo $options['place']; ?>',
-                place: 'Poltava (UKRAINE)',
-                dateLabel: '<?php echo $options['date']; ?>',
-                date: '<?php echo date('Y-m-d'); ?>',
-
-            }
-        },
-        methods: {
-            onChange(e) {
-                if (e.target.options.selectedIndex > -1) {
-                    const theTarget = e.target.options[e.target.options.selectedIndex].dataset;
-                    this.level = theTarget.level
-                    this.levelDesc = theTarget.desc
-                }
-            },
-        },
-    }).mount('#zpdevwpcgFront')
-</script>
 

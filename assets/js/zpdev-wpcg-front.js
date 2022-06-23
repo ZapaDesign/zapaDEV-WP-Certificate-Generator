@@ -1,5 +1,7 @@
 // @param options
 
+console.log(options);
+
 const canvas = document.getElementById('zpwpcg-canvas'),
     ctx = canvas.getContext('2d')
 
@@ -30,13 +32,15 @@ image.onload = () => { drawImage() }
 function drawImage() {
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
     drawScaleImage(logo, 15, 88, 400)
-    drawScaleImage(signature, 64, 88, 400)
+    drawScaleImage(signature, 65, 88, 400)
 
     drawText(options.top_text, 'center',54.5, 24, 'normal', 130, 'Helvetica');
     drawText(nameInput.value, 'center',54.5, 32, 'bold', 200, 'Helvetica', '#333');
     drawText(options.bottom_text, 'center',54.5, 40, 'normal', 130, 'Helvetica');
     drawText(options.bottom_strong_text, 'center',54.5, 46, 'bold', 130, 'Helvetica');
-    drawText(options.address, undefined,15, 93, 'normal', 32, 'Helvetica', undefined, 500);
+    drawText(options.address, undefined,15, 93, 'normal', 32, 'Helvetica');
+    drawText(options.director.value, 'end',94, 92.5, 'normal', 32, 'Helvetica');
+    drawText(options.director.label, 'end',94, 94.5, 'normal', 32, 'Helvetica');
 
     drawText(options.period.label + ': ' + dateFormat(startInput.value, 'month') + ' - ' + dateFormat(finishInput.value, 'month'), undefined,15, 62, 'normal', 80, 'Helvetica');
     drawText(options.levels.label + ': ' + levelSelect.value, undefined,15, 66, 'normal', 80, 'Helvetica');
@@ -63,26 +67,28 @@ downloadBtn.addEventListener('click', function (e) {
     element.click();
 })
 
-function drawText(text, alignment = 'start', pX, pY, fontweight, fontsize, fontface, color = '#4c4c4c', maxwidth = 0) {
+function drawText(text, alignment = 'start', pX, pY, fontweight, fontsize, fontface, color = '#4c4c4c') {
     if(alignment == 'center') {
         ctx.save();
         ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillStyle = color;
-        ctx.fillText(text, canvas.width*pX/100, canvas.height*pY/100, maxwidth);
+        ctx.fillText(text, canvas.width*pX/100, canvas.height*pY/100);
         ctx.restore();
     }
     if(alignment == 'start') {
         ctx.save();
         ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface;
         ctx.fillStyle = color;
-        ctx.fillText(text, canvas.width*pX/100, canvas.height*pY/100, maxwidth);
+        ctx.fillText(text, canvas.width*pX/100, canvas.height*pY/100);
         ctx.restore();
     }
     if(alignment == 'end') {
         ctx.save();
         ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface;
+        ctx.textAlign = 'end';
+        ctx.textBaseline = 'middle';
         ctx.fillStyle = color;
         ctx.fillText(text, canvas.width*pX/100, canvas.height*pY/100);
         ctx.restore();

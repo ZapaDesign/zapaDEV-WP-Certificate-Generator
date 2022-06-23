@@ -17,6 +17,8 @@
     }
     
     define( 'DIR_PATH', plugin_dir_path( __FILE__ ) );
+    define( 'TR_ID', 'zapadev-wp-certificate-generator' );
+    define( 'PREFIX', 'zpdevwpcg_' );
     
     trait Instance {
         protected static $instance = null;
