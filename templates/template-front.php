@@ -12,6 +12,7 @@ if($options): ?>
 
         <div class="zdcell">
             <div class="zpwpcg-canvas__wrap">
+                <!--// TODO Добавить асинхронную загрузку изображений-->
                 <canvas
                     class="zpwpcg-canvas"
                     id="zpwpcg-canvas"

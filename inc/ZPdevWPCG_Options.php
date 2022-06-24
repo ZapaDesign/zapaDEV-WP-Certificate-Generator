@@ -367,7 +367,7 @@
             }
             
             public function signature_callback() {
-                // TODO signature_callback method
+                // TODO Check signature_callback method
                 printf( '<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--signature" src="%s" width="300" alt=""></div>',
                     $this->options['signature'] );
                 printf( '<input class="zpwpcg-adm-picture__upload-button" data-item="signature" type="button"  value="%s">',
