@@ -16,7 +16,7 @@
 
         canvas.height = canvas.width * heightRatio
 
-        const nameInput = document.getElementById('zpwpcg__form--name'),
+        const nameInput = document.getElementById('zpwpcg-front__name-input'),
             startInput = document.getElementById('zpwpcg-front__start-input'),
             finishInput = document.getElementById('zpwpcg-front__finish-input'),
             levelSelect = document.getElementById('zpwpcg-front__level-select'),

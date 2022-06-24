@@ -1,117 +1,110 @@
 <?php
-
-namespace ZPdevWPCG;
-
-if ( ! class_exists('ZPdevWPCG_Options')) {
-    class ZPdevWPCG_Options
-    {
-
-        // private $options;
-
-        use Instance;
-
-        public function __construct()
-        {
-            add_action('admin_menu', array($this, 'add_plugin_admin_panel_page'));
-            add_action('admin_menu', array($this, 'add_plugin_admin_panel_settings_subpage'));
-            add_action('admin_init', array($this, 'page_init'));
-
-            add_action( 'admin_enqueue_scripts', array($this, 'load_scripts_admin'));
-        }
-
-        public function add_plugin_admin_panel_page()
-        {
-            // Add the menu item and page
-            $page_title = 'zapaDEV WP Certificate Generator';
-            $menu_title = 'ZPdev WPCG';
-            $capability = 'manage_options';
-            $slug       = 'zpdevwpcg';
-            $callback   = array($this, 'create_plugin_admin_panel_page');
-            $icon       = 'dashicons-admin-plugins';
-            $position   = 100;
-
-            add_menu_page($page_title, $menu_title, $capability, $slug, $callback, $icon, $position);
-        }
-
-        public function add_plugin_admin_panel_settings_subpage()
-        {
-            // Add the menu item and page
-            $parent_page = 'zpdevwpcg';
-            $page_title  = 'Settings';
-            $menu_title  = 'Settings';
-            $capability  = 'manage_options';
-            $slug        = PREFIX . 'settings';
-            $callback    = array($this, 'create_plugin_admin_panel_settings_subpage');
-
-            add_submenu_page($parent_page, $page_title, $menu_title, $capability, $slug, $callback);
-        }
-
-        public function create_plugin_admin_panel_page()
-        {
-            // Set class property
-            $this->options = get_option(PREFIX . 'option');
-            ?>
-            <div class="wrap">
-                <h1><?php
-                    echo __('zapaDEV WP Certificate Generator', TR_ID) ?></h1>
-                <form method="post" action="options.php">
-                    <?php
-                    // This prints out all hidden setting fields
-                    settings_fields(PREFIX . 'option_group');
-                    do_settings_sections('zpdevwpcg');
-                    submit_button();
-                    ?>
-                </form>
-            </div>
-            <?php
-        }
-
-        public function create_plugin_admin_panel_settings_subpage()
-        {
-            $this->options = get_option(PREFIX . 'option');
-            ?>
-            <div class="wrap">
-                <h1><?php
-                    echo __('Settings', TR_ID) ?></h1>
-                <form method="post" action="options.php">
-                    <?php
-                    // This prints out all hidden setting fields
-                    settings_fields(PREFIX . 'settings_option_group');
-                    do_settings_sections(PREFIX . 'settings');
-                    submit_button();
-                    ?>
-                </form>
-            </div>
-            <?php
-        }
-
-        public function load_scripts_admin() {
-            if ( ! did_action( 'wp_enqueue_media' ) ) {
-                wp_enqueue_media();
+    
+    namespace ZPdevWPCG;
+    
+    if ( ! class_exists( 'ZPdevWPCG_Options' ) ) {
+        class ZPdevWPCG_Options {
+            
+            // private $options;
+            
+            use Instance;
+            
+            public function __construct() {
+                add_action( 'admin_menu', array( $this, 'add_plugin_admin_panel_page' ) );
+                add_action( 'admin_menu', array( $this, 'add_plugin_admin_panel_settings_subpage' ) );
+                add_action( 'admin_init', array( $this, 'page_init' ) );
+                
+                add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts_admin' ) );
             }
-            wp_enqueue_script('zpdev-wpcg-admin', ZPdevWPCG()->plugin_url() . '/assets/js/zpdev-wpcg-admin.js', ['jquery'], '1.0', true);
-        }
-
-        public function page_init()
-        {
-            register_setting(PREFIX . 'settings_option_group', PREFIX . 'option', array($this, 'sanitize'));
-
-            /*
-             * Certificate body main section
-             * */
-
-            $ss_body_main = 'setting_section_body_main';
-            add_settings_section($ss_body_main, __('Certificate Body Main', TR_ID), array($this, 'print_section_body_main_info'), PREFIX . 'settings');
-
-            add_settings_field('img', __('Image', TR_ID), array($this, 'img_callback'), PREFIX . 'settings', $ss_body_main);
-            add_settings_field('name', __('Field (Name label)', TR_ID), array($this, 'name_callback'), PREFIX . 'settings', $ss_body_main);
-            add_settings_field('text', __('Field (Text)', TR_ID), array($this, 'text_callback'), PREFIX . 'settings', $ss_body_main);
-
-
-            /*
-             * Certificate body grid section
-             * */
-
+            
+            public function add_plugin_admin_panel_page() {
+                // Add the menu item and page
+                $page_title = 'zapaDEV WP Certificate Generator';
+                $menu_title = 'ZPdev WPCG';
+                $capability = 'manage_options';
+                $slug       = 'zpdevwpcg';
+                $callback   = array( $this, 'create_plugin_admin_panel_page' );
+                $icon       = 'dashicons-admin-plugins';
+                $position   = 100;
+                
+                add_menu_page( $page_title, $menu_title, $capability, $slug, $callback, $icon, $position );
+            }
+            
+            public function add_plugin_admin_panel_settings_subpage() {
+                // Add the menu item and page
+                $parent_page = 'zpdevwpcg';
+                $page_title  = 'Settings';
+                $menu_title  = 'Settings';
+                $capability  = 'manage_options';
+                $slug        = PREFIX . 'settings';
+                $callback    = array( $this, 'create_plugin_admin_panel_settings_subpage' );
+                
+                add_submenu_page( $parent_page, $page_title, $menu_title, $capability, $slug, $callback );
+            }
+            
+            public function create_plugin_admin_panel_page() {
+                // Set class property
+                $this->options = get_option( PREFIX . 'option' );
+                ?>
+                <div class="wrap">
+                    <h1><?php
+                            echo __( 'zapaDEV WP Certificate Generator', TR_ID ) ?></h1>
+                    <form method="post" action="options.php">
+                        <?php
+                            // This prints out all hidden setting fields
+                            settings_fields( PREFIX . 'option_group' );
+                            do_settings_sections( 'zpdevwpcg' );
+                            submit_button();
+                        ?>
+                    </form>
+                </div>
+                <?php
+            }
+            
+            public function create_plugin_admin_panel_settings_subpage() {
+                $this->options = get_option( PREFIX . 'option' );
+                ?>
+                <div class="wrap">
+                    <h1><?php
+                            echo __( 'Settings', TR_ID ) ?></h1>
+                    <form method="post" action="options.php">
+                        <?php
+                            // This prints out all hidden setting fields
+                            settings_fields( PREFIX . 'settings_option_group' );
+                            do_settings_sections( PREFIX . 'settings' );
+                            submit_button();
+                        ?>
+                    </form>
+                </div>
+                <?php
+            }
+            
+            public function load_scripts_admin() {
+                if ( ! did_action( 'wp_enqueue_media' ) ) {
+                    wp_enqueue_media();
+                }
+                wp_enqueue_script( 'zpdev-wpcg-admin', ZPdevWPCG()->plugin_url() . '/assets/js/zpdev-wpcg-admin.js', [ 'jquery' ], '1.0', true );
+            }
+            
+            public function page_init() {
+                register_setting( PREFIX . 'settings_option_group', PREFIX . 'option', array( $this, 'sanitize' ) );
+                
+                /*
+                 * Certificate body main section
+                 * */
+                
+                $ss_body_main = 'setting_section_body_main';
+                add_settings_section( $ss_body_main, __( 'Certificate Body Main', TR_ID ), array( $this, 'print_section_body_main_info' ), PREFIX . 'settings' );
+                
+                add_settings_field( 'img', __( 'Image', TR_ID ), array( $this, 'img_callback' ), PREFIX . 'settings', $ss_body_main );
+                add_settings_field( 'name', __( 'Field (Name label)', TR_ID ), array( $this, 'name_callback' ), PREFIX . 'settings', $ss_body_main );
+                add_settings_field( 'text', __( 'Field (Text)', TR_ID ), array( $this, 'text_callback' ), PREFIX . 'settings', $ss_body_main );
+                
+                
+                /*
+                 * Certificate body grid section
+                 * */
+                
                 $ss_body_grid = 'setting_section_body_grid';
                 add_settings_section( $ss_body_grid, __( 'Certificate Body Grid', TR_ID ), array( $this, 'print_section_body_grid_info' ), PREFIX . 'settings' );
                 
@@ -134,13 +127,14 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
                 add_settings_field( 'director', __( 'Director', TR_ID ), array( $this, 'director_callback' ), PREFIX . 'settings', 'setting_section_footer' );
             }
             
+            // TODO Fix sanitize method
             public function sanitize( $input ) {
                 $new_input = array();
                 if ( isset( $input['name'] ) ) {
                     $new_input['name'] = $input['name'];
                 }
                 if ( isset( $input['text'] ) ) {
-                    $new_input['text'] =  $input['text'];
+                    $new_input['text'] = $input['text'];
                 }
                 if ( isset( $input['period'] ) ) {
                     $new_input['period'] = $input['period'];
@@ -190,6 +184,7 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             }
             
             public function img_callback() {
+                // TODO Check img_callback method
                 printf( '<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--img" src="%s" height="300" alt=""></div>',
                     $this->options['img'] );
                 printf( '<input class="zpwpcg-adm-picture__upload-button" data-item="img" type="button"  value="%s">',
@@ -227,17 +222,17 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             public function text_callback() {
                 printf(
                     '<textarea cols="40" rows="3" name="zpdevwpcg_option[text][after]" placeholder="%s">%s</textarea>',
-                    __('After name text', TR_ID),
+                    __( 'After name text', TR_ID ),
                     isset( $this->options['text']['after'] ) ? esc_attr( $this->options['text']['after'] ) : ''
                 );
                 printf(
                     '<textarea cols="40" rows="3" name="zpdevwpcg_option[text][before]" placeholder="%s">%s</textarea>',
-                    __('Before name text', TR_ID),
+                    __( 'Before name text', TR_ID ),
                     isset( $this->options['text']['before'] ) ? esc_attr( $this->options['text']['before'] ) : ''
                 );
                 printf(
                     '<textarea cols="40" rows="3" name="zpdevwpcg_option[text][before_strong]" placeholder="%s">%s</textarea>',
-                    __('Before name strong text', TR_ID),
+                    __( 'Before name strong text', TR_ID ),
                     isset( $this->options['text']['before_strong'] ) ? esc_attr( $this->options['text']['before_strong'] ) : ''
                 );
             }
@@ -262,13 +257,15 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
                             <input type="text"
                                    name="zpdevwpcg_option[levels][list][level-<?php
                                        echo $i; ?>][value]"
-                                   placeholder="<?php echo __('Value', TR_ID); ?>"
+                                   placeholder="<?php
+                                       echo __( 'Value', TR_ID ); ?>"
                                    value="<?php
                                        echo isset( $this->options['levels']['list'][ 'level-' . $i ]['value'] ) ?
                                            esc_attr( $this->options['levels']['list'][ 'level-' . $i ]['value'] ) : ''; ?>">
                             <input type="text"
                                    width="500"
-                                   placeholder="<?php echo __('Description', TR_ID); ?>"
+                                   placeholder="<?php
+                                       echo __( 'Description', TR_ID ); ?>"
                                    name="zpdevwpcg_option[levels][list][level-<?php
                                        echo $i; ?>][desc]"
                                    value="<?php
@@ -283,12 +280,14 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
                     <li>
                         <input type="text"
                                name="zpdevwpcg_option[levels][list][level-1][value]"
-                               placeholder="<?php echo __('Value', TR_ID); ?>"
+                               placeholder="<?php
+                                   echo __( 'Value', TR_ID ); ?>"
                                value="<?php
                                    echo isset( $this->options['levels']['list']['level-1']['value'] ) ? esc_attr( $this->options['levels']['list']['level-1']['value'] ) : ''; ?>">
                         <input type="text"
                                name="zpdevwpcg_option[levels][list][level-1][desc]"
-                               placeholder="<?php echo __('Description', TR_ID); ?>"
+                               placeholder="<?php
+                                   echo __( 'Description', TR_ID ); ?>"
                                value="<?php
                                    echo isset( $this->options['levels']['list']['level-1']['desc'] ) ? esc_attr( $this->options['levels']['list']['level-1']['desc'] ) : ''; ?>">
                         <a class="repeatable-field-remove button" href="#">X</a>
@@ -336,6 +335,7 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             }
             
             public function logo_callback() {
+                // TODO Check logo_callback method
                 printf( '<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--logo" src="%s" width="300" alt=""></div>',
                     $this->options['logo'] );
                 printf( '<input class="zpwpcg-adm-picture__upload-button" data-item="logo" type="button"  value="%s">',
@@ -347,7 +347,7 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
             public function address_callback() {
                 printf(
                     '<textarea cols="40" rows="4" id="address" name="zpdevwpcg_option[address]" placeholder="%s">%s</textarea>',
-                    __('Address', TR_ID),
+                    __( 'Address', TR_ID ),
                     isset( $this->options['address'] ) ? esc_attr( $this->options['address'] ) : ''
                 );
             }
@@ -356,17 +356,18 @@ if ( ! class_exists('ZPdevWPCG_Options')) {
                 printf(
                     '<input type="text" id="director_label" name="zpdevwpcg_option[director][label]" value="%s" placeholder="%s">',
                     isset( $this->options['director']['label'] ) ? esc_attr( $this->options['director']['label'] ) : '',
-                    __('Label', TR_ID)
+                    __( 'Label', TR_ID )
                 );
                 
                 printf(
                     '<input type="text" id="director_value" name="zpdevwpcg_option[director][value]" value="%s" placeholder="%s">',
                     isset( $this->options['director']['value'] ) ? esc_attr( $this->options['director']['value'] ) : '',
-                    __('Value', TR_ID)
+                    __( 'Value', TR_ID )
                 );
             }
             
             public function signature_callback() {
+                // TODO signature_callback method
                 printf( '<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--signature" src="%s" width="300" alt=""></div>',
                     $this->options['signature'] );
                 printf( '<input class="zpwpcg-adm-picture__upload-button" data-item="signature" type="button"  value="%s">',

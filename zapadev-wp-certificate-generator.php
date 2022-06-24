@@ -52,11 +52,47 @@
                 
                 ZPdevWPCG_Options::instance();
                 ZPdevWPCG_Shortcode::instance();
+                
+                add_action( 'init', array( $this, 'register_certificate_post_type' ) );
             }
             
             public function includes() {
                 require_once( 'inc/ZPdevWPCG_Options.php' );
                 require_once( 'inc/ZPdevWPCG_Shortcode.php' );
+            }
+            
+            public function register_certificate_post_type() {
+                $labels = [
+                    "name"          => __( "Certificates", "storefront" ),
+                    "singular_name" => __( "Certificate", "storefront" ),
+                ];
+                
+                $args = [
+                    "label"                 => __( "Certificates", "storefront" ),
+                    "labels"                => $labels,
+                    "description"           => "Certificate post type",
+                    "public"                => false,
+                    "publicly_queryable"    => false,
+                    "show_ui"               => true,
+                    "show_in_rest"          => true,
+                    "rest_base"             => "",
+                    "rest_controller_class" => "WP_REST_Posts_Controller",
+                    "rest_namespace"        => "wp/v2",
+                    "has_archive"           => false,
+                    "show_in_menu"          => true,
+                    "show_in_nav_menus"     => true,
+                    "delete_with_user"      => false,
+                    "exclude_from_search"   => false,
+                    "capability_type"       => "post",
+                    "map_meta_cap"          => true,
+                    "hierarchical"          => false,
+                    "can_export"            => false,
+                    "rewrite"               => [ "slug" => "certificate", "with_front" => false ],
+                    "query_var"             => true,
+                    "show_in_graphql"       => false,
+                ];
+                
+                register_post_type( "certificate", $args );
             }
         }
     }
