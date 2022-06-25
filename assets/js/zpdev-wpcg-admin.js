@@ -1,6 +1,7 @@
 (function ($) {
     $(document).ready(function () {
 
+
         var mediaUploader;
 
         $('.zpwpcg-adm-picture__upload-button').on('click', function (e) {
@@ -12,21 +13,22 @@
                 return;
             }
 
-            mediaUploader = wp.media.frames.file_frame = wp.media({
+            mediaUploader = wp.media({
                 title: 'Choose a certificate background picture',
                 button: {
                     text: 'Choose Picture'
                 },
                 multiple: false
-            });
-
-            mediaUploader.on('select', function () {
-                attachment = mediaUploader.state().get('selection').first().toJSON();
-                $('#' + buttonID).val(attachment.url);
+            }).on('select', function () {
+                var attachment = mediaUploader.state().get('selection').first().toJSON();
+                $('#zpwpcg-adm-picture-' + buttonID).val(attachment.url);
                 $('.zpwpcg-adm-picture__preview--' + buttonID).attr('src', attachment.url);
             });
             mediaUploader.open();
         });
+
+
+
 
 
         $('.repeatable-field-add').click(function() {

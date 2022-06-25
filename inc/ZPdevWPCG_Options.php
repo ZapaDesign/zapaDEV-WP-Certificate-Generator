@@ -103,7 +103,9 @@
                 $ss_body_main = 'setting_section_body_main';
                 add_settings_section( $ss_body_main, __( 'Certificate Body Main', TR_ID ), array( $this, 'print_section_body_main_info' ), PREFIX . 'settings' );
                 
-                add_settings_field( 'img', __( 'Image', TR_ID ), array( $this, 'img_callback' ), PREFIX . 'settings', $ss_body_main );
+                add_settings_field( 'img', __( 'Image', TR_ID ), array( $this, 'img_callback' ), PREFIX . 'settings', $ss_body_main, array(
+                    'label_for' =>'img',
+                    'demo_link' => '/assets/img/certificate-template-demo.svg') );
                 add_settings_field( 'name', __( 'Field (Name label)', TR_ID ), array( $this, 'name_callback' ), PREFIX . 'settings', $ss_body_main );
                 add_settings_field( 'text', __( 'Field (Text)', TR_ID ), array( $this, 'text_callback' ), PREFIX . 'settings', $ss_body_main );
                 
@@ -115,7 +117,11 @@
                 $ss_body_grid = 'setting_section_body_grid';
                 add_settings_section( $ss_body_grid, __( 'Certificate Body Grid', TR_ID ), array( $this, 'print_section_body_grid_info' ), PREFIX . 'settings' );
                 
-                add_settings_field( 'period', __( 'Field (Course dates)', TR_ID ), array( $this, 'period_callback' ), PREFIX . 'settings', $ss_body_grid );
+                add_settings_field( 'period', __( 'Field (Course dates)', TR_ID ), array( $this, 'input_callback' ), PREFIX . 'settings', $ss_body_grid, array(
+                    'label',
+                    'start',
+                    'finish'
+                ) );
                 add_settings_field( 'levels', __( 'Field (Levels)', TR_ID ), array( $this, 'levels_callback' ), PREFIX . 'settings', $ss_body_grid );
                 add_settings_field( 'hours', __( 'Field (Number of hours)', TR_ID ), array( $this, 'hours_callback' ), PREFIX . 'settings', $ss_body_grid );
                 add_settings_field( 'place', __( 'Field (Place of Study)', TR_ID ), array( $this, 'place_callback' ), PREFIX . 'settings', $ss_body_grid );
@@ -125,13 +131,17 @@
                 /*
                  * Certificate footer section
                  * */
-                
+                $ss_footer = 'setting_section_footer';
                 add_settings_section( 'setting_section_footer', __( 'Certificate Footer', TR_ID ), array( $this, 'print_section_footer' ), PREFIX . 'settings' );
                 
-                add_settings_field( 'logo', __( 'Logo', TR_ID ), array( $this, 'logo_callback' ), PREFIX . 'settings', 'setting_section_footer' );
-                add_settings_field( 'address', __( 'Address', TR_ID ), array( $this, 'address_callback' ), PREFIX . 'settings', 'setting_section_footer' );
-                add_settings_field( 'signature', __( 'Signature', TR_ID ), array( $this, 'signature_callback' ), PREFIX . 'settings', 'setting_section_footer' );
-                add_settings_field( 'director', __( 'Director', TR_ID ), array( $this, 'director_callback' ), PREFIX . 'settings', 'setting_section_footer' );
+                add_settings_field( 'logo', __( 'Logo', TR_ID ), array( $this, 'img_callback' ), PREFIX . 'settings',$ss_footer, array(
+                        'label_for' =>'logo',
+                        'demo_link' => '/assets/img/certificate-logo-demo.svg') );
+                add_settings_field( 'address', __( 'Address', TR_ID ), array( $this, 'address_callback' ), PREFIX . 'settings', $ss_footer );
+                add_settings_field( 'signature', __( 'Signature', TR_ID ), array( $this, 'img_callback' ), PREFIX . 'settings', $ss_footer, array(
+                    'label_for' =>'signature',
+                    'demo_link' => '/assets/img/certificate-signature-demo.svg') );
+                add_settings_field( 'director', __( 'Director', TR_ID ), array( $this, 'director_callback' ), PREFIX . 'settings', $ss_footer );
             }
             
             // TODO Fix sanitize method
@@ -190,15 +200,39 @@
                 print __( 'Add Certificate body grid data', TR_ID );
             }
             
-            public function img_callback() {
+            public function img_callback( $args ) {
                 // TODO Check img_callback method
-                printf( '<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--img" src="%s" height="300" alt=""></div>',
-                    $this->options['img'] ? $this->options['img'] : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-template-demo.svg' );
 
-                printf( '<input class="zpwpcg-adm-picture__upload-button" data-item="img" type="button"  value="%s">',
-                    __( 'Upload image', TR_ID ) );
-                printf( '<input type="hidden" id="img" name="zpdevwpcg_option[img]" value="%s" />',
-                    isset( $this->options['img'] ) ? esc_attr( $this->options['img'] ) : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-logo-demo.svg' );
+                $img_demo_url  = ZPdevWPCG()->plugin_url() . $args['demo_link'];
+                $img_url = $this->options[$args['label_for']]; ?>
+
+                <div class="zpwpcg-adm-picture__preview-wrapper">
+                    <img
+                        src="<?php echo $img_url ? $img_url : $img_demo_url; ?>"
+                        class="zpwpcg-adm-picture__preview--<?php echo $args['label_for']; ?>"
+                        width="200"
+                        alt=""
+                    >
+                </div>
+                <input
+                    type="button"
+                    class="zpwpcg-adm-picture__upload-button"
+                    data-item="<?php echo $args['label_for']; ?>"
+                    value="<?php echo __( 'Upload image', TR_ID ); ?>"
+                >
+                <input
+                    type="hidden"
+                    id="zpwpcg-adm-picture-<?php echo $args['label_for']; ?>"
+                    name="zpdevwpcg_option[<?php echo $args['label_for']; ?>]"
+                    value="<?php echo isset( $img_url ) ? esc_attr( $img_url ) : $img_demo_url; ?>"
+
+                <?php
+            }
+
+            public function input_callback( $args ) {
+                foreach ($args as $arg) {
+
+                }
             }
             
             public function period_callback() {
@@ -249,7 +283,7 @@
                 printf(
                     '<input type="text" name="zpdevwpcg_option[levels][label]" value="%s" placeholder="%s"/>',
                     isset( $this->options['levels']['label'] ) ? esc_attr( $this->options['levels']['label'] ) : '',
-                    __( 'Label' )
+                    __( 'Label', TR_ID )
                 );
                 
                 $all_options = get_option( 'zpdevwpcg_option' );
@@ -342,16 +376,6 @@
                 );
             }
             
-            public function logo_callback() {
-                // TODO Check logo_callback method
-                printf( '<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--logo" src="%s" width="300" alt=""></div>',
-                    $this->options['logo'] ? $this->options['logo'] : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-logo-demo.svg' );
-                printf( '<input class="zpwpcg-adm-picture__upload-button" data-item="logo" type="button"  value="%s">',
-                    __( 'Upload image', TR_ID ) );
-                printf( '<input type="hidden" id="logo" name="zpdevwpcg_option[logo]" value="%s" />',
-                    isset( $this->options['logo'] ) ? esc_attr( $this->options['logo'] ) : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-logo-demo.svg' );
-            }
-            
             public function address_callback() {
                 printf(
                     '<textarea cols="40" rows="4" id="address" name="zpdevwpcg_option[address]" placeholder="%s">%s</textarea>',
@@ -373,15 +397,6 @@
                     __( 'Value', TR_ID )
                 );
             }
-            
-            public function signature_callback() {
-                // TODO Check signature_callback method
-                printf( '<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--signature" src="%s" width="300" alt=""></div>',
-                    $this->options['signature'] ? $this->options['signature'] : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-signature-demo.svg' );
-                printf( '<input class="zpwpcg-adm-picture__upload-button" data-item="signature" type="button"  value="%s">',
-                    __( 'Upload image', TR_ID ) );
-                printf( '<input type="hidden" id="signature" name="zpdevwpcg_option[signature]" value="%s" />',
-                    isset( $this->options['signature'] ) ? esc_attr( $this->options['signature'] ) : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-logo-demo.svg' );
-            }
+
         }
     }

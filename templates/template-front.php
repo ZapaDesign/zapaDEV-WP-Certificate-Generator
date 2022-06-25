@@ -29,5 +29,5 @@ if($options): ?>
     <p><?php  ?>
         
         <?php printf('') ?>
-        <?php echo __('Plugin <b>' . PL_NAME . '</b>', TR_ID ); ?></p>
-<<?php endif; ?>
+        <?php echo __('Plugin <b>' . PL_NAME . '</b> not configured. Please configure the plugin on the settings page' , TR_ID ); ?></p>
+<?php endif; ?>
