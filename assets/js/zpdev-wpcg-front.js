@@ -7,6 +7,9 @@
         * Image Canvas
         */
 
+        // TODO (УДАЛИТЬ) console.log массив опций переданный в JS фронта
+        console.log();
+
         const canvas = document.getElementById('zpwpcg-canvas'),
             ctx = canvas.getContext('2d')
 

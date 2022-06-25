@@ -75,6 +75,13 @@
                             submit_button();
                         ?>
                     </form>
+                    
+                    <!-- TODO (УДАЛИТЬ) var_dump zpdevwpcg_options - опции плагина в базе-->
+                    <?php
+                        echo '<pre>';
+                        var_dump( get_option( PREFIX . 'option' ) );
+                        echo '</pre>';
+                    ?>
                 </div>
                 <?php
             }
@@ -186,11 +193,12 @@
             public function img_callback() {
                 // TODO Check img_callback method
                 printf( '<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--img" src="%s" height="300" alt=""></div>',
-                    $this->options['img'] );
+                    $this->options['img'] ? $this->options['img'] : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-template-demo.svg' );
+
                 printf( '<input class="zpwpcg-adm-picture__upload-button" data-item="img" type="button"  value="%s">',
                     __( 'Upload image', TR_ID ) );
                 printf( '<input type="hidden" id="img" name="zpdevwpcg_option[img]" value="%s" />',
-                    isset( $this->options['img'] ) ? esc_attr( $this->options['img'] ) : '' );
+                    isset( $this->options['img'] ) ? esc_attr( $this->options['img'] ) : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-logo-demo.svg' );
             }
             
             public function period_callback() {
@@ -337,11 +345,11 @@
             public function logo_callback() {
                 // TODO Check logo_callback method
                 printf( '<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--logo" src="%s" width="300" alt=""></div>',
-                    $this->options['logo'] );
+                    $this->options['logo'] ? $this->options['logo'] : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-logo-demo.svg' );
                 printf( '<input class="zpwpcg-adm-picture__upload-button" data-item="logo" type="button"  value="%s">',
                     __( 'Upload image', TR_ID ) );
                 printf( '<input type="hidden" id="logo" name="zpdevwpcg_option[logo]" value="%s" />',
-                    isset( $this->options['logo'] ) ? esc_attr( $this->options['logo'] ) : '' );
+                    isset( $this->options['logo'] ) ? esc_attr( $this->options['logo'] ) : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-logo-demo.svg' );
             }
             
             public function address_callback() {
@@ -369,11 +377,11 @@
             public function signature_callback() {
                 // TODO Check signature_callback method
                 printf( '<div class="zpwpcg-adm-picture__preview-wrapper"><img class="zpwpcg-adm-picture__preview--signature" src="%s" width="300" alt=""></div>',
-                    $this->options['signature'] );
+                    $this->options['signature'] ? $this->options['signature'] : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-signature-demo.svg' );
                 printf( '<input class="zpwpcg-adm-picture__upload-button" data-item="signature" type="button"  value="%s">',
                     __( 'Upload image', TR_ID ) );
                 printf( '<input type="hidden" id="signature" name="zpdevwpcg_option[signature]" value="%s" />',
-                    isset( $this->options['signature'] ) ? esc_attr( $this->options['signature'] ) : '' );
+                    isset( $this->options['signature'] ) ? esc_attr( $this->options['signature'] ) : ZPdevWPCG()->plugin_url() . '/assets/img/certificate-logo-demo.svg' );
             }
         }
     }
