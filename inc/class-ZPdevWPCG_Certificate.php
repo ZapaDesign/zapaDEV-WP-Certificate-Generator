@@ -30,17 +30,15 @@
                 // TODO: Implement get() method.
             }
             
-
             public function set() {
-    
+                // TODO Добавить проверку на существование юзера
                 $data_st = array(
                     'post_title'  => $this->st_name,
                     'post_status' => 'publish',
                     'post_type'   => 'zpdevwpcg_student'
                 );
-    
-                $st_post_id = wp_insert_post( wp_slash( $data_st ) );
                 
+                $st_post_id = wp_insert_post( wp_slash( $data_st ) );
                 
                 
                 $data = array(
@@ -51,7 +49,15 @@
                 
                 $cert_post_id = wp_insert_post( wp_slash( $data ) );
                 
-                
+                add_post_meta( $cert_post_id, 'certificate_data', array(
+                    'student' => $st_post_id,
+                    'start'   => $this->period['start'],
+                    'finish'  => $this->period['finish'],
+                    'level'   => $this->level,
+                    'hours'   => $this->hours,
+                    'place'   => $this->place,
+                    'date'    => $this->date,
+                ), true );
             }
         }
     }
