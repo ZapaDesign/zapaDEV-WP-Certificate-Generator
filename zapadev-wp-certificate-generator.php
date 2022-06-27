@@ -63,12 +63,12 @@
             
             public function register_zpdevwpcg_certificate_post_type() {
                 $labels = [
-                    "name"          => __( "Certificates", TR_ID ),
-                    "singular_name" => __( "Certificate", TR_ID ),
+                    "name"          => __( "ZPdevWPCG Certificates", TR_ID ),
+                    "singular_name" => __( "ZPdevWPCG Certificate", TR_ID ),
                 ];
                 
                 $args = [
-                    "label"                 => __( "Certificates", TR_ID ),
+                    "label"                 => __( "ZPdevWPCG Certificates", TR_ID ),
                     "labels"                => $labels,
                     "description"           => "Certificate post type",
                     "public"                => false,
