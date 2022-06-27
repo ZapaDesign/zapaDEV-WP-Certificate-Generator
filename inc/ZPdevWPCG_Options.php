@@ -299,13 +299,13 @@
                             <input type="text"
                                    name="zpdevwpcg_option[levels][list][level-<?php echo $i; ?>][value]"
                                    placeholder="<?php echo __( 'Value', TR_ID ); ?>"
-                                   value="<?php echo isset( $this->options['levels']['list'][ 'level-' . $i ]['value'] ) ?
-                                           esc_attr( $this->options['levels']['list'][ 'level-' . $i ]['value'] ) : ''; ?>">
+                                   value="<?php echo isset( $this->options['levels']['list'][ 'level-'.$i ]['value'] ) ?
+                                           esc_attr( $this->options['levels']['list'][ 'level-'.$i ]['value'] ) : ''; ?>">
                             <input type="text"
                                    width="500"
                                    placeholder="<?php echo __( 'Description', TR_ID ); ?>"
                                    name="zpdevwpcg_option[levels][list][level-<?php echo $i; ?>][desc]"
-                                   value="<?php echo isset( $this->options['levels']['list'][ 'level-' . $i ]['desc'] ) ? esc_attr( $this->options['levels']['list'][ 'level-' . $i ]['desc'] ) : ''; ?>">
+                                   value="<?php echo isset( $this->options['levels']['list'][ 'level-'.$i ]['desc'] ) ? esc_attr( $this->options['levels']['list'][ 'level-'.$i ]['desc'] ) : ''; ?>">
                             <a class="repeatable-field-remove button" href="#">X</a>
                         </li>
                         <?php

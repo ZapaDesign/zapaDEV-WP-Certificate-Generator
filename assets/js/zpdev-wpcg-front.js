@@ -44,6 +44,9 @@
             drawScaleImage(logo, 15, 88, 400)
             drawScaleImage(signature, 65, 88, 400)
 
+
+            drawText(certID+'/'+new Date().getFullYear().toString().substr(-2), 'center', 54.5, 19, 'normal', 60, 'Helvetica')
+
             drawText(options.text.after, 'center', 54.5, 24, 'normal', 130, 'Helvetica')
             drawText(nameInput.value, 'center', 54.5, 32, 'bold', 200, 'Helvetica', '#333')
             drawText(options.text.before, 'center', 54.5, 40, 'normal', 130, 'Helvetica')
