@@ -117,7 +117,7 @@
                 $ss_body_grid = 'setting_section_body_grid';
                 add_settings_section( $ss_body_grid, __( 'Certificate Body Grid', TR_ID ), array( $this, 'print_section_body_grid_info' ), PREFIX . 'settings' );
                 
-                add_settings_field( 'period', __( 'Field (Course dates)', TR_ID ), array( $this, 'input_callback' ), PREFIX . 'settings', $ss_body_grid, array(
+                add_settings_field( 'period', __( 'Field (Course dates)', TR_ID ), array( $this, 'period_callback' ), PREFIX . 'settings', $ss_body_grid, array(
                     'label',
                     'start',
                     'finish'
@@ -229,11 +229,11 @@
                 <?php
             }
 
-            public function input_callback( $args ) {
-                foreach ($args as $arg) {
-
-                }
-            }
+//            public function input_callback( $args ) {
+//                foreach ($args as $arg) {
+//
+//                }
+//            }
             
             public function period_callback() {
                 printf(
