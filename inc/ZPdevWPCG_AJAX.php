@@ -13,16 +13,15 @@
         
         public function add_certificate() {
             $id      = $_POST['id'];
-            $student = $_POST['name'];
+            $st_name = $_POST['name'];
             $period  = array($_POST['start'], $_POST['finish']);
             $level   = $_POST['level'];
             $hours   = $_POST['hours'];
             $place   = $_POST['place'];
             $date    = $_POST['date'];
             
-            $certificate = new ZPdevWPCG_Certificate($id, $student, $period, $level, $hours, $place, $date );
+            $certificate = new ZPdevWPCG_Certificate($id, $st_name, $period, $level, $hours, $place, $date );
             $certificate->set();
-            $certificate->set_student();
             
             wp_die();
         }
