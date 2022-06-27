@@ -159,6 +159,7 @@
                 dataType: 'json',
 
                 success: function( resp ) {
+                    // TODO Fix update certificate ID after AJAX
                     console.log('Certificate added')
                 },
                 error: function( err ) {
