@@ -25,12 +25,30 @@ if ( ! class_exists( 'ZPdevWPCG_Certificate' ) ) {
             $this->date = $date;
         }
         
-        public function get( $name ) {
+        public function get( $id ) {
             // TODO: Implement get() method.
         }
     
-        public function set( $name, $value ) {
-            // TODO: Implement set() method.
+        public function set() {
+    
+            $certificate_data = array(
+                'post_title'  => $this->id,
+                'post_status' => 'publish',
+                'post_type'   => 'zpdevwpcg_certificat'
+            );
+
+            wp_insert_post( wp_slash( $certificate_data ) );
+        }
+    
+        public function set_student() {
+        
+            $certificate_data = array(
+                'post_title'  => $this->student,
+                'post_status' => 'publish',
+                'post_type'   => 'zpdevwpcg_student'
+            );
+        
+            wp_insert_post( wp_slash( $certificate_data ) );
         }
     }
 }

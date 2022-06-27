@@ -159,10 +159,10 @@
                 dataType: 'json',
 
                 success: function( resp ) {
-
+                    console.log('Certificate added')
                 },
                 error: function( err ) {
-                    console.log( err.textStatus );
+
                 }
             } );
 
