@@ -53,7 +53,7 @@
                 ZPdevWPCG_Options::instance();
                 ZPdevWPCG_Shortcode::instance();
                 
-                add_action( 'init', array( $this, 'register_certificate_post_type' ) );
+                add_action( 'init', array( $this, 'register_zpdevwpcg_certificate_post_type' ) );
             }
             
             public function includes() {
@@ -61,14 +61,14 @@
                 require_once( 'inc/ZPdevWPCG_Shortcode.php' );
             }
             
-            public function register_certificate_post_type() {
+            public function register_zpdevwpcg_certificate_post_type() {
                 $labels = [
-                    "name"          => __( "Certificates", "storefront" ),
-                    "singular_name" => __( "Certificate", "storefront" ),
+                    "name"          => __( "Certificates", TR_ID ),
+                    "singular_name" => __( "Certificate", TR_ID ),
                 ];
                 
                 $args = [
-                    "label"                 => __( "Certificates", "storefront" ),
+                    "label"                 => __( "Certificates", TR_ID ),
                     "labels"                => $labels,
                     "description"           => "Certificate post type",
                     "public"                => false,
@@ -87,12 +87,12 @@
                     "map_meta_cap"          => true,
                     "hierarchical"          => false,
                     "can_export"            => false,
-                    "rewrite"               => [ "slug" => "certificate", "with_front" => false ],
+                    "rewrite"               => [ "slug" => "zpdevwpcg_certificate", "with_front" => false ],
                     "query_var"             => true,
                     "show_in_graphql"       => false,
                 ];
                 
-                register_post_type( "certificate", $args );
+                register_post_type( "zpdevwpcg_certificate", $args );
             }
         }
     }
