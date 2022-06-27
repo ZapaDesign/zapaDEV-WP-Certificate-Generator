@@ -53,14 +53,19 @@
                 
                 ZPdevWPCG_Options::instance();
                 ZPdevWPCG_Shortcode::instance();
+                ZPdevWPCG_AJAX::instance();
                 
                 add_action( 'init', array( $this, 'register_zpdevwpcg_certificat_post_type' ) );
                 add_action( 'init', array( $this, 'register_zpdevwpcg_student_post_type' ) );
             }
             
             public function includes() {
+//                require_once( 'functions.php' );
+                
                 require_once( 'inc/ZPdevWPCG_Options.php' );
                 require_once( 'inc/ZPdevWPCG_Shortcode.php' );
+                require_once( 'inc/ZPdevWPCG_AJAX.php' );
+                require_once( 'inc/ZPdevWPCG_Certificate.php' );
             }
     
             public function register_zpdevwpcg_certificat_post_type() {
@@ -141,7 +146,7 @@
     
                 register_post_type( "zpdevwpcg_student", $args );
             }
-
+            
         }
     }
     

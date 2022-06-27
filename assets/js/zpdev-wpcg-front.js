@@ -48,7 +48,7 @@
             drawScaleImage(logo, 15, 88, 400)
             drawScaleImage(signature, 65, 88, 400)
 
-            drawText(certIDInput.value ? certIDInput.value : lastCertID + '/' + new Date().getFullYear().toString().substr(-2), 'center', 54.5, 19, 'normal', 60, 'Helvetica')
+            drawText(certIDInput.value ? certIDInput.value : lastCertID + '/' + new Date().getFullYear().toString().substr(-2), 'center', 54.5, 13.8, 'normal', 60, 'Helvetica')
             drawText(options.text.after, 'center', 54.5, 24, 'normal', 130, 'Helvetica')
             drawText(nameInput.value, 'center', 54.5, 32, 'bold', 200, 'Helvetica', '#333')
             drawText(options.text.before, 'center', 54.5, 40, 'normal', 130, 'Helvetica')
@@ -79,16 +79,6 @@
         hoursInput.addEventListener('input', () => drawImage())
         placeInput.addEventListener('input', () => drawImage())
         dateInput.addEventListener('change', () => drawImage())
-
-        downloadBtn.addEventListener('click', function (e) {
-
-            const image = canvas.toDataURL("image/png").replace("image/jpg", "image/octet-stream")
-            let element = document.createElement('a'),
-                filename = 'Certificate - ' + nameInput.value + '.jpg'
-            element.setAttribute('href', image)
-            element.setAttribute('download', filename)
-            element.click();
-        })
 
         function drawText(text, alignment = 'start', pX, pY, fontweight, fontsize, fontface, color = '#4c4c4c') {
             if (alignment == 'center') {
@@ -134,13 +124,54 @@
             return deap == 'month' ? `${mo} ${ye}` : `${da} ${mo} ${ye}`
         }
 
-        /*
-        * Select2 name input
-        */
+        downloadBtn.addEventListener('click', function (e) {
 
-        $('#zpwpcg__form--name').select2({
-            placeholder: 'Select an option'
+            const image = canvas.toDataURL("image/png").replace("image/jpg", "image/octet-stream")
+            let element = document.createElement('a'),
+                filename = 'Certificate - ' + nameInput.value + '.jpg'
+            element.setAttribute('href', image)
+            element.setAttribute('download', filename)
+
+            if(confirm("Save the certificate in the database?")) {
+
+                // TODO Попробовать переделать AJAX а Fetch
+                // fetch(flow.url, { method: "POST" })
+                //     .then((res) => res.json())
+                //     .then((json) => console.log(json))
+                //     .catch((err) => console.error("error:", err));
+
+
+
+            $.ajax( {
+                url: flow.url,
+                type: 'POST',
+                data: {
+                    action: 'add_certificate',
+                    id:     certIDInput.value ? certIDInput.value : lastCertID + '/' + new Date().getFullYear().toString().substr(-2),
+                    name:   nameInput.value,
+                    start:  startInput.value,
+                    finish: finishInput.value,
+                    level:  levelSelect.value,
+                    hours:  hoursInput.value,
+                    place:  placeInput.value,
+                    date:   dateInput.value,
+                },
+                dataType: 'json',
+
+                success: function( resp ) {
+
+                },
+                error: function( err ) {
+                    console.log( err.textStatus );
+                }
+            } );
+
+
+                // element.click();
+            } else {
+                element.click();
+            }
+
         })
-
     })
 })(jQuery)
