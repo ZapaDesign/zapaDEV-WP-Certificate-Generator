@@ -1,5 +1,5 @@
 <div class="zpwpcg__form">
-    <form action="">
+    <form class="zpwpcg-front-form" action="">
         <p>
             <label><?php echo $options['name']['label'] . ':' ?></label>
             <input id="zpwpcg-front__name-input"
@@ -19,6 +19,22 @@
                 <option value="Oleksandra Bereza"></option>
             </datalist>
         </p>
+
+        <p>
+          <!-- TODO  Chenge label -->
+            <label><?php echo __('Custom certificate ID'); ?></label>
+            <span>
+                <input
+                    class="zpwpcg-front-form__field--id-switcher"
+                    id="zpwpcg-front__id-switcher"
+                    type="checkbox">
+                <input
+                    class="zpwpcg-front-form__field--id"
+                    type="text"
+                    id="zpwpcg-front__id-input">
+            </span>
+        </p>
+        
         <?php if( $options['period']['start'] ): ?>
             <p>
                 <label><?php echo $options['period']['start'] . ':'; ?></label>

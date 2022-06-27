@@ -1,15 +1,19 @@
 <?php
 
+
+/*
+* TODO Перенести передачу скриптов
+* */
 $options = get_option(PREFIX.'option');
+
 $cert_last = wp_get_recent_posts(array(
     'post_type' =>'zpdevwpcg_certificat',
     'posts_per_page' => 1
 ));
-
-$cert_id = $cert_last[0]['post_title'];
+$last_cert_id = $cert_last[0]['post_title'];
 
 echo '<script>let options = ' . json_encode($options) . ';</script>';
-echo '<script>let certID = ' . json_encode($cert_id) . ';</script>';
+echo '<script>let lastCertID = ' . json_encode($last_cert_id) . ';</script>';
 
 if($options): ?>
     <div id="zpdevwpcgFront" class="zdcontainer">
