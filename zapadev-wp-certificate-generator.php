@@ -17,6 +17,7 @@
     }
     
     define( 'PL_NAME', 'zapaDEV WP Cerificate Generator' );
+    define( 'SHORT_PL_NAME', 'ZPdevWPCG' );
     define( 'DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'TR_ID', 'zapadev-wp-certificate-generator' );
     define( 'PREFIX', 'zpdevwpcg_' );
@@ -53,47 +54,94 @@
                 ZPdevWPCG_Options::instance();
                 ZPdevWPCG_Shortcode::instance();
                 
-                add_action( 'init', array( $this, 'register_zpdevwpcg_certificate_post_type' ) );
+                add_action( 'init', array( $this, 'register_zpdevwpcg_certificat_post_type' ) );
+                add_action( 'init', array( $this, 'register_zpdevwpcg_student_post_type' ) );
             }
             
             public function includes() {
                 require_once( 'inc/ZPdevWPCG_Options.php' );
                 require_once( 'inc/ZPdevWPCG_Shortcode.php' );
             }
-            
-            public function register_zpdevwpcg_certificate_post_type() {
+    
+            public function register_zpdevwpcg_certificat_post_type() {
+
+                /**
+                 * Post Type: ZPdevWPCG Certificates.
+                 */
+
                 $labels = [
-                    "name"          => __( "ZPdevWPCG Certificates", TR_ID ),
+                    "name" => __( "ZPdevWPCG Certificates", TR_ID ),
                     "singular_name" => __( "ZPdevWPCG Certificate", TR_ID ),
                 ];
-                
+
                 $args = [
-                    "label"                 => __( "ZPdevWPCG Certificates", TR_ID ),
-                    "labels"                => $labels,
-                    "description"           => "Certificate post type",
-                    "public"                => false,
-                    "publicly_queryable"    => false,
-                    "show_ui"               => true,
-                    "show_in_rest"          => true,
-                    "rest_base"             => "",
+                    "label" => __( "ZPdevWPCG Certificates", TR_ID ),
+                    "labels" => $labels,
+                    "description" => "",
+                    "public" => true,
+                    "publicly_queryable" => true,
+                    "show_ui" => true,
+                    "show_in_rest" => true,
+                    "rest_base" => "",
                     "rest_controller_class" => "WP_REST_Posts_Controller",
-                    "rest_namespace"        => "wp/v2",
-                    "has_archive"           => false,
-                    "show_in_menu"          => true,
-                    "show_in_nav_menus"     => true,
-                    "delete_with_user"      => false,
-                    "exclude_from_search"   => false,
-                    "capability_type"       => "post",
-                    "map_meta_cap"          => true,
-                    "hierarchical"          => false,
-                    "can_export"            => false,
-                    "rewrite"               => [ "slug" => "zpdevwpcg_certificate", "with_front" => false ],
-                    "query_var"             => true,
-                    "show_in_graphql"       => false,
+                    "rest_namespace" => "wp/v2",
+                    "has_archive" => false,
+                    "show_in_menu" => true,
+                    "show_in_nav_menus" => true,
+                    "delete_with_user" => false,
+                    "exclude_from_search" => false,
+                    "capability_type" => "post",
+                    "map_meta_cap" => true,
+                    "hierarchical" => false,
+                    "can_export" => false,
+                    "rewrite" => [ "slug" => "zpdevwpcg_certificat", "with_front" => true ],
+                    "query_var" => true,
+                    "menu_icon" => "dashicons-text-page",
+                    "show_in_graphql" => false,
                 ];
-                
-                register_post_type( "zpdevwpcg_certificate", $args );
+
+                register_post_type( "zpdevwpcg_certificat", $args );
             }
+            
+            public function register_zpdevwpcg_student_post_type() {
+                /**
+                 * Post Type: ZPdevWPCG Students.
+                 */
+    
+                $labels = [
+                    "name" => __( SHORT_PL_NAME." Students", TR_ID ),
+                    "singular_name" => __( SHORT_PL_NAME." Student", TR_ID ),
+                ];
+    
+                $args = [
+                    "label" => __( SHORT_PL_NAME." Students", TR_ID ),
+                    "labels" => $labels,
+                    "description" => "",
+                    "public" => true,
+                    "publicly_queryable" => true,
+                    "show_ui" => true,
+                    "show_in_rest" => true,
+                    "rest_base" => "",
+                    "rest_controller_class" => "WP_REST_Posts_Controller",
+                    "rest_namespace" => "wp/v2",
+                    "has_archive" => false,
+                    "show_in_menu" => true,
+                    "show_in_nav_menus" => true,
+                    "delete_with_user" => false,
+                    "exclude_from_search" => false,
+                    "capability_type" => "post",
+                    "map_meta_cap" => true,
+                    "hierarchical" => false,
+                    "can_export" => false,
+                    "rewrite" => [ "slug" => "zpdevwpcg_student", "with_front" => true ],
+                    "query_var" => true,
+                    "menu_icon" => "dashicons-admin-users",
+                    "show_in_graphql" => false,
+                ];
+    
+                register_post_type( "zpdevwpcg_student", $args );
+            }
+
         }
     }
     

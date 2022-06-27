@@ -238,17 +238,17 @@
             public function period_callback() {
                 printf(
                     '<input type="text" name="zpdevwpcg_option[period][label]" value="%s" placeholder="%s"/>',
-                    isset( $this->options['period']['label'] ) ? esc_attr( $this->options['period']['label'] ) : '',
+                    isset( $this->options['period']['label'] ) ? esc_attr( $this->options['period']['label'] ) : __('Course period', TR_ID),
                     __( 'Label', TR_ID )
                 );
                 printf(
                     '<input type="text" name="zpdevwpcg_option[period][start]" value="%s" placeholder="%s"/>',
-                    isset( $this->options['period']['start'] ) ? esc_attr( $this->options['period']['start'] ) : '',
+                    isset( $this->options['period']['start'] ) ? esc_attr( $this->options['period']['start'] ) : __('Course start', TR_ID),
                     __( 'Start', TR_ID )
                 );
                 printf(
                     '<input type="text" name="zpdevwpcg_option[period][finish]" value="%s" placeholder="%s"/>',
-                    isset( $this->options['period']['finish'] ) ? esc_attr( $this->options['period']['finish'] ) : '',
+                    isset( $this->options['period']['finish'] ) ? esc_attr( $this->options['period']['finish'] ) : __('Course finish', TR_ID),
                     __( 'Finish', TR_ID )
                 );
             }
@@ -256,7 +256,7 @@
             public function name_callback() {
                 printf(
                     '<input type="text" name="zpdevwpcg_option[name][label]" value="%s" placeholder="%s">',
-                    isset( $this->options['name']['label'] ) ? esc_attr( $this->options['name']['label'] ) : '',
+                    isset( $this->options['name']['label'] ) ? esc_attr( $this->options['name']['label'] ) : __('Name', TR_ID),
                     __( 'Label' )
                 );
             }
@@ -282,7 +282,7 @@
             public function levels_callback() {
                 printf(
                     '<input type="text" name="zpdevwpcg_option[levels][label]" value="%s" placeholder="%s"/>',
-                    isset( $this->options['levels']['label'] ) ? esc_attr( $this->options['levels']['label'] ) : '',
+                    isset( $this->options['levels']['label'] ) ? esc_attr( $this->options['levels']['label'] ) : __('Level', TR_ID),
                     __( 'Label', TR_ID )
                 );
                 
@@ -297,21 +297,15 @@
                         ?>
                         <li>
                             <input type="text"
-                                   name="zpdevwpcg_option[levels][list][level-<?php
-                                       echo $i; ?>][value]"
-                                   placeholder="<?php
-                                       echo __( 'Value', TR_ID ); ?>"
-                                   value="<?php
-                                       echo isset( $this->options['levels']['list'][ 'level-' . $i ]['value'] ) ?
+                                   name="zpdevwpcg_option[levels][list][level-<?php echo $i; ?>][value]"
+                                   placeholder="<?php echo __( 'Value', TR_ID ); ?>"
+                                   value="<?php echo isset( $this->options['levels']['list'][ 'level-' . $i ]['value'] ) ?
                                            esc_attr( $this->options['levels']['list'][ 'level-' . $i ]['value'] ) : ''; ?>">
                             <input type="text"
                                    width="500"
-                                   placeholder="<?php
-                                       echo __( 'Description', TR_ID ); ?>"
-                                   name="zpdevwpcg_option[levels][list][level-<?php
-                                       echo $i; ?>][desc]"
-                                   value="<?php
-                                       echo isset( $this->options['levels']['list'][ 'level-' . $i ]['desc'] ) ? esc_attr( $this->options['levels']['list'][ 'level-' . $i ]['desc'] ) : ''; ?>">
+                                   placeholder="<?php echo __( 'Description', TR_ID ); ?>"
+                                   name="zpdevwpcg_option[levels][list][level-<?php echo $i; ?>][desc]"
+                                   value="<?php echo isset( $this->options['levels']['list'][ 'level-' . $i ]['desc'] ) ? esc_attr( $this->options['levels']['list'][ 'level-' . $i ]['desc'] ) : ''; ?>">
                             <a class="repeatable-field-remove button" href="#">X</a>
                         </li>
                         <?php
@@ -322,16 +316,12 @@
                     <li>
                         <input type="text"
                                name="zpdevwpcg_option[levels][list][level-1][value]"
-                               placeholder="<?php
-                                   echo __( 'Value', TR_ID ); ?>"
-                               value="<?php
-                                   echo isset( $this->options['levels']['list']['level-1']['value'] ) ? esc_attr( $this->options['levels']['list']['level-1']['value'] ) : ''; ?>">
+                               placeholder="<?php echo __( 'Value', TR_ID ); ?>"
+                               value="<?php echo isset( $this->options['levels']['list']['level-1']['value'] ) ? esc_attr( $this->options['levels']['list']['level-1']['value'] ) : ''; ?>">
                         <input type="text"
                                name="zpdevwpcg_option[levels][list][level-1][desc]"
-                               placeholder="<?php
-                                   echo __( 'Description', TR_ID ); ?>"
-                               value="<?php
-                                   echo isset( $this->options['levels']['list']['level-1']['desc'] ) ? esc_attr( $this->options['levels']['list']['level-1']['desc'] ) : ''; ?>">
+                               placeholder="<?php echo __( 'Description', TR_ID ); ?>"
+                               value="<?php echo isset( $this->options['levels']['list']['level-1']['desc'] ) ? esc_attr( $this->options['levels']['list']['level-1']['desc'] ) : ''; ?>">
                         <a class="repeatable-field-remove button" href="#">X</a>
                     </li>
                 <?php
@@ -343,7 +333,7 @@
             public function hours_callback() {
                 printf(
                     '<input type="text" name="zpdevwpcg_option[hours][label]" value="%s" placeholder="%s"/>',
-                    isset( $this->options['hours']['label'] ) ? esc_attr( $this->options['hours']['label'] ) : '',
+                    isset( $this->options['hours']['label'] ) ? esc_attr( $this->options['hours']['label'] ) : __('Number of hours', TR_ID),
                     __( 'Label' )
                 );
                 
@@ -357,7 +347,7 @@
             public function place_callback() {
                 printf(
                     '<input type="text" name="zpdevwpcg_option[place][label]" value="%s" placeholder="%s"/>',
-                    isset( $this->options['place']['label'] ) ? esc_attr( $this->options['place']['label'] ) : '',
+                    isset( $this->options['place']['label'] ) ? esc_attr( $this->options['place']['label'] ) : __('Place of Study', TR_ID),
                     __( 'Label' )
                 );
                 
@@ -371,7 +361,7 @@
             public function date_callback() {
                 printf(
                     '<input type="text" name="zpdevwpcg_option[date][label]" value="%s" placeholder="%s">',
-                    isset( $this->options['date']['label'] ) ? esc_attr( $this->options['date']['label'] ) : '',
+                    isset( $this->options['date']['label'] ) ? esc_attr( $this->options['date']['label'] ) : __('Date of issue', TR_ID),
                     __( 'Label' )
                 );
             }

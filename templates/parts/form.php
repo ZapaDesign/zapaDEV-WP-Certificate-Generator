@@ -72,7 +72,7 @@
         <?php endif; ?>
         <?php if( $options['date']['label'] ): ?>
             <p>
-                <label><?php echo $options['date']['label']; ?></label>
+                <label><?php echo $options['date']['label'] . ':'; ?></label>
                 <input id="zpwpcg-front__date-input" type="date" value="<?php echo date('Y-m-d'); ?>">
             </p>
         <?php endif; ?>
