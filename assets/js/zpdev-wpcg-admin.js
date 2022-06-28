@@ -77,10 +77,11 @@
                         id: certID
                     },
                     dataType: 'text',
-                    beforeSend:function(xhr){
-                        $(this).text('Del...');
+                    beforeSend:function() {
+                        $('.zpwpcg-ajax__loader').show()
                     },
-                    success: function (resp) {
+                    success: function () {
+                        $('.zpwpcg-ajax__loader').hide()
                         cert.remove()
                     },
                     error: function (err) {

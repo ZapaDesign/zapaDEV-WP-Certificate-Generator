@@ -37,7 +37,7 @@
                 $cert_post_id = wp_insert_post( wp_slash( $data ) );
                 
                 add_post_meta( $cert_post_id, 'certificate_data', array(
-                    'student' => $student->get_student_post_id(),
+                    'student' => $student->get_id(),
                     'start'   => $this->period['start'],
                     'finish'  => $this->period['finish'],
                     'level'   => $this->level,
