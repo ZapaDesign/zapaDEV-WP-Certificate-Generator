@@ -53,6 +53,7 @@
             drawText(nameInput.value, 'center', 54.5, 32, 'bold', 200, 'Opinion Pro', '#333')
             drawText(options.text.before, 'center', 54.5, 40, 'normal', 130, 'Opinion Pro')
             drawText(options.text.before_strong, 'center', 54.5, 46, 'bold', 130, 'Opinion Pro')
+            // TODO Ограничить ширину текста адрес
             drawText(options.address, undefined, 15, 93, 'normal', 32, 'Opinion Pro')
             drawText(options.director.value, 'end', 94, 92.5, 'normal', 32, 'Opinion Pro')
             drawText(options.director.label, 'end', 94, 94.5, 'normal', 32, 'Opinion Pro')
@@ -156,7 +157,7 @@
                         dataType: 'text',
 
                         success: function () {
-                            // TODO Fix update certificate ID after AJAX
+                            // TODO Fix update certificate ID on canvas after AJAX
 
                             certIDInput.value = Number(lastCertID) + 1 + '/' + new Date().getFullYear().toString().substr(-2)
                             drawImage()
