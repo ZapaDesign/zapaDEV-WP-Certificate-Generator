@@ -1,0 +1,53 @@
+@import "vars";
+
+
+.zpwpcg-adm {
+
+	&__title {
+		margin-bottom: 2rem;
+	}
+
+	&-certlist {
+		width: 100%;
+		//border: 1px solid var(--borderColor);
+
+		thead {
+			background-color: var(--blue);
+			color: white;
+		}
+
+		th {
+			padding: 10px 5px;
+		}
+		td {
+			padding: 5px;
+		}
+
+		tbody {
+			tr:nth-child(odd) {
+				background-color: white;
+			}
+		}
+	}
+
+	&__btn {
+		border-radius: 4px;
+		padding: 8px 15px;
+		border: 0;
+		color: var(--white);
+		font-weight: 700;
+		cursor: pointer;
+
+		&--del {
+			background-color: var(--red);
+		}
+
+		&--edit {
+			background-color: var(--green);
+		}
+
+		&--show {
+			background-color: var(--yellow);
+		}
+	}
+}

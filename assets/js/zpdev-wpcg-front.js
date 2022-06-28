@@ -140,39 +140,33 @@
                 //     .then((json) => console.log(json))
                 //     .catch((err) => console.error("error:", err));
 
+                $.ajax( {
+                    url: flow.url,
+                    type: 'POST',
+                    data: {
+                        action: 'add_certificate',
+                        id:     certIDInput.value ? certIDInput.value : lastCertID + '/' + new Date().getFullYear().toString().substr(-2),
+                        name:   nameInput.value,
+                        start:  startInput.value,
+                        finish: finishInput.value,
+                        level:  levelSelect.value,
+                        hours:  hoursInput.value,
+                        place:  placeInput.value,
+                        date:   dateInput.value,
+                    },
+                    dataType: 'text',
 
+                    success: function( resp ) {
+                        // TODO Fix update certificate ID after AJAX
 
-            $.ajax( {
-                url: flow.url,
-                type: 'POST',
-                data: {
-                    action: 'add_certificate',
-                    id:     certIDInput.value ? certIDInput.value : lastCertID + '/' + new Date().getFullYear().toString().substr(-2),
-                    name:   nameInput.value,
-                    start:  startInput.value,
-                    finish: finishInput.value,
-                    level:  levelSelect.value,
-                    hours:  hoursInput.value,
-                    place:  placeInput.value,
-                    date:   dateInput.value,
-                },
-                dataType: 'json',
+                        certIDInput.value = Number(lastCertID)+1 + '/' + new Date().getFullYear().toString().substr(-2)
+                        drawImage()
+                    },
+                    error: function( err ) {
 
-                success: function( resp ) {
-                    // TODO Fix update certificate ID after AJAX
-                    console.log('Certificate added')
-                },
-                error: function( err ) {
-
-                }
-            } );
-
-
-                // element.click();
-            } else {
-                element.click();
+                    }
+                } );
             }
-
         })
     })
 })(jQuery)

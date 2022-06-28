@@ -43,47 +43,13 @@
             }
             
             public function create_plugin_admin_panel_page() {
-                // Set class property
                 $this->options = get_option( PREFIX . 'option' );
-                ?>
-                <div class="wrap">
-                    <h1><?php
-                            echo __( 'zapaDEV WP Certificate Generator', TR_ID ) ?></h1>
-                    <form method="post" action="options.php">
-                        <?php
-                            // This prints out all hidden setting fields
-                            settings_fields( PREFIX . 'option_group' );
-                            do_settings_sections( 'zpdevwpcg' );
-                            submit_button();
-                        ?>
-                    </form>
-                </div>
-                <?php
+                include_once( DIR_PATH . 'templates/template-admin-options.php' );
             }
             
             public function create_plugin_admin_panel_settings_subpage() {
                 $this->options = get_option( PREFIX . 'option' );
-                ?>
-                <div class="wrap">
-                    <h1><?php
-                            echo __( 'Settings', TR_ID ) ?></h1>
-                    <form method="post" action="options.php">
-                        <?php
-                            // This prints out all hidden setting fields
-                            settings_fields( PREFIX . 'settings_option_group' );
-                            do_settings_sections( PREFIX . 'settings' );
-                            submit_button();
-                        ?>
-                    </form>
-                    
-                    <!-- TODO (УДАЛИТЬ) var_dump zpdevwpcg_options - опции плагина в базе-->
-                    <?php
-                        echo '<pre>';
-                        var_dump( get_option( PREFIX . 'option' ) );
-                        echo '</pre>';
-                    ?>
-                </div>
-                <?php
+                include_once( DIR_PATH . 'templates/template-admin-options-settings.php' );
             }
             
             public function load_scripts_admin() {
@@ -91,6 +57,8 @@
                     wp_enqueue_media();
                 }
                 wp_enqueue_script( 'zpdev-wpcg-admin', ZPdevWPCG()->plugin_url() . '/assets/js/zpdev-wpcg-admin.js', [ 'jquery' ], '1.0', true );
+    
+                wp_enqueue_style( 'zpdev-wpcg-front', ZPdevWPCG()->plugin_url() . '/assets/css/zpdev-wpcg-admin.css', false, null, 'all' );
             }
             
             public function page_init() {

@@ -6,9 +6,7 @@
         class ZPdevWPCG_Certificate {
             
             private $id;
-            
-            private $student;
-            
+
             private $st_name;
             private $period;
             private $level;
@@ -26,20 +24,9 @@
                 $this->date    = $date;
             }
             
-            public function get( $id ) {
-                // TODO: Implement get() method.
-            }
-            
             public function set() {
-                // TODO Добавить проверку на существование юзера
-                $data_st = array(
-                    'post_title'  => $this->st_name,
-                    'post_status' => 'publish',
-                    'post_type'   => 'zpdevwpcg_student'
-                );
-                
-                $st_post_id = wp_insert_post( wp_slash( $data_st ) );
-                
+
+                $student = new ZPdevWPCG_Student($this->st_name);
                 
                 $data = array(
                     'post_title'  => $this->id,
@@ -50,7 +37,7 @@
                 $cert_post_id = wp_insert_post( wp_slash( $data ) );
                 
                 add_post_meta( $cert_post_id, 'certificate_data', array(
-                    'student' => $st_post_id,
+                    'student' => $student->get_student_post_id(),
                     'start'   => $this->period['start'],
                     'finish'  => $this->period['finish'],
                     'level'   => $this->level,
@@ -58,6 +45,10 @@
                     'place'   => $this->place,
                     'date'    => $this->date,
                 ), true );
+            }
+            
+            public function delete() {
+            
             }
         }
     }

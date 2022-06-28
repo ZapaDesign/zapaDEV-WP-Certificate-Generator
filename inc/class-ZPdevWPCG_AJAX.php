@@ -8,6 +8,7 @@
         
         public function __construct() {
             add_action( 'wp_ajax_add_certificate', array( $this, 'add_certificate' ) );
+            add_action( 'wp_ajax_remove_certificate', array( $this, 'remove_certificate' ) );
             add_action( 'wp_ajax_nopriv_add_certificate', array( $this, 'add_certificate' ) );
         }
         
@@ -25,6 +26,13 @@
             
             $certificate = new ZPdevWPCG_Certificate( $id, $st_name, $period, $level, $hours, $place, $date );
             $certificate->set();
+            
+            wp_die();
+        }
+        
+        public function remove_certificate() {
+            
+            wp_delete_post( $_POST['id'], true );
             
             wp_die();
         }
