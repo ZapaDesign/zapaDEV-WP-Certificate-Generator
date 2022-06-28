@@ -43,6 +43,7 @@
                         <button class="zpwpcg-adm__btn zpwpcg-adm__btn--edit">Edit</button>
                         <button class="zpwpcg-adm__btn zpwpcg-adm__btn--del">Delete</button>
                         <button class="zpwpcg-adm__btn zpwpcg-adm__btn--show">Show</button>
+                        <button class="zpwpcg-adm__btn zpwpcg-adm__btn--download">Download</button>
                     </td>
                 </tr>
             <?php endforeach; ?>

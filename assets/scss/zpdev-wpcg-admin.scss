@@ -3,11 +3,17 @@
 
 .zpwpcg-adm {
 
+	&__wrap {
+		padding-right: 20px;
+	}
+
 	&__title {
 		margin-bottom: 2rem;
 	}
 
 	&-certlist {
+		border-radius: 10px;
+		overflow: hidden;
 		width: 100%;
 		//border: 1px solid var(--borderColor);
 
@@ -17,10 +23,10 @@
 		}
 
 		th {
-			padding: 10px 5px;
+			padding: 10px;
 		}
 		td {
-			padding: 5px;
+			padding: 5px 10px;
 		}
 
 		tbody {
@@ -48,6 +54,10 @@
 
 		&--show {
 			background-color: var(--yellow);
+		}
+
+		&--download {
+			background-color: var(--turquoise);
 		}
 	}
 }

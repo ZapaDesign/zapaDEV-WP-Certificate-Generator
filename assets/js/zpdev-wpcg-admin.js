@@ -77,7 +77,9 @@
                         id: certID
                     },
                     dataType: 'text',
-
+                    beforeSend:function(xhr){
+                        $(this).text('Del...');
+                    },
                     success: function (resp) {
                         cert.remove()
                     },
