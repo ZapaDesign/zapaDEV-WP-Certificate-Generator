@@ -82,7 +82,7 @@
         dateInput.addEventListener('change', () => drawImage())
 
         function drawText(text, alignment = 'start', pX, pY, fontweight, fontsize, fontface, color = '#4c4c4c') {
-            if (alignment == 'center') {
+            if (alignment === 'center') {
                 ctx.save()
                 ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface
                 ctx.textAlign = 'center'
@@ -91,14 +91,14 @@
                 ctx.fillText(text, canvas.width * pX / 100, canvas.height * pY / 100)
                 ctx.restore()
             }
-            if (alignment == 'start') {
+            if (alignment === 'start') {
                 ctx.save()
                 ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface
                 ctx.fillStyle = color
                 ctx.fillText(text, canvas.width * pX / 100, canvas.height * pY / 100)
                 ctx.restore()
             }
-            if (alignment == 'end') {
+            if (alignment === 'end') {
                 ctx.save()
                 ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface
                 ctx.textAlign = 'end'
@@ -122,10 +122,10 @@
                 ye = new Intl.DateTimeFormat('en', {year: 'numeric'}).format(d),
                 mo = new Intl.DateTimeFormat('en', {month: 'long'}).format(d),
                 da = new Intl.DateTimeFormat('en', {day: '2-digit'}).format(d)
-            return deap == 'month' ? `${mo} ${ye}` : `${da} ${mo} ${ye}`
+            return deap === 'month' ? `${mo} ${ye}` : `${da} ${mo} ${ye}`
         }
 
-        downloadBtn.addEventListener('click', function (e) {
+        downloadBtn.addEventListener('click', function () {
             if(nameInput.value) {
                 const image = canvas.toDataURL("image/png").replace("image/jpg", "image/octet-stream")
                 let element = document.createElement('a'),
