@@ -46,8 +46,12 @@
                     'date'    => $this->date,
                 ), true );
             }
+    
+            public function get_by_post_id($cert_post_id) {
+                return $this->date;
+            }
             
-            public function delete() {
+            public function delete($cert_post_id) {
             
             }
         }
