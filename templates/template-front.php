@@ -12,7 +12,7 @@ $cert_args = array(
 );
 
 if($cert_last = wp_get_recent_posts($cert_args)) {
-    $last_cert_id  = substr($cert_last[0]['post_title'], 0, strpos($cert_last[0]['post_title'], '/' ) ) + 1;
+    $last_cert_id  = get_cert_id_number($cert_last[0]['post_title']) + 1;
 } else {
     $last_cert_id = '1';
 }

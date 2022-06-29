@@ -61,7 +61,7 @@
             }
             
             public function includes() {
-                //                require_once( 'functions.php' );
+               require_once( 'functions.php' );
                 
                 require_once( 'inc/class-ZPdevWPCG_Options.php' );
                 require_once( 'inc/class-ZPdevWPCG_Shortcode.php' );

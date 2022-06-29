@@ -355,6 +355,12 @@
                     __( 'Value', TR_ID )
                 );
             }
+            
+            
+            public function cmp($a, $b)
+            {
+                return strcmp($a->post_title, $b->post_title);
+            }
 
         }
     }

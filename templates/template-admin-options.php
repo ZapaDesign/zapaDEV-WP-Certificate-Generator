@@ -4,11 +4,12 @@
     $cert_args = array(
         'post_type'      => 'zpdevwpcg_certificat',
         'posts_per_page' => -1,
-        'orderby'        => 'title',
-        'order'          => 'ASC',
+        'orderby'        => get_cert_id_number('title'),
+        'order'          => 'DESC',
     );
 
     $certificates = get_posts($cert_args);
+    
     ?>
     <div class="zpwpcg-ajax">
         <div class="zpwpcg-ajax__loader">
@@ -23,7 +24,7 @@
                 <th><?php echo __('Finish', TR_ID); ?></th>
                 <th><?php echo __('Level', TR_ID); ?></th>
                 <th><?php echo __('Hours', TR_ID); ?></th>
-                <th><?php echo __('Place', TR_ID); ?></th>
+                <th><?php echo __('Location', TR_ID); ?></th>
                 <th><?php echo __('Date', TR_ID); ?></th>
                 <th><?php echo __('Control', TR_ID); ?></th>
             </tr>
