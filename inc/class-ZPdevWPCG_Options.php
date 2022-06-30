@@ -10,15 +10,19 @@
             use Instance;
             
             public function __construct() {
-                add_action( 'admin_menu', array( $this, 'add_plugin_admin_panel_page' ) );
-                add_action( 'admin_menu', array( $this, 'add_plugin_admin_panel_settings_subpage' ) );
+                add_action( 'admin_menu', array( $this, 'add_plugin_admin_panel_pages' ) );
                 add_action( 'admin_init', array( $this, 'page_init' ) );
                 
                 add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts_admin' ) );
             }
             
+            public function add_plugin_admin_panel_pages() {
+                $this->add_plugin_admin_panel_page();
+                $this->add_plugin_admin_panel_subpage_students();
+                $this->add_plugin_admin_panel_subpage_settings();
+            }
+            
             public function add_plugin_admin_panel_page() {
-                // Add the menu item and page
                 $page_title = 'zapaDEV WP Certificate Generator';
                 $menu_title = 'ZPdev WPCG';
                 $capability = 'manage_options';
@@ -29,9 +33,27 @@
                 
                 add_menu_page( $page_title, $menu_title, $capability, $slug, $callback, $icon, $position );
             }
+            public function create_plugin_admin_panel_page() {
+                $this->options = get_option( PREFIX . 'option' );
+                include_once( DIR_PATH . 'templates/template-admin-options.php' );
+            }
+    
+            public function add_plugin_admin_panel_subpage_students() {
+                $parent_page = 'zpdevwpcg';
+                $page_title  = 'Students';
+                $menu_title  = 'Students';
+                $capability  = 'manage_options';
+                $slug        = PREFIX . 'students';
+                $callback    = array( $this, 'create_plugin_admin_panel_students_subpage' );
+        
+                add_submenu_page( $parent_page, $page_title, $menu_title, $capability, $slug, $callback );
+            }
+            public function create_plugin_admin_panel_students_subpage() {
+                $this->options = get_option( PREFIX . 'option' );
+                include_once( DIR_PATH . 'templates/template-admin-options-students.php' );
+            }
             
-            public function add_plugin_admin_panel_settings_subpage() {
-                // Add the menu item and page
+            public function add_plugin_admin_panel_subpage_settings() {
                 $parent_page = 'zpdevwpcg';
                 $page_title  = 'Settings';
                 $menu_title  = 'Settings';
@@ -41,12 +63,6 @@
                 
                 add_submenu_page( $parent_page, $page_title, $menu_title, $capability, $slug, $callback );
             }
-            
-            public function create_plugin_admin_panel_page() {
-                $this->options = get_option( PREFIX . 'option' );
-                include_once( DIR_PATH . 'templates/template-admin-options.php' );
-            }
-            
             public function create_plugin_admin_panel_settings_subpage() {
                 $this->options = get_option( PREFIX . 'option' );
                 include_once( DIR_PATH . 'templates/template-admin-options-settings.php' );
@@ -356,11 +372,5 @@
                 );
             }
             
-            
-            public function cmp($a, $b)
-            {
-                return strcmp($a->post_title, $b->post_title);
-            }
-
         }
     }
