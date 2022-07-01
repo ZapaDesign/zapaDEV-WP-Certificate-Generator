@@ -62,11 +62,11 @@
 
 
         // Certificate list in ZPdevWPCG Options page
-        $('.zpwpcg-adm-certlist__item').on('click', '.zpwpcg-adm__btn--del', function (e) {
+        $('.zpwpcg-table--adm').on('click', '.zpwpcg-btn--del', function (e) {
 
             if (confirm("Are you sure you want to remove the certificate?")) {
 
-                let cert = $(this).parents('.zpwpcg-adm-certlist__item'),
+                let cert = $(this).parents('.zpwpcg-table__item'),
                     certID = cert.data('id')
 
                 $.ajax({
