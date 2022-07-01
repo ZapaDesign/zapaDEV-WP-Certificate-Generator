@@ -51,7 +51,7 @@
             public function initialize_plugin() {
                 $this->includes();
                 
-                ZPdevWPCG_Options::instance();
+                $ZPdevWPCG_Options = ZPdevWPCG_Options::instance();
                 ZPdevWPCG_Shortcode::instance();
                 ZPdevWPCG_AJAX::instance();
                 ZPdevWPCG_Metabox::instance();

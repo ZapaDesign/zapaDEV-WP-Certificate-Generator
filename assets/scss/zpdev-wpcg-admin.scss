@@ -1,24 +1,23 @@
 @import "vars";
 @import "plugin";
 
-body.toplevel_page_zpdevwpcg,
-body.zpdev-wpcg_page_zpdevwpcg_students,
-body.zpdev-wpcg_page_zpdevwpcg_settings {
-	background: linear-gradient(45deg,#4158d0,#c850c0);
-	background-attachment: fixed;
-	.zpwpcg-adm {
-		&__wrap {
-			& > p {
-				color: var(--white);
-			}
-		}
-
-		&__title {
-			color: var(--white);
-		}
-	}
-}
-
+//body.toplevel_page_zpdevwpcg,
+//body.zpdev-wpcg_page_zpdevwpcg_students,
+//body.zpdev-wpcg_page_zpdevwpcg_settings {
+//	background: linear-gradient(45deg,#4158d0,#c850c0);
+//	background-attachment: fixed;
+//	.zpwpcg-adm {
+//		&__wrap {
+//			& > p {
+//				color: var(--white);
+//			}
+//		}
+//
+//		&__title {
+//			color: var(--white);
+//		}
+//	}
+//}
 
 
 .zpwpcg-adm {
@@ -30,9 +29,34 @@ body.zpdev-wpcg_page_zpdevwpcg_settings {
 		@media (min-width: 720px){
 			padding-right: 20px;
 		}
+
+		//input[type="text"],
+		//textarea {
+		//	width: 100%;
+		//}
 	}
 
 	&__title {
 		margin-bottom: 2rem;;
+	}
+
+	&-repeater {
+		li {
+			display: flex;
+
+			& > input {
+				width: 20px;
+
+			}
+		}
+	}
+
+	&-canvas {
+		max-width: 800px;
+		&__wrap {
+			text-align: center;
+			position: sticky;
+			top: 0;
+		}
 	}
 }

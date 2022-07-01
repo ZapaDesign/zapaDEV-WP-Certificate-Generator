@@ -1,3 +1,5 @@
+@import "grid";
+
 .zpwpcg {
 
 	&-table {
@@ -11,12 +13,12 @@
 			overflow: hidden;
 		    display: table;
 			background-color: var(--white);
-			box-shadow: 0 0 40px 0 rgba(0, 0, 0,  0.15);
+			//box-shadow: 0 0 40px 0 rgba(0, 0, 0,  0.15);
 		}
 
 		thead {
 			background-color: var(--dark);
-			color: white;
+			color: var(--white);
 			display: none;
 			@media (min-width: 1200px){
 			    display: table-header-group;
@@ -38,14 +40,14 @@
 				margin-bottom: 20px;
 				background-color: var(--white);
 				border-radius: 5px;
-				box-shadow: 0 0 5px 0 rgba(0, 0, 0,  0.15);
+				//box-shadow: 0 0 5px 0 rgba(0, 0, 0,  0.15);
 				overflow: hidden;
 				flex: 1 0 300px;
 
 				@media (min-width: 1200px){
 					background-color: inherit;
 					display: table-row;
-					box-shadow: unset;
+					//box-shadow: unset;
 					border-radius: 0;
 
 					&:nth-child(even) {
@@ -109,7 +111,7 @@
 		display: inline-block;
 		background-color: var(--white);
 		border-radius: 10px;
-		box-shadow: 0 0 40px 0 rgba(0, 0, 0,  0.15);
+		//box-shadow: 0 0 40px 0 rgba(0, 0, 0,  0.15);
 		padding: 25px 10px 10px;
 
 		//@media (min-width: 720px){
@@ -140,6 +142,29 @@
 				flex: 1;
 				margin-right: 10px;
 			}
+		}
+	}
+
+	&-cart {
+		//box-shadow: 0 0 40px 0 rgba(0, 0, 0,  0.15);
+		border-radius: 10px;
+		overflow: hidden;
+		background-color: var(--white);
+
+		&:not(last-child) {
+			margin-bottom: 20px;
+		}
+
+		&__header {
+			background-color: var(--dark);
+			color: var(--white);
+			font-size: 16px;
+			font-weight: bold;
+			padding: 10px;
+		}
+
+		&__body {
+			padding: 10px;
 		}
 	}
 
@@ -228,6 +253,16 @@
 				}
 			}
 
+
+		}
+	}
+
+	&-canvas {
+		width: 100%;
+
+		&__wrap {
+			width: 100%;
+			overflow: auto;
 
 		}
 	}

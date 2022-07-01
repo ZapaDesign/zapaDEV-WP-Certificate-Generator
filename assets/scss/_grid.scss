@@ -1,20 +1,95 @@
+$global-width: 1920px;
+$grid-gutters: 20px;
+$grid-columns: 12;
+
+$breakpoints: (
+	md: 720px,
+	lg: 1200px,
+	xlg: 1500px,
+	xxlg: 1920px,
+);
+
 .zdcontainer {
-	padding-top: 3vh;
-	padding-bottom: 3vh;
+	max-width: $global-width;
+	margin-left: auto;
+	padding-left: $grid-gutters / 2;
+	padding-right: $grid-gutters / 2;
 }
 
 .zdgrid {
 	display: flex;
-	flex-direction: column;
-
-	@media (min-width: 720px){
-		flex-direction: row;
-	}
+	flex-wrap: wrap;
 }
 
 .zdcell {
-	padding-left: 1vw;
-	padding-right: 1vw;
-	padding-top: 2vh;
-	padding-bottom: 2vh;
+	flex-basis: 100%;
+	box-sizing: border-box;
+
+	@each $breakpoint, $value in $breakpoints {
+		@media (min-width: $value) {
+			@for $i from 1 through $grid-columns {
+				&.#{$breakpoint}-#{$i} {
+					flex-basis: (100 / ($grid-columns / $i) ) * 1%;
+				}
+			}
+		}
+	}
+}
+
+.zdgrid {
+	&--x {
+		margin-left: $grid-gutters / -2;
+		margin-right: $grid-gutters / -2;
+		.zdcell {
+			margin-left: $grid-gutters / 2;
+			margin-right: $grid-gutters / 2;
+
+			@each $breakpoint, $value in $breakpoints {
+				@media (min-width: $value) {
+					@for $i from 1 through $grid-columns {
+						&.#{$breakpoint}-#{$i} {
+							flex-basis: calc(((100 / (#{$grid-columns} / #{$i})) * 1%) - #{$grid-gutters});
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&--y {
+		margin-top: $grid-gutters / -2;
+		margin-bottom: $grid-gutters / -2;
+		.zdcell {
+			margin-top: $grid-gutters / 2;
+			margin-bottom: $grid-gutters / 2;
+
+
+			@each $breakpoint, $value in $breakpoints {
+				@media (min-width: $value) {
+					@for $i from 1 through $grid-columns {
+						&.#{$breakpoint}-#{$i} {
+							flex-basis: calc(((100 / (#{$grid-columns} / #{$i})) * 1%) - #{$grid-gutters});
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&--x-y {
+		margin: $grid-gutters / -2;
+		.zdcell {
+			margin: $grid-gutters / 2;
+
+			@each $breakpoint, $value in $breakpoints {
+				@media (min-width: $value) {
+					@for $i from 1 through $grid-columns {
+						&.#{$breakpoint}-#{$i} {
+							flex-basis: calc(((100 / (#{$grid-columns} / #{$i})) * 1%) - #{$grid-gutters});
+						}
+					}
+				}
+			}
+		}
+	}
 }

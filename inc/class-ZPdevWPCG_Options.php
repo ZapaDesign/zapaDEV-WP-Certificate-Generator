@@ -87,11 +87,11 @@
                 $ss_body_main = 'setting_section_body_main';
                 add_settings_section( $ss_body_main, __( 'Certificate Body Main', TR_ID ), array( $this, 'print_section_body_main_info' ), PREFIX . 'settings' );
                 
-                add_settings_field( 'img', __( 'Image', TR_ID ), array( $this, 'img_callback' ), PREFIX . 'settings', $ss_body_main, array(
+                add_settings_field( 'img', __( 'Image', TR_ID ), array( $this, 'render_img' ), PREFIX . 'settings', $ss_body_main, array(
                     'label_for' =>'img',
                     'demo_link' => '/assets/img/certificate-template-demo.svg') );
-                add_settings_field( 'name', __( 'Field (Name label)', TR_ID ), array( $this, 'name_callback' ), PREFIX . 'settings', $ss_body_main );
-                add_settings_field( 'text', __( 'Field (Text)', TR_ID ), array( $this, 'text_callback' ), PREFIX . 'settings', $ss_body_main );
+                add_settings_field( 'name', __( 'Field (Name label)', TR_ID ), array( $this, 'render_name' ), PREFIX . 'settings', $ss_body_main );
+                add_settings_field( 'text', __( 'Field (Text)', TR_ID ), array( $this, 'render_text' ), PREFIX . 'settings', $ss_body_main );
                 
                 
                 /*
@@ -101,12 +101,12 @@
                 $ss_body_grid = 'setting_section_body_grid';
                 add_settings_section( $ss_body_grid, __( 'Certificate Body Grid', TR_ID ), array( $this, 'print_section_body_grid_info' ), PREFIX . 'settings' );
                 
-                add_settings_field( 'period', __( 'Field (Course dates)', TR_ID ), array( $this, 'period_callback' ), PREFIX . 'settings', $ss_body_grid, array(
+                add_settings_field( 'period', __( 'Field (Course dates)', TR_ID ), array( $this, 'render_period' ), PREFIX . 'settings', $ss_body_grid, array(
                     'label',
                     'start',
                     'finish'
                 ) );
-                add_settings_field( 'levels', __( 'Field (Levels)', TR_ID ), array( $this, 'levels_callback' ), PREFIX . 'settings', $ss_body_grid );
+                add_settings_field( 'levels', __( 'Field (Levels)', TR_ID ), array( $this, 'render_level' ), PREFIX . 'settings', $ss_body_grid );
                 add_settings_field( 'hours', __( 'Field (Number of hours)', TR_ID ), array( $this, 'hours_callback' ), PREFIX . 'settings', $ss_body_grid );
                 add_settings_field( 'place', __( 'Field (Place of Study)', TR_ID ), array( $this, 'place_callback' ), PREFIX . 'settings', $ss_body_grid );
                 add_settings_field( 'date', __( 'Field (Date of issue)', TR_ID ), array( $this, 'date_callback' ), PREFIX . 'settings', $ss_body_grid );
@@ -184,7 +184,7 @@
                 print __( 'Add Certificate body grid data', TR_ID );
             }
             
-            public function img_callback( $args ) {
+            public function render_img( $args ) {
                 // TODO Check img_callback method
 
                 $img_demo_url  = ZPdevWPCG()->plugin_url() . $args['demo_link'];
@@ -209,70 +209,65 @@
                     id="zpwpcg-adm-picture-<?php echo $args['label_for']; ?>"
                     name="zpdevwpcg_option[<?php echo $args['label_for']; ?>]"
                     value="<?php echo isset( $img_url ) ? esc_attr( $img_url ) : $img_demo_url; ?>"
-
+                >
                 <?php
             }
-
-//            public function input_callback( $args ) {
-//                foreach ($args as $arg) {
-//
-//                }
-//            }
-            
-            public function period_callback() {
+           
+            public function render_period() {
                 printf(
-                    '<input type="text" name="zpdevwpcg_option[period][label]" value="%s" placeholder="%s"/>',
-                    isset( $this->options['period']['label'] ) ? esc_attr( $this->options['period']['label'] ) : __('Course period', TR_ID),
+                    '<p><label for="zpdevwpcg_option[period][label]">%s</label><input type="text" name="zpdevwpcg_option[period][label]" value="%s"></p>',
+                    __( 'Label', TR_ID ),
+                    isset( $this->options['period']['label'] ) ? esc_attr( $this->options['period']['label'] ) : __('Course period', TR_ID)
+                );
+                printf(
+                    '<p><label for="zpdevwpcg_option[period][start]">%s</label><input type="text" name="zpdevwpcg_option[period][start]" value="%s"></p>',
+                    __( 'Start', TR_ID ),
+                    isset( $this->options['period']['start'] ) ? esc_attr( $this->options['period']['start'] ) : __('Course start', TR_ID)
+                );
+                printf(
+                    '<p><label for="zpdevwpcg_option[period][finish]">%s</label><input type="text" name="zpdevwpcg_option[period][finish]" value="%s"/>',
+                    __( 'Finish', TR_ID ),
+                    isset( $this->options['period']['finish'] ) ? esc_attr( $this->options['period']['finish'] ) : __('Course finish', TR_ID)
+                );
+            }
+            
+            public function render_name() {
+                printf(
+                    '<label for="zpdevwpcg_option[name][label]">%s</label><input type="text" name="zpdevwpcg_option[name][label]" value="%s"">',
+                    __( 'Label', TR_ID ),
+                    isset( $this->options['name']['label'] ) ? esc_attr( $this->options['name']['label'] ) : __('Name', TR_ID),
                     __( 'Label', TR_ID )
                 );
-                printf(
-                    '<input type="text" name="zpdevwpcg_option[period][start]" value="%s" placeholder="%s"/>',
-                    isset( $this->options['period']['start'] ) ? esc_attr( $this->options['period']['start'] ) : __('Course start', TR_ID),
-                    __( 'Start', TR_ID )
-                );
-                printf(
-                    '<input type="text" name="zpdevwpcg_option[period][finish]" value="%s" placeholder="%s"/>',
-                    isset( $this->options['period']['finish'] ) ? esc_attr( $this->options['period']['finish'] ) : __('Course finish', TR_ID),
-                    __( 'Finish', TR_ID )
-                );
             }
             
-            public function name_callback() {
+            public function render_text() {
                 printf(
-                    '<input type="text" name="zpdevwpcg_option[name][label]" value="%s" placeholder="%s">',
-                    isset( $this->options['name']['label'] ) ? esc_attr( $this->options['name']['label'] ) : __('Name', TR_ID),
-                    __( 'Label' )
-                );
-            }
-            
-            public function text_callback() {
-                printf(
-                    '<textarea cols="40" rows="3" name="zpdevwpcg_option[text][after]" placeholder="%s">%s</textarea>',
+                    '<p><label for="zpdevwpcg_option[text][after]">%s</label><textarea cols="40" rows="3" name="zpdevwpcg_option[text][after]">%s</textarea></p>',
                     __( 'After name text', TR_ID ),
                     isset( $this->options['text']['after'] ) ? esc_attr( $this->options['text']['after'] ) : ''
                 );
                 printf(
-                    '<textarea cols="40" rows="3" name="zpdevwpcg_option[text][before]" placeholder="%s">%s</textarea>',
+                    '<p><label for="zpdevwpcg_option[text][before]">%s</label><textarea cols="40" rows="3" name="zpdevwpcg_option[text][before]">%s</textarea></p>',
                     __( 'Before name text', TR_ID ),
                     isset( $this->options['text']['before'] ) ? esc_attr( $this->options['text']['before'] ) : ''
                 );
                 printf(
-                    '<textarea cols="40" rows="3" name="zpdevwpcg_option[text][before_strong]" placeholder="%s">%s</textarea>',
+                    '<p><label for="zpdevwpcg_option[text][before_strong]">%s</label><textarea cols="40" rows="3" name="zpdevwpcg_option[text][before_strong]">%s</textarea></p>',
                     __( 'Before name strong text', TR_ID ),
                     isset( $this->options['text']['before_strong'] ) ? esc_attr( $this->options['text']['before_strong'] ) : ''
                 );
             }
             
-            public function levels_callback() {
+            public function render_level() {
                 printf(
-                    '<input type="text" name="zpdevwpcg_option[levels][label]" value="%s" placeholder="%s"/>',
-                    isset( $this->options['levels']['label'] ) ? esc_attr( $this->options['levels']['label'] ) : __('Level', TR_ID),
-                    __( 'Label', TR_ID )
+                    '<p><label for="zpdevwpcg_option[levels][label]">%s</label><input type="text" name="" value="%s" ></p>',
+                    __( 'Label', TR_ID ),
+                    isset( $this->options['levels']['label'] ) ? esc_attr( $this->options['levels']['label'] ) : __('Level', TR_ID)
                 );
                 
                 $all_options = get_option( 'zpdevwpcg_option' );
                 $options     = $all_options['levels']['list'];
-                echo '<div class="repeatable-wrap"><ul id="tracks-repeatable" class="repeatable-fields-list">';
+                echo '<div class="zpwpcg-repeater__wrap"><ul id="tracks-repeatable" class="zpwpcg-adm-repeater">';
                 if ( ! empty( $options ) ):
                     
                     $i = 1;
@@ -374,3 +369,9 @@
             
         }
     }
+
+    function ZPdevWPCG_Options() {
+        return ZPdevWPCG_Options::instance();
+    }
+
+    $GLOBALS['ZPdevWPCG_Options'] = ZPdevWPCG_Options();

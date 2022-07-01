@@ -1,6 +1,6 @@
 @import "vars";
 @import 'fonts';
-@import 'grid';
+@import 'plugin';
 
 .zpwpcg {
 
@@ -43,16 +43,6 @@
 					display: flex;
 				}
 			}
-		}
-	}
-
-	&-canvas {
-		width: 100%;
-
-
-		&__wrap {
-			width: 100%;
-			overflow: auto;
 		}
 	}
 
