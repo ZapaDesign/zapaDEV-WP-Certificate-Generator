@@ -22,12 +22,12 @@ echo '<script>let lastCertID = ' . json_encode($last_cert_id) . ';</script>';
 
 if($options): ?>
     <div id="zpdevwpcgFront" class="zdcontainer">
-    <div class="zdgrid">
-        <div class="zdcell">
+    <div class="zdgrid zdgrid--x zdgrid--y">
+        <div class="zdcell md-5 lg-4">
             <?php include_once(DIR_PATH . '/templates/parts/form.php'); ?>
         </div>
 
-        <div class="zdcell">
+        <div class="zdcell md-7 lg-8">
             <div class="zpwpcg-canvas__wrap">
                 <!--// TODO Добавить асинхронную загрузку изображений-->
                 <canvas
