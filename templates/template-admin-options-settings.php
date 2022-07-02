@@ -18,162 +18,28 @@
                     <?php
                         settings_fields( PREFIX . 'settings_option_group' );
                         $options = $GLOBALS['ZPdevWPCG_Options'];
-                    ?>
-                    
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                             <?php echo __( 'Layout', TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_img( array(
-                                    'label_for' =>'img',
-                                    'demo_link' => '/assets/img/certificate-template-demo.svg'
-                                ) ); ?>
-                        </div>
-                    </div>
 
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                            <?php echo __( 'Name label', TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_name(); ?>
-                        </div>
-                        
-                    </div>
+                        include_once( DIR_PATH . 'templates/parts/admin-options--layout.php' );
+                        include_once( DIR_PATH . 'templates/parts/admin-options--body.php' );
+                        include_once( DIR_PATH . 'templates/parts/admin-options--list.php' );
+                        include_once( DIR_PATH . 'templates/parts/admin-options--footer.php' );
 
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                            <?php
-                                echo __( 'Certificate Text', TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_text(); ?>
-                        </div>
-                    </div>
-
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                            <?php
-                                echo __( 'Course dates', TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_period(); ?>
-                        </div>
-                    </div>
-
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                            <?php
-                                echo __( 'Level',TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_level(); ?>
-                        </div>
-                    </div>
-
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                            <?php
-                                echo __( 'Number of hours', TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_hours(); ?>
-                        </div>
-                    </div>
-
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                            <?php
-                                echo __( 'Location', TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_location(); ?>
-                        </div>
-                    </div>
-
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                            <?php
-                                echo __( 'Date', TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_date(); ?>
-                        </div>
-                    </div>
-
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                            <?php
-                                echo __( 'Address', TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_address(); ?>
-                        </div>
-                    </div>
-
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                            <?php
-                                echo __( 'Director', TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_director(); ?>
-                        </div>
-                    </div>
-
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                            <?php echo __( 'Logo', TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_img( array(
-                                    'label_for' =>'logo',
-                                    'demo_link' => '/assets/img/certificate-logo-demo.svg'
-                                ) ); ?>
-                        </div>
-                    </div>
-
-                    <div class="zpwpcg-cart">
-                        <div class="zpwpcg-cart__header">
-                            <?php echo __( 'Signature', TR_ID ); ?>
-                        </div>
-                        <div class="zpwpcg-cart__body">
-                            <?php
-                                $options->render_img( array(
-                                    'label_for' =>'signature',
-                                    'demo_link' => '/assets/img/certificate-signature-demo.svg'
-                                ) ); ?>
-                        </div>
-                    </div>
-                    
-                    <?php
                         submit_button(); ?>
                 </form>
             </div>
 
             <div class="zdcell md-7 lg-8">
                 <div class="zpwpcg-canvas__wrap zpwpcg-adm-canvas__wrap">
-                    <div class="zpwpcg-canvas__wrap">
+                    <div class="zpwpcg-canvas__wrap zpwpcg-adm-canvas__wrap">
                         <!--// TODO Добавить асинхронную загрузку изображений-->
-                        <canvas
-                            class="zpwpcg-canvas zpwpcg-adm-canvas"
-                            id="zpwpcg-canvas"
-                            data-imgsrc="<?php echo ZPdevWPCG()->plugin_url() . '/assets/img/certificate-template-demo.svg' ?>"
-                            width="2480"
-                            height="3508"
-                        ></canvas>
+                        <img class="zpwpcg-canvas zpwpcg-adm-canvas" src="<?php echo ZPdevWPCG()->plugin_url() . '/assets/img/certificate-template-demo.svg' ?>" alt="">
+<!--                        <canvas-->
+<!--                            class="zpwpcg-canvas zpwpcg-adm-canvas"-->
+<!--                            id="zpwpcg-canvas"-->
+<!--                            data-imgsrc="--><?php //echo ZPdevWPCG()->plugin_url() . '/assets/img/certificate-template-demo.svg' ?><!--"-->
+<!--                            width="2480"-->
+<!--                            height="3508"-->
+<!--                        ></canvas>-->
                     </div>
                 </div>
             </div>

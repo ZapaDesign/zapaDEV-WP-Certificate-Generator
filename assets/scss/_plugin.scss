@@ -163,8 +163,18 @@
 			padding: 10px;
 		}
 
-		&__body {
-			padding: 10px;
+
+		&__body,
+		&__footer {
+			padding: 0 10px;
+			margin: 10px 0;
+		}
+
+		&__footer {
+			&--flex {
+				display: flex;
+				gap: 10px;
+			}
 		}
 	}
 
@@ -265,5 +275,15 @@
 			overflow: auto;
 
 		}
+	}
+
+	&-range {
+		width: 100%;
+	}
+
+	&-el--flex {
+		display: flex;
+		align-items: center;
+		gap: 5px;
 	}
 }

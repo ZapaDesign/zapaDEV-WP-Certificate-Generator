@@ -200,27 +200,10 @@
                 >
                 <?php
             }
-            public function render_period() {
-                printf(
-                    '<p><label for="zpdevwpcg_option[period][label]">%s</label><input type="text" name="zpdevwpcg_option[period][label]" value="%s"></p>',
-                    __( 'Label', TR_ID ),
-                    isset( $this->options['period']['label'] ) ? esc_attr( $this->options['period']['label'] ) : __('Course period', TR_ID)
-                );
-                printf(
-                    '<p><label for="zpdevwpcg_option[period][start]">%s</label><input type="text" name="zpdevwpcg_option[period][start]" value="%s"></p>',
-                    __( 'Start', TR_ID ),
-                    isset( $this->options['period']['start'] ) ? esc_attr( $this->options['period']['start'] ) : __('Course start', TR_ID)
-                );
-                printf(
-                    '<p><label for="zpdevwpcg_option[period][finish]">%s</label><input type="text" name="zpdevwpcg_option[period][finish]" value="%s"/>',
-                    __( 'Finish', TR_ID ),
-                    isset( $this->options['period']['finish'] ) ? esc_attr( $this->options['period']['finish'] ) : __('Course finish', TR_ID)
-                );
-            }
             public function render_name() {
                 printf(
                     '<label for="zpdevwpcg_option[name][label]">%s</label><input type="text" name="zpdevwpcg_option[name][label]" value="%s"">',
-                    __( 'Label', TR_ID ),
+                    __( 'Form label', TR_ID ),
                     isset( $this->options['name']['label'] ) ? esc_attr( $this->options['name']['label'] ) : __('Name', TR_ID),
                     __( 'Label', TR_ID )
                 );
@@ -242,15 +225,33 @@
                     isset( $this->options['text']['before_strong'] ) ? esc_attr( $this->options['text']['before_strong'] ) : ''
                 );
             }
+            public function render_period() {
+                printf(
+                    '<p><label for="zpdevwpcg_option[period][label]">%s</label><input type="text" name="zpdevwpcg_option[period][label]" value="%s"></p>',
+                    __( 'Certificate label', TR_ID ),
+                    isset( $this->options['period']['label'] ) ? esc_attr( $this->options['period']['label'] ) : __('Course period', TR_ID)
+                );
+                printf(
+                    '<p><label for="zpdevwpcg_option[period][start]">%s</label><input type="text" name="zpdevwpcg_option[period][start]" value="%s"></p>',
+                    __( 'Form Start label', TR_ID ),
+                    isset( $this->options['period']['start'] ) ? esc_attr( $this->options['period']['start'] ) : __('Course start', TR_ID)
+                );
+                printf(
+                    '<p><label for="zpdevwpcg_option[period][finish]">%s</label><input type="text" name="zpdevwpcg_option[period][finish]" value="%s"/>',
+                    __( 'Form Finish label', TR_ID ),
+                    isset( $this->options['period']['finish'] ) ? esc_attr( $this->options['period']['finish'] ) : __('Course finish', TR_ID)
+                );
+            }
             public function render_level() {
                 printf(
                     '<p><label for="zpdevwpcg_option[levels][label]">%s</label><input type="text" name="zpdevwpcg_option[levels][label]" value="%s" ></p>',
-                    __( 'Label', TR_ID ),
+                    __( 'Form and Certificate label', TR_ID ),
                     isset( $this->options['levels']['label'] ) ? esc_attr( $this->options['levels']['label'] ) : __('Level', TR_ID)
                 );
                 
                 $all_options = get_option( 'zpdevwpcg_option' );
                 $options     = $all_options['levels']['list'];
+                echo __('List', TR_ID);
                 echo '<div class="zpwpcg-adm-repeater__wrap"><ul id="tracks-repeatable" class="zpwpcg-adm-repeater">';
                 if ( ! empty( $options ) ):
                     $i = 1;
@@ -340,13 +341,13 @@
             public function render_director() {
                 printf(
                     '<p><label for="zpdevwpcg_option[director][label]">%s</label><input type="text" id="director_label" name="zpdevwpcg_option[director][label]" value="%s"></p>',
-                    __( 'Label', TR_ID ),
+                    __( 'Position', TR_ID ),
                     isset( $this->options['director']['label'] ) ? esc_attr( $this->options['director']['label'] ) : ''
                 );
                 
                 printf(
                     '<p><label for="zpdevwpcg_option[director][value]">%s</label><input type="text" id="director_value" name="zpdevwpcg_option[director][value]" value="%s"></p>',
-                    __( 'Value', TR_ID ),
+                    __( 'Name', TR_ID ),
                     isset( $this->options['director']['value'] ) ? esc_attr( $this->options['director']['value'] ) : ''
                 );
             }
