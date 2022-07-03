@@ -51,10 +51,10 @@
             public function initialize_plugin() {
                 $this->includes();
                 
-                $ZPdevWPCG_Options = ZPdevWPCG_Options::instance();
-                ZPdevWPCG_Shortcode::instance();
-                ZPdevWPCG_AJAX::instance();
-                ZPdevWPCG_Metabox::instance();
+                Options::instance();
+                Shortcode::instance();
+                AJAX::instance();
+                Metabox::instance();
                 
                 add_action( 'init', array( $this, 'register_zpdevwpcg_certificat_post_type' ) );
                 add_action( 'init', array( $this, 'register_zpdevwpcg_student_post_type' ) );

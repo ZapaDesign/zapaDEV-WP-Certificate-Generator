@@ -2,8 +2,8 @@
     
     namespace ZPdevWPCG;
     
-    if ( ! class_exists( 'ZPdevWPCG_Certificate' ) ) {
-        class ZPdevWPCG_Certificate {
+    if ( ! class_exists( 'Certificate' ) ) {
+        class Certificate {
             
             private $id;
 
@@ -26,7 +26,7 @@
             
             public function set() {
 
-                $student = new ZPdevWPCG_Student($this->st_name);
+                $student = new Student($this->st_name);
                 
                 $data = array(
                     'post_title'  => $this->id,

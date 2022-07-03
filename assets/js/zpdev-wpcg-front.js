@@ -28,7 +28,7 @@
             finishInput = document.getElementById('zpwpcg-front__finish-input'),
             levelSelect = document.getElementById('zpwpcg-front__level-select'),
             hoursInput = document.getElementById('zpwpcg-front__hours-input'),
-            placeInput = document.getElementById('zpwpcg-front__place-input'),
+            locationInput = document.getElementById('zpwpcg-front__location-input'),
             dateInput = document.getElementById('zpwpcg-front__date-input'),
             downloadBtn = document.getElementById('zpwpcg-front__btn--download')
 
@@ -49,10 +49,10 @@
             drawScaleImage(signature, 65, 88, 400)
 
             drawText(certIDInput.value ? certIDInput.value : lastCertID + '/' + new Date().getFullYear().toString().substr(-2), 'center', 54.5, 13.8, 'normal', 60, 'Opinion Pro')
-            drawText(options.text.after, 'center', 54.5, 24, 'normal', 130, 'Opinion Pro')
+            drawText(options.text.before, 'center', 54.5, 24, 'normal', 130, 'Opinion Pro')
             drawText(nameInput.value, 'center', 54.5, 32, 'bold', 200, 'Opinion Pro', '#333')
-            drawText(options.text.before, 'center', 54.5, 40, 'normal', 130, 'Opinion Pro')
-            drawText(options.text.before_strong, 'center', 54.5, 46, 'bold', 130, 'Opinion Pro')
+            drawText(options.text.after, 'center', 54.5, 40, 'normal', 130, 'Opinion Pro')
+            drawText(options.text.after_strong, 'center', 54.5, 46, 'bold', 130, 'Opinion Pro')
             // TODO Ограничить ширину текста адрес
             drawText(options.address, undefined, 15, 93, 'normal', 32, 'Opinion Pro')
             drawText(options.director.value, 'end', 94, 92.5, 'normal', 32, 'Opinion Pro')
@@ -61,7 +61,7 @@
             drawText(options.period.label + ': ' + dateFormat(startInput.value, 'month') + ' - ' + dateFormat(finishInput.value, 'month'), undefined, 15, 62, 'normal', 80, 'Opinion Pro')
             drawText(options.levels.label + ': ' + levelSelect.value, undefined, 15, 66, 'normal', 80, 'Opinion Pro')
             drawText(options.hours.label + ': ' + hoursInput.value, undefined, 15, 70, 'normal', 80, 'Opinion Pro')
-            drawText(options.place.label + ': ' + placeInput.value, undefined, 15, 74, 'normal', 80, 'Opinion Pro')
+            drawText(options.location.label + ': ' + locationInput.value, undefined, 15, 74, 'normal', 80, 'Opinion Pro')
             drawText(options.date.label + ': ' + dateFormat(dateInput.value), undefined, 15, 78, 'normal', 80, 'Opinion Pro')
         }
 
@@ -78,7 +78,7 @@
         finishInput.addEventListener('change', () => drawImage())
         levelSelect.addEventListener('change', () => drawImage())
         hoursInput.addEventListener('input', () => drawImage())
-        placeInput.addEventListener('input', () => drawImage())
+        locationInput.addEventListener('input', () => drawImage())
         dateInput.addEventListener('change', () => drawImage())
 
         function drawText(text, alignment = 'start', pX, pY, fontweight, fontsize, fontface, color = '#4c4c4c') {
@@ -151,7 +151,7 @@
                             finish: finishInput.value,
                             level: levelSelect.value,
                             hours: hoursInput.value,
-                            place: placeInput.value,
+                            location: locationInput.value,
                             date: dateInput.value,
                         },
                         dataType: 'text',

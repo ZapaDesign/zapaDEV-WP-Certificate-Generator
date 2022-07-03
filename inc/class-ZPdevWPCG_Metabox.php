@@ -2,7 +2,7 @@
     
     namespace ZPdevWPCG;
     
-    class ZPdevWPCG_Metabox {
+    class Metabox {
         
         use Instance;
         

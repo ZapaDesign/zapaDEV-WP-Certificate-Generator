@@ -2,7 +2,7 @@
     
     namespace ZPdevWPCG;
     
-    class ZPdevWPCG_AJAX {
+    class AJAX {
         
         use Instance;
         
@@ -24,7 +24,7 @@
             $place   = $_POST['place'];
             $date    = $_POST['date'];
             
-            $certificate = new ZPdevWPCG_Certificate( $id, $st_name, $period, $level, $hours, $place, $date );
+            $certificate = new Certificate( $id, $st_name, $period, $level, $hours, $place, $date );
             $certificate->set();
             
             wp_die();

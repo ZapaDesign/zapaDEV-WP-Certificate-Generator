@@ -1,13 +1,15 @@
+<?php
+/**
+ * @var ZPdevWPCG\Options $this
+ */
+?>
+
 <div class="zpwpcg-cart">
     <div class="zpwpcg-cart__header">
         <?php echo __( 'Layout', TR_ID ); ?>
     </div>
     <div class="zpwpcg-cart__body">
-        <?php
-        $options->render_img( array(
-            'label_for' =>'img',
-            'demo_link' => '/assets/img/certificate-template-demo.svg'
-        ) ); ?>
+        <?php  $this->render_img( 'img', '/assets/img/certificate-template-demo.svg' ); ?>
     </div>
     <div class="zpwpcg-cart__footer zpwpcg-cart__footer--flex">
         <div class="zpwpcg-el--flex">

@@ -2,8 +2,8 @@
     
     namespace ZPdevWPCG;
     
-    if ( ! class_exists( 'ZPdevWPCG_Shortcode' ) ) {
-        class ZPdevWPCG_Shortcode {
+    if ( ! class_exists( 'Shortcode' ) ) {
+        class Shortcode {
             private $title;
             
             use Instance;

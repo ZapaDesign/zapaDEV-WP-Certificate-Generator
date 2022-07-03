@@ -80,10 +80,10 @@
                        value="<?php echo $options['hours']['value']; ?>">
             </p>
         <?php endif; ?>
-        <?php if( $options['place']['label'] ): ?>
+        <?php if( $options['location']['label'] ): ?>
             <p>
-                <label><?php echo $options['place']['label'] . ':'; ?></label>
-                <input id="zpwpcg-front__place-input" type="text" value="<?php echo $options['place']['value']; ?>">
+                <label><?php echo $options['location']['label'] . ':'; ?></label>
+                <input id="zpwpcg-front__location-input" type="text" value="<?php echo $options['location']['value']; ?>">
             </p>
         <?php endif; ?>
         <?php if( $options['date']['label'] ): ?>

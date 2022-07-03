@@ -2,7 +2,7 @@
 
 namespace ZPdevWPCG;
 
-class ZPdevWPCG_Student
+class Student
 {
 
     private $name;

@@ -2,8 +2,8 @@
     
     namespace ZPdevWPCG;
     
-    if ( ! class_exists( 'ZPdevWPCG_Options' ) ) {
-        class ZPdevWPCG_Options {
+    if ( ! class_exists( 'Options' ) ) {
+        class Options {
             
             // private $options;
             
@@ -78,110 +78,70 @@
             }
             
             public function page_init() {
-                register_setting( PREFIX . 'settings_option_group', PREFIX . 'option', array( $this, 'sanitize' ) );
-                
-                /*
-                 * Certificate body main section
-                 * */
-                
-//                $ss_body_main = 'setting_section_body_main';
-//                add_settings_section( $ss_body_main, __( 'Certificate Body Main', TR_ID ), array( $this, 'print_section_body_main_info' ), PREFIX . 'settings' );
-//
-//                add_settings_field( 'img', __( 'Image', TR_ID ), array( $this, 'render_img' ), PREFIX . 'settings', $ss_body_main, array(
-//                    'label_for' =>'img',
-//                    'demo_link' => '/assets/img/certificate-template-demo.svg') );
-//                add_settings_field( 'name', __( 'Field (Name label)', TR_ID ), array( $this, 'render_name' ), PREFIX . 'settings', $ss_body_main );
-//                add_settings_field( 'text', __( 'Field (Text)', TR_ID ), array( $this, 'render_text' ), PREFIX . 'settings', $ss_body_main );
-                
-                
-                /*
-                 * Certificate body grid section
-                 * */
-                
-//                $ss_body_grid = 'setting_section_body_grid';
-//                add_settings_section( $ss_body_grid, __( 'Certificate Body Grid', TR_ID ), array( $this, 'print_section_body_grid_info' ), PREFIX . 'settings' );
-//
-//                add_settings_field( 'period', __( 'Field (Course dates)', TR_ID ), array( $this, 'render_period' ), PREFIX . 'settings', $ss_body_grid, array(
-//                    'label',
-//                    'start',
-//                    'finish'
-//                ) );
-//                add_settings_field( 'levels', __( 'Field (Levels)', TR_ID ), array( $this, 'render_level' ), PREFIX . 'settings', $ss_body_grid );
-//                add_settings_field( 'hours', __( 'Field (Number of hours)', TR_ID ), array( $this, 'render_hours' ), PREFIX . 'settings', $ss_body_grid );
-//                add_settings_field( 'place', __( 'Field (Place of Study)', TR_ID ), array( $this, 'render_location' ), PREFIX . 'settings', $ss_body_grid );
-//                add_settings_field( 'date', __( 'Field (Date of issue)', TR_ID ), array( $this, 'render_date' ), PREFIX . 'settings', $ss_body_grid );
-//
-                
-                /*
-                 * Certificate footer section
-                 * */
-//                $ss_footer = 'setting_section_footer';
-//                add_settings_section( 'setting_section_footer', __( 'Certificate Footer', TR_ID ), array( $this, 'print_section_footer' ), PREFIX . 'settings' );
-//
-//                add_settings_field( 'logo', __( 'Logo', TR_ID ), array( $this, 'img_callback' ), PREFIX . 'settings',$ss_footer, array(
-//                        'label_for' =>'logo',
-//                        'demo_link' => '/assets/img/certificate-logo-demo.svg') );
-//                add_settings_field( 'address', __( 'Address', TR_ID ), array( $this, 'render_address' ), PREFIX . 'settings', $ss_footer );
-//                add_settings_field( 'signature', __( 'Signature', TR_ID ), array( $this, 'img_callback' ), PREFIX . 'settings', $ss_footer, array(
-//                    'label_for' =>'signature',
-//                    'demo_link' => '/assets/img/certificate-signature-demo.svg') );
-//                add_settings_field( 'director', __( 'Director', TR_ID ), array( $this, 'render_director' ), PREFIX . 'settings', $ss_footer );
+                register_setting( PREFIX . 'settings_option_group', PREFIX . 'option',
+                // TODO Fix sanitize method
+
+                //  array( $this, 'sanitize' )
+                );
             }
             
             // TODO Fix sanitize method
-            public function sanitize( $input ) {
-                $new_input = array();
-                if ( isset( $input['name'] ) ) {
-                    $new_input['name'] = $input['name'];
-                }
-                if ( isset( $input['text'] ) ) {
-                    $new_input['text'] = $input['text'];
-                }
-                if ( isset( $input['period'] ) ) {
-                    $new_input['period'] = $input['period'];
-                }
-                if ( isset( $input['levels'] ) ) {
-                    $new_input['levels'] = $input['levels'];
-                }
-                if ( isset( $input['hours'] ) ) {
-                    $new_input['hours'] = $input['hours'];
-                }
-                if ( isset( $input['place'] ) ) {
-                    $new_input['place'] = $input['place'];
-                }
-                if ( isset( $input['date'] ) ) {
-                    $new_input['date'] = $input['date'];
-                }
-                if ( isset( $input['img'] ) ) {
-                    $new_input['img'] = sanitize_text_field( $input['img'] );
-                }
-                
-                if ( isset( $input['logo'] ) ) {
-                    $new_input['logo'] = sanitize_text_field( $input['logo'] );
-                }
-                if ( isset( $input['signature'] ) ) {
-                    $new_input['signature'] = sanitize_text_field( $input['signature'] );
-                }
-                if ( isset( $input['address'] ) ) {
-                    $new_input['address'] = sanitize_text_field( $input['address'] );
-                }
-                if ( isset( $input['director'] ) ) {
-                    $new_input['director'] = $input['director'];
-                }
-                
-                return $new_input;
-            }
+//            public function sanitize( $input ) {
+//                $new_input = array();
+//                if ( isset( $input['name'] ) ) {
+//                    $new_input['name'] = $input['name'];
+//                }
+////                if ( isset( $input['text_after'] ) ) {
+////                    $new_input['text_after'] = $input['text_after'];
+////                }
+////                if ( isset( $input['text_before'] ) ) {
+////                    $new_input['text_before'] = $input['text_before'];
+////                }
+////                if ( isset( $input['period'] ) ) {
+////                    $new_input['period'] = $input['period'];
+////                }
+////                if ( isset( $input['levels'] ) ) {
+////                    $new_input['levels'] = $input['levels'];
+////                }
+////                if ( isset( $input['hours'] ) ) {
+////                    $new_input['hours'] = $input['hours'];
+////                }
+////                if ( isset( $input['place'] ) ) {
+////                    $new_input['place'] = $input['place'];
+////                }
+////                if ( isset( $input['date'] ) ) {
+////                    $new_input['date'] = $input['date'];
+////                }
+////                if ( isset( $input['img'] ) ) {
+////                    $new_input['img'] = sanitize_text_field( $input['img'] );
+////                }
+////
+////                if ( isset( $input['logo'] ) ) {
+////                    $new_input['logo'] = sanitize_text_field( $input['logo'] );
+////                }
+////                if ( isset( $input['signature'] ) ) {
+////                    $new_input['signature'] = sanitize_text_field( $input['signature'] );
+////                }
+////                if ( isset( $input['address'] ) ) {
+////                    $new_input['address'] = sanitize_text_field( $input['address'] );
+////                }
+////                if ( isset( $input['director'] ) ) {
+////                    $new_input['director'] = $input['director'];
+////                }
+////
+//                return $new_input;
+//            }
             
-            public function render_img( $args ) {
+            public function render_img( $id, $demo_link ) {
                 // TODO Check img_callback method
 
-                $img_demo_url  = ZPdevWPCG()->plugin_url() . $args['demo_link'];
-                $img_url = $this->options[$args['label_for']]; ?>
+                $img_demo_url  = ZPdevWPCG()->plugin_url() . $demo_link;
+                $img_url = $this->options[$id]; ?>
                 
                 <div class="zpwpcg-adm-picture__preview-wrapper">
                     <img
                         src="<?php echo $img_url ? $img_url : $img_demo_url; ?>"
-                        class="zpwpcg-adm-picture__preview--<?php echo $args['label_for']; ?>"
+                        class="zpwpcg-adm-picture__preview--<?php echo $id; ?>"
                         width="300"
                         alt=""
                     >
@@ -189,57 +149,39 @@
                 <input
                     type="button"
                     class="zpwpcg-adm-picture__upload-btn zpwpcg-btn"
-                    data-item="<?php echo $args['label_for']; ?>"
+                    data-item="<?php echo $id; ?>"
                     value="<?php echo __( 'Upload image', TR_ID ); ?>"
                 >
                 <input
                     type="hidden"
-                    id="zpwpcg-adm-picture-<?php echo $args['label_for']; ?>"
-                    name="zpdevwpcg_option[<?php echo $args['label_for']; ?>]"
+                    id="zpwpcg-adm-picture-<?php echo $id; ?>"
+                    name="zpdevwpcg_option[<?php echo $id; ?>]"
                     value="<?php echo isset( $img_url ) ? esc_attr( $img_url ) : $img_demo_url; ?>"
                 >
                 <?php
             }
-            public function render_name() {
-                printf(
-                    '<label for="zpdevwpcg_option[name][label]">%s</label><input type="text" name="zpdevwpcg_option[name][label]" value="%s"">',
-                    __( 'Form label', TR_ID ),
-                    isset( $this->options['name']['label'] ) ? esc_attr( $this->options['name']['label'] ) : __('Name', TR_ID),
-                    __( 'Label', TR_ID )
+            public function render_textarea( $option, $label, $group = false ) {
+
+                echo '<p>';
+                printf('<label for="zpdevwpcg_option%s">%s</label>',
+                    $group ? '[' . $group . '][' . $option . ']': '[' . $option . ']',
+                    $label );
+                printf('<textarea cols="40" rows="3" name="zpdevwpcg_option%s">%s</textarea>',
+                    $group ? '[' . $group . '][' . $option . ']': '[' . $option . ']',
+                    $group ? (isset( $this->options[$group][$option] ) ? esc_attr( $this->options[$group][$option] ) : '') :
+                        (isset( $this->options[$option] ) ? esc_attr( $this->options[$option] ) : '')
                 );
+                echo '</p>';
             }
-            public function render_text() {
-                printf(
-                    '<p><label for="zpdevwpcg_option[text][after]">%s</label><textarea cols="40" rows="3" name="zpdevwpcg_option[text][after]">%s</textarea></p>',
-                    __( 'After name text', TR_ID ),
-                    isset( $this->options['text']['after'] ) ? esc_attr( $this->options['text']['after'] ) : ''
-                );
-                printf(
-                    '<p><label for="zpdevwpcg_option[text][before]">%s</label><textarea cols="40" rows="3" name="zpdevwpcg_option[text][before]">%s</textarea></p>',
-                    __( 'Before name text', TR_ID ),
-                    isset( $this->options['text']['before'] ) ? esc_attr( $this->options['text']['before'] ) : ''
-                );
-                printf(
-                    '<p><label for="zpdevwpcg_option[text][before_strong]">%s</label><textarea cols="40" rows="3" name="zpdevwpcg_option[text][before_strong]">%s</textarea></p>',
-                    __( 'Before name strong text', TR_ID ),
-                    isset( $this->options['text']['before_strong'] ) ? esc_attr( $this->options['text']['before_strong'] ) : ''
-                );
-            }
-            public function render_period() {
-                printf(
-                    '<p><label for="zpdevwpcg_option[period][label]">%s</label><input type="text" name="zpdevwpcg_option[period][label]" value="%s"></p>',
-                    __( 'Certificate label', TR_ID ),
-                    isset( $this->options['period']['label'] ) ? esc_attr( $this->options['period']['label'] ) : __('Course period', TR_ID)
-                );
-                printf(
-                    '<p><label for="zpdevwpcg_option[period][start]">%s</label><input type="text" name="zpdevwpcg_option[period][start]" value="%s"></p>',
-                    __( 'Form Start label', TR_ID ),
-                    isset( $this->options['period']['start'] ) ? esc_attr( $this->options['period']['start'] ) : __('Course start', TR_ID)
-                );
-                printf(
-                    '<p><label for="zpdevwpcg_option[period][finish]">%s</label><input type="text" name="zpdevwpcg_option[period][finish]" value="%s"/>',
-                    __( 'Form Finish label', TR_ID ),
-                    isset( $this->options['period']['finish'] ) ? esc_attr( $this->options['period']['finish'] ) : __('Course finish', TR_ID)
+            public function render_input(string $option, string $label, $group = false) {
+
+                printf( '<label for="zpdevwpcg_option%s">%s</label>',
+                    $group ? '[' . $group . '][' . $option . ']': '[' . $option . ']',
+                    $label );
+                printf( '<input type="text" name="zpdevwpcg_option%s" value="%s"">',
+                    $group ? '[' . $group . '][' . $option . ']': '[' . $option . ']',
+                    $group ? (isset( $this->options[$group][$option] ) ? esc_attr( $this->options[$group][$option] ) : '') :
+                        (isset( $this->options[$option] ) ? esc_attr( $this->options[$option] ) : '')
                 );
             }
             public function render_level() {
@@ -297,66 +239,46 @@
                 <a class="repeatable-field-add button" href="#">+</a></div>
                 <?php
             }
-            public function render_hours() {
-                printf(
-                    '<p><label for="zpdevwpcg_option[hours][label]">%s</label><input type="text" name="zpdevwpcg_option[hours][label]" value="%s"></p>',
-                    __( 'Label' ),
-                    isset( $this->options['hours']['label'] ) ? esc_attr( $this->options['hours']['label'] ) : __('Number of hours', TR_ID)
-                );
-                
-                printf(
-                    '<p><label for="zpdevwpcg_option[hours][value]">%s</label><input type="text" name="zpdevwpcg_option[hours][value]" value="%s"></p>',
-                    __( 'Default value' ),
-                    isset( $this->options['hours']['value'] ) ? esc_attr( $this->options['hours']['value'] ) : ''
-                );
-            }
-            public function render_location() {
-                printf(
-                    '<p><label for="zpdevwpcg_option[place][label]">%s</label><input type="text" name="zpdevwpcg_option[place][label]" value="%s"></p>',
-                    __( 'Label', TR_ID ),
-                    isset( $this->options['place']['label'] ) ? esc_attr( $this->options['place']['label'] ) : __('Place of Study', TR_ID)
-                );
-                
-                printf(
-                    '<p><label for="zpdevwpcg_option[place][value]">%s</label><input type="text" name="zpdevwpcg_option[place][value]" value="%s"></p>',
-                    __( 'Default value', TR_ID ),
-                    isset( $this->options['place']['value'] ) ? esc_attr( $this->options['place']['value'] ) : ''
 
-                );
+            public function field_view( bool $hor = false, bool $ver = false) {
+
+                if($ver): ?>
+                    <div>
+                        <label for="vertical">
+                            <?php echo __('Vertical position', TR_ID); ?>
+                        </label>
+                        <div class="zpwpcg-el--flex">
+                            <input class="zpwpcg-range"
+                                   type="range"
+                                   name="vertical"
+                                   oninput="this.nextElementSibling.value = this.value">
+                            <output>24</output>
+                            <span>%</span>
+                        </div>
+                    </div>
+                <?php endif;
+
+                if($ver): ?>
+                <div>
+                    <label for="horisontal">
+                        <?php echo __('Horizontal position', TR_ID); ?>
+                    </label>
+                    <div class="zpwpcg-el--flex">
+                        <input class="zpwpcg-range"
+                               type="range"
+                               name="horizontal"
+                               oninput="this.nextElementSibling.value = this.value">
+                        <output>24</output>
+                        <span>%</span>
+                    </div>
+                </div>
+                <?php endif;
             }
-            public function render_date() {
-                printf(
-                    '<p><label for="zpdevwpcg_option[date][label]">%s</label><input type="text" name="zpdevwpcg_option[date][label]" value="%s"></p>',
-                    __( 'Label', TR_ID ),
-                    isset( $this->options['date']['label'] ) ? esc_attr( $this->options['date']['label'] ) : __('Date of issue', TR_ID)
-                );
-            }
-            public function render_address() {
-                printf(
-                    '<p><label for="zpdevwpcg_option[address]">%s</label><textarea rows="4" id="address" name="zpdevwpcg_option[address]">%s</textarea></p>',
-                    __( 'Address', TR_ID ),
-                    isset( $this->options['address'] ) ? esc_attr( $this->options['address'] ) : ''
-                );
-            }
-            public function render_director() {
-                printf(
-                    '<p><label for="zpdevwpcg_option[director][label]">%s</label><input type="text" id="director_label" name="zpdevwpcg_option[director][label]" value="%s"></p>',
-                    __( 'Position', TR_ID ),
-                    isset( $this->options['director']['label'] ) ? esc_attr( $this->options['director']['label'] ) : ''
-                );
-                
-                printf(
-                    '<p><label for="zpdevwpcg_option[director][value]">%s</label><input type="text" id="director_value" name="zpdevwpcg_option[director][value]" value="%s"></p>',
-                    __( 'Name', TR_ID ),
-                    isset( $this->options['director']['value'] ) ? esc_attr( $this->options['director']['value'] ) : ''
-                );
-            }
-            
         }
     }
 
-    function ZPdevWPCG_Options() {
-        return ZPdevWPCG_Options::instance();
+    function Options() {
+        return Options::instance();
     }
 
-    $GLOBALS['ZPdevWPCG_Options'] = ZPdevWPCG_Options();
+    $GLOBALS['ZPdevWPCG_Options'] = Options();
