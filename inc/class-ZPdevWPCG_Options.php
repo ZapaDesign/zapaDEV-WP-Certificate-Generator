@@ -268,7 +268,6 @@ if ( ! class_exists('Options')) {
             bool $fontsize = false,
             bool $fontweight = false
         ) {
-
             if ($ver): ?>
                 <div>
                     <label for="vertical">
