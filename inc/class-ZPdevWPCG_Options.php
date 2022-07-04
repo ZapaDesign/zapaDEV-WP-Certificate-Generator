@@ -265,17 +265,17 @@ if ( ! class_exists('Options')) {
         }
 
         public function field_tuning (
-            bool $ver = false,
-            bool $hor = false,
-            bool $alight = false,
-            bool $fontsize = false,
-            bool $fontweight = false
+            $v_position = 0,
+            $h_position = 0,
+            $alight = '',
+            $fontsize = 0,
+            $fontweight = 0
         ) {
             echo '<div class="zpwpcg-adm-field__tuning zpwpcg-tuning">';
             echo '<button type="button" class="zpwpcg-tuning__btn--settings">' . __('Settings', TR_ID) . '</button>';
             echo '<div class="zpwpcg-tuning__body">';
             echo '<div class="zdgrid">';
-                if ($ver): ?>
+                if ($v_position): ?>
                     <div class="zdcell lg-6">
                         <label for="vertical">
                             <?php echo __('Vertical position', TR_ID); ?>
@@ -286,14 +286,14 @@ if ( ! class_exists('Options')) {
                                        type="range"
                                        name="vertical"
                                        oninput="this.nextElementSibling.value = this.value">
-                                <output>24</output>
+                                <output><?php echo $v_position; ?></output>
                                 <span>%</span>
                             </div>
                         </div>
                     </div>
                 <?php endif;
 
-                if ($hor): ?>
+                if ($h_position): ?>
                     <div class="zdcell lg-6">
                         <label for="horisontal">
                             <?php echo __('Horizontal position', TR_ID); ?>
@@ -304,7 +304,7 @@ if ( ! class_exists('Options')) {
                                        type="range"
                                        name="horizontal"
                                        oninput="this.nextElementSibling.value = this.value">
-                                <output>24</output>
+                                <output><?php echo $h_position; ?></output>
                                 <span>%</span>
                             </div>
                         </div>
@@ -315,20 +315,16 @@ if ( ! class_exists('Options')) {
     
                     <fieldset class="zdcell lg-6" id="group1">
                         <legend><?php echo __('Alignment', TR_ID); ?></legend>
-                        <div>
-                            <input type="radio" id="contactChoice1" name="contact" value="email">
-                            <label for="contactChoice1">Left</label>
-                        </div>
-    
-                        <div>
-                            <input checked type="radio" id="contactChoice2" name="contact" value="phone">
-                            <label for="contactChoice2">Center</label>
-                        </div>
-    
-                        <div>
-                            <input type="radio" id="contactChoice3" name="contact" value="mail">
-                            <label for="contactChoice3">Right</label>
-                        </div>
+
+                            <input <?php echo $alight=='left' ? 'checked' : ''; ?> type="radio" id="contactChoice1" name="alight" value="left">
+                            <label for="contactChoice1"><?php echo __('Lft', TR_ID) ?></label>
+
+                            <input <?php echo $alight=='center' ? 'checked' : ''; ?> type="radio" id="contactChoice2" name="alight" value="center">
+                            <label for="contactChoice2"><?php echo __('Cntr', TR_ID); ?></label>
+
+                            <input <?php echo $alight=='right' ? 'checked' : ''; ?> type="radio" id="contactChoice3" name="alight" value="right">
+                            <label for="contactChoice3"><?php echo __('Rght', TR_ID); ?></label>
+
                     </fieldset>
                 <?php endif;
     
@@ -338,7 +334,7 @@ if ( ! class_exists('Options')) {
                             <?php echo __('Font size', TR_ID); ?>
                         </label>
                         <div class="zpwpcg-el--flex">
-                            <input  type="number" size="5" value="32">
+                            <input  type="number" size="5" value="<?php echo $fontsize; ?>">
                         </div>
  
                     </div>
@@ -350,7 +346,7 @@ if ( ! class_exists('Options')) {
                             <?php echo __('Font weight', TR_ID); ?>
                         </label>
                         <div class="zpwpcg-el--flex">
-                            <input type="number" step="100" max="900" value="400">
+                            <input type="number" step="100" max="900" value="<?php echo $fontweight; ?>">
                         </div>
                     </div>
                 <?php endif;
