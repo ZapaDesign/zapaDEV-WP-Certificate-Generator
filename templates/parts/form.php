@@ -1,3 +1,10 @@
+<?php
+/*
+* @var $options
+* */
+
+?>
+
 <div class="zpwpcg__form">
     <form class="zpwpcg-front-form" action="">
         <p>
