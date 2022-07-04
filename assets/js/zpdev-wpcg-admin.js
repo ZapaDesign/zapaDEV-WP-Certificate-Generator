@@ -146,10 +146,10 @@
 
 
 
-
-
-
-
+            $('.zpwpcg-tuning__btn--settings').on('click', function (e) {
+                e.preventDefault
+                $(this).next('.zpwpcg-tuning__body').slideToggle()
+            })
 
 
 

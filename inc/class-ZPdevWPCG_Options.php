@@ -2,6 +2,8 @@
 
 namespace ZPdevWPCG;
 
+use Sabberworm\CSS\Settings;
+
 if ( ! class_exists('Options')) {
     class Options
     {
@@ -269,7 +271,10 @@ if ( ! class_exists('Options')) {
             bool $fontsize = false,
             bool $fontweight = false
         ) {
-            echo '<div class="zpwpcg zdgrid">';
+            echo '<div class="zpwpcg-adm-field__tuning zpwpcg-tuning">';
+            echo '<button type="button" class="zpwpcg-tuning__btn--settings">' . __('Settings', TR_ID) . '</button>';
+            echo '<div class="zpwpcg-tuning__body">';
+            echo '<div class="zdgrid">';
                 if ($ver): ?>
                     <div class="zdcell lg-6">
                         <label for="vertical">
@@ -332,7 +337,7 @@ if ( ! class_exists('Options')) {
                         <label for="fsize">
                             <?php echo __('Font size', TR_ID); ?>
                         </label>
-                        <div>
+                        <div class="zpwpcg-el--flex">
                             <input  type="number" size="5" value="32">
                         </div>
  
@@ -344,11 +349,13 @@ if ( ! class_exists('Options')) {
                         <label for="font_weight">
                             <?php echo __('Font weight', TR_ID); ?>
                         </label>
-                        <div>
+                        <div class="zpwpcg-el--flex">
                             <input type="number" step="100" max="900" value="400">
                         </div>
                     </div>
                 <?php endif;
+            echo '</div>';
+            echo '</div>';
             echo '</div>';
         }
     }

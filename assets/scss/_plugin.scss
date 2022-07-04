@@ -298,6 +298,10 @@
 				width: 100%;
 			}
 		}
+
+		& > input {
+			width: 100%;
+		}
 	}
 
 	&-input {
@@ -311,5 +315,16 @@
 
 			}
 		}
+	}
+
+	&-tuning {
+		&__header {
+
+		}
+
+		&__body {
+			display: none;
+		}
+
 	}
 }

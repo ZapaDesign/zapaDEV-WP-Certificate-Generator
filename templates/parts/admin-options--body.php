@@ -19,10 +19,10 @@
 
         <h3>Text</h3>
         <?php $this->render_textarea( 'before', __('Before name text', TR_ID), 'text' ); ?>
-        <?php $this->field_tuning(); ?>
+        <?php $this->field_tuning( true, true, true, 32, 700 ); ?>
         <?php $this->render_textarea( 'after', __('After name text', TR_ID), 'text' ); ?>
-        <?php $this->field_tuning(); ?>
+        <?php $this->field_tuning( true, true, true, 32, 700 ); ?>
         <?php $this->render_textarea( 'after_strong', __('After name strong text', TR_ID), 'text' ); ?>
-        <?php $this->field_tuning(); ?>
+        <?php $this->field_tuning( true, true, true, 32, 700 ); ?>
     </div>
 </div>
