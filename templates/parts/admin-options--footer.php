@@ -21,7 +21,7 @@
         <hr>
         <h3><?php echo __('Logo', TR); ?></h3>
         <?php $this->render_img( 'logo', '/assets/img/certificate-logo-demo.svg' ); ?>
-        <?php $this->field_tuning( 'logo', true, true, false ); ?>
+        <?php $this->field_tuning( 'logo', true, true ); ?>
         <hr>
         <h3><?php echo __('Signature', TR); ?></h3>
         <?php $this->render_img( 'signature', '/assets/img/certificate-signature-demo.svg' ); ?>

@@ -88,6 +88,11 @@ if ( ! class_exists('Options')) {
                 wp_enqueue_media();
             }
             wp_enqueue_script('zpdev-wpcg-admin', ZPdevWPCG()->plugin_url() . '/assets/js/zpdev-wpcg-admin.js', ['jquery'], '1.0', true);
+            wp_localize_script('zpdev-wpcg-admin', 'flow', [
+                'url'     => admin_url('admin-ajax.php'),
+                'nonce'   => wp_create_nonce(PREFIX . '_nonce'),
+                'options' => json_encode(get_option(PREFIX.'option')),
+            ]);
 
             wp_enqueue_style('zpdev-wpcg-front', ZPdevWPCG()->plugin_url() . '/assets/css/zpdev-wpcg-admin.css', false, null, 'all');
         }
@@ -157,7 +162,7 @@ if ( ! class_exists('Options')) {
 
             <div class="zpwpcg-adm-picture__preview-wrapper">
                 <img
-                    src="<?php echo $img_url ? $img_url : $img_demo_url; ?>"
+                    src="<?php echo $img_url['src'] ? $img_url['src'] : $img_demo_url; ?>"
                     class="zpwpcg-adm-picture__preview--<?php echo $id; ?>"
                     width="300"
                     alt=""
@@ -172,8 +177,8 @@ if ( ! class_exists('Options')) {
             <input
                 type="hidden"
                 id="zpwpcg-adm-picture-<?php echo $id; ?>"
-                name="zpdevwpcg_option[<?php echo $id; ?>]"
-                value="<?php echo isset($img_url) ? esc_attr($img_url) : $img_demo_url; ?>"
+                name="zpdevwpcg_option[<?php echo $id; ?>][src]"
+                value="<?php echo isset($img_url['src']) ? esc_attr($img_url['src']) : $img_demo_url; ?>"
             >
             <?php
         }
@@ -266,8 +271,8 @@ if ( ! class_exists('Options')) {
 
         public function field_tuning (
             $field,
-            $v_position = 0,
-            $h_position = 0,
+            $y_position = 0,
+            $x_position = 0,
             $alight = '',
             $fontsize = 0,
             $fontweight = ''
@@ -278,7 +283,7 @@ if ( ! class_exists('Options')) {
             echo '<div class="zdgrid">';
             
             
-                if ($v_position): ?>
+                if ($y_position): ?>
                     <div class="zdcell lg-6">
                         <label for="vertical">
                             <?php echo __('Vertical position', TR); ?>
@@ -287,15 +292,15 @@ if ( ! class_exists('Options')) {
                             <div>
                                 <input class="zpwpcg-range"
                                        type="range"
-                                       name="zpdevwpcg_option<?php echo '['.$field.'][v_position]'; ?>"
-                                       value="<?php echo isset($this->options[$field]['v_position']) ? esc_attr($this->options[$field]['v_position']) : 54.5; ?>">
+                                       name="zpdevwpcg_option<?php echo '['.$field.'][y_position]'; ?>"
+                                       value="<?php echo isset($this->options[$field]['y_position']) ? esc_attr($this->options[$field]['y_position']) : 54.5; ?>">
                             </div>
                         </div>
                     </div>
                 <?php endif;
                 
 
-                if ($h_position): ?>
+                if ($x_position): ?>
                     <div class="zdcell lg-6">
                         <label for="horisontal">
                             <?php echo __('Horizontal position', TR); ?>
@@ -304,8 +309,8 @@ if ( ! class_exists('Options')) {
                             <div>
                                 <input class="zpwpcg-range"
                                        type="range"
-                                       name="zpdevwpcg_option<?php echo '['.$field.'][h_position]'; ?>"
-                                       value="<?php echo isset($this->options[$field]['h_position']) ? esc_attr($this->options[$field]['h_position']) : 32; ?>">
+                                       name="zpdevwpcg_option<?php echo '['.$field.'][x_position]'; ?>"
+                                       value="<?php echo isset($this->options[$field]['x_position']) ? esc_attr($this->options[$field]['x_position']) : 32; ?>">
                             </div>
                         </div>
                     </div>

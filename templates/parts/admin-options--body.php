@@ -14,7 +14,7 @@
 
         <h3>Name</h3>
 
-        <?php $this->render_input( 'label', __('Name', TR), 'name' ); ?>
+        <?php $this->render_input( 'label', __('Label for form field', TR), 'name' ); ?>
         <?php $this->field_tuning(
             'name',
             40,

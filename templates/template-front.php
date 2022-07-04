@@ -6,20 +6,6 @@
 * */
 $options = get_option(PREFIX.'option');
 
-$cert_args = array(
-    'post_type' =>'zpdevwpcg_certificat',
-    'posts_per_page' => 1
-);
-
-if($cert_last = wp_get_recent_posts($cert_args)) {
-    $last_cert_id  = get_cert_id_number($cert_last[0]['post_title']) + 1;
-} else {
-    $last_cert_id = '1';
-}
-
-echo '<script>let options = ' . json_encode($options) . ';</script>';
-echo '<script>let lastCertID = ' . json_encode($last_cert_id) . ';</script>';
-
 if($options): ?>
     <div id="zpdevwpcgFront" class="zdcontainer">
     <div class="zdgrid zdgrid--x zdgrid--y">

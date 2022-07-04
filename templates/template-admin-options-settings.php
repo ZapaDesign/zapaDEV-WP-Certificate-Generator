@@ -10,24 +10,30 @@ use function ZPdevWPCG\ZPdevWPCG;
 
     <div class="zdcontainer">
         <div class="zdgrid zdgrid--x zdgrid--y">
-            <div class="zdcell md-5 lg-4">
+            <div class="zdcell md-6">
                 <form method="post" action="options.php" enctype="multipart/form-data">
-                    <?php
-                        
-                        echo '<pre>';
-                        var_dump($this);
-                        echo '</pre>';
-                        
-                    settings_fields(PREFIX . 'settings_option_group');
-                    include_once(DIR_PATH . 'templates/parts/admin-options--layout.php');
-                    include_once(DIR_PATH . 'templates/parts/admin-options--body.php');
-                    include_once(DIR_PATH . 'templates/parts/admin-options--list.php');
-                    include_once(DIR_PATH . 'templates/parts/admin-options--footer.php');
-                    submit_button(); ?>
+                    <?php settings_fields(PREFIX . 'settings_option_group'); ?>
+
+                        <div class="zdgrid">
+                            <div class="zdcell lg-6">
+                                <?php include_once(DIR_PATH . 'templates/parts/admin-options--layout.php'); ?>
+                            </div>
+                            <div class="zdcell lg-6">
+                                <?php include_once(DIR_PATH . 'templates/parts/admin-options--body.php'); ?>
+                            </div>
+                            <div class="zdcell lg-6">
+                                <?php include_once(DIR_PATH . 'templates/parts/admin-options--list.php'); ?>
+                            </div>
+                            <div class="zdcell lg-6">
+                                <?php include_once(DIR_PATH . 'templates/parts/admin-options--footer.php'); ?>
+                            </div>
+                        </div>
+
+                    <?php submit_button(); ?>
                 </form>
             </div>
 
-            <div class="zdcell md-7 lg-8">
+            <div class="zdcell md-6">
                 <div class="zpwpcg-canvas__wrap zpwpcg-adm-canvas__wrap">
                     <div class="zpwpcg-canvas__wrap zpwpcg-adm-canvas__wrap">
                         <!--// TODO Добавить асинхронную загрузку изображений-->

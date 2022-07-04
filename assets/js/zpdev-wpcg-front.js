@@ -7,11 +7,12 @@
         * Image Canvas
         */
 
-        // TODO (УДАЛИТЬ) console.log массив опций переданный в JS фронта
-        console.log();
+        const options = JSON.parse(flow.options),
+              canvas = document.getElementById('zpwpcg-canvas'),
+              ctx = canvas.getContext('2d')
 
-        const canvas = document.getElementById('zpwpcg-canvas'),
-            ctx = canvas.getContext('2d')
+        // TODO (УДАЛИТЬ) console.log массив опций переданный в JS фронта
+        console.log(options);
 
         let canvasWidth = 2480,
             canvasHeight = 3508,
@@ -36,9 +37,9 @@
             logo = new Image(),
             signature = new Image()
 
-        image.src = options.img
-        logo.src = options.logo
-        signature.src = options.signature
+        image.src = options.img.src
+        logo.src = options.logo.src
+        signature.src = options.signature.src
         image.onload = () => {
             drawImage()
         }
@@ -49,7 +50,7 @@
             drawScaleImage(signature, 65, 88, 400)
 
             drawText(
-                certIDInput.value ? certIDInput.value : lastCertID + '/' + new Date().getFullYear().toString().substr(-2),
+                certIDInput.value ? certIDInput.value : flow.lastCertID + '/' + new Date().getFullYear().toString().substr(-2),
                 'center',
                 54.5,
                 13.8,
@@ -68,7 +69,7 @@
             drawText(nameInput.value,
                 'center',
                 54.5,
-                options.name.v_position,
+                options.name.y_position,
                 options.name.font_weight,
                 options.name.font_size,
                 'Opinion Pro',
@@ -92,7 +93,7 @@
             if (this.checked) {
                 certIDInput.addEventListener('input', () => drawImage())
             } else {
-                certIDInput.value = lastCertID + '/' + new Date().getFullYear().toString().substr(-2)
+                certIDInput.value = flow.lastCertID + '/' + new Date().getFullYear().toString().substr(-2)
                 drawImage()
             }
         })
@@ -167,7 +168,7 @@
                         type: 'POST',
                         data: {
                             action: 'add_certificate',
-                            id: certIDInput.value ? certIDInput.value : lastCertID + '/' + new Date().getFullYear().toString().substr(-2),
+                            id: certIDInput.value ? certIDInput.value : flow.lastCertID + '/' + new Date().getFullYear().toString().substr(-2),
                             name: nameInput.value,
                             start: startInput.value,
                             finish: finishInput.value,
@@ -181,7 +182,7 @@
                         success: function () {
                             // TODO Fix update certificate ID on canvas after AJAX
 
-                            certIDInput.value = Number(lastCertID) + 1 + '/' + new Date().getFullYear().toString().substr(-2)
+                            certIDInput.value = Number(flow.lastCertID) + 1 + '/' + new Date().getFullYear().toString().substr(-2)
                             drawImage()
                             element.click()
                         },
