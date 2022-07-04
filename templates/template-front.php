@@ -42,9 +42,9 @@ if($options): ?>
     </div>
 </div>
 <?php else: ?>
-    <h2><?php echo __('Plugin not configured', TR_ID); ?></h2>
+    <h2><?php echo __('Plugin not configured', TR); ?></h2>
     <p><?php  ?>
         
         <?php printf('') ?>
-        <?php echo __('Plugin <b>' . PL_NAME . '</b> not configured. Please configure the plugin on the settings page' , TR_ID ); ?></p>
+        <?php echo __('Plugin <b>' . PL_NAME . '</b> not configured. Please configure the plugin on the settings page' , TR ); ?></p>
 <?php endif; ?>

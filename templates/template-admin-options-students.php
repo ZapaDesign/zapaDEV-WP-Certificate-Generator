@@ -1,6 +1,6 @@
 <div class="zpwpcg-adm__wrap">
-    <h1 class="zpwpcg-adm__title"><?php echo __('Students', TR_ID) ?></h1>
-    <p><?php echo __('List of saved student\'s name. You can edit and delete the students entry.', TR_ID); ?></p>
+    <h1 class="zpwpcg-adm__title"><?php echo __('Students', TR) ?></h1>
+    <p><?php echo __('List of saved student\'s name. You can edit and delete the students entry.', TR); ?></p>
     <?php
     $std_args = array(
         'post_type'      => PREFIX . 'student',
@@ -26,21 +26,21 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th><?php echo __('Student', TR_ID); ?></th>
-                <th><?php echo __('Last certificate level', TR_ID); ?></th>
-                <th><?php echo __('Last certificate date', TR_ID); ?></th>
-                <th><?php echo __('Control', TR_ID); ?></th>
+                <th><?php echo __('Student', TR); ?></th>
+                <th><?php echo __('Last certificate level', TR); ?></th>
+                <th><?php echo __('Last certificate date', TR); ?></th>
+                <th><?php echo __('Control', TR); ?></th>
             </tr>
             </thead>
             <tbody>
             <?php foreach ($students as $student): ?>
                 <tr class="zpwpcg-table__item" data-id="<?php echo $student->ID; ?>">
                     <td data-label="ID"><?php echo $student->ID; ?></td>
-                    <td data-label="<?php echo __('Student', TR_ID); ?>">
+                    <td data-label="<?php echo __('Student', TR); ?>">
                         <strong><?php echo $student->post_title; ?>
                     </td>
-                    <td data-label="<?php echo __('Level', TR_ID); ?>"></td>
-                    <td data-label="<?php echo __('Date', TR_ID); ?>"></td>
+                    <td data-label="<?php echo __('Level', TR); ?>"></td>
+                    <td data-label="<?php echo __('Date', TR); ?>"></td>
 
                     <td class="zpwpcg-table__item-buttons">
                         <button class="zpwpcg-btn zpwpcg-btn--edit">Edit</button>

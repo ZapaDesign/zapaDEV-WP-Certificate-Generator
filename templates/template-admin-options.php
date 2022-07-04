@@ -1,6 +1,6 @@
 <div class="zpwpcg-adm__wrap">
-    <h1 class="zpwpcg-adm__title"><?php echo __('zapaDEV WP Certificate Generator', TR_ID) ?></h1>
-    <p><?php echo __('List of saved certificates. You can edit, delete the certificate entry, and view or download the certificate.', TR_ID); ?></p>
+    <h1 class="zpwpcg-adm__title"><?php echo __('zapaDEV WP Certificate Generator', TR) ?></h1>
+    <p><?php echo __('List of saved certificates. You can edit, delete the certificate entry, and view or download the certificate.', TR); ?></p>
     <?php
     $cert_args = array(
         'post_type'      => PREFIX . 'certificat',
@@ -25,14 +25,14 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th><?php echo __('Student', TR_ID); ?></th>
-                <th><?php echo __('Start', TR_ID); ?></th>
-                <th><?php echo __('Finish', TR_ID); ?></th>
-                <th><?php echo __('Level', TR_ID); ?></th>
-                <th><?php echo __('Hours', TR_ID); ?></th>
-                <th><?php echo __('Location', TR_ID); ?></th>
-                <th><?php echo __('Date', TR_ID); ?></th>
-                <th><?php echo __('Control', TR_ID); ?></th>
+                <th><?php echo __('Student', TR); ?></th>
+                <th><?php echo __('Start', TR); ?></th>
+                <th><?php echo __('Finish', TR); ?></th>
+                <th><?php echo __('Level', TR); ?></th>
+                <th><?php echo __('Hours', TR); ?></th>
+                <th><?php echo __('Location', TR); ?></th>
+                <th><?php echo __('Date', TR); ?></th>
+                <th><?php echo __('Control', TR); ?></th>
             </tr>
             </thead>
             <tbody>
@@ -41,14 +41,14 @@
                 ?>
                 <tr class="zpwpcg-table__item" data-id="<?php echo $certificate->ID; ?>">
                     <td data-label="ID"><?php echo $certificate->post_title; ?></td>
-                    <td data-label="<?php echo __('Student', TR_ID); ?>">
+                    <td data-label="<?php echo __('Student', TR); ?>">
                         <strong><?php echo get_the_title($post_meta[0]['student']); ?></strong></td>
-                    <td data-label="<?php echo __('Start', TR_ID); ?>"><?php echo $post_meta[0]['start']; ?></td>
-                    <td data-label="<?php echo __('Finish', TR_ID); ?>"><?php echo $post_meta[0]['finish']; ?></td>
-                    <td data-label="<?php echo __('Level', TR_ID); ?>"><?php echo $post_meta[0]['level']; ?></td>
-                    <td data-label="<?php echo __('Hours', TR_ID); ?>"><?php echo $post_meta[0]['hours']; ?></td>
-                    <td data-label="<?php echo __('Location', TR_ID); ?>"><?php echo $post_meta[0]['place']; ?></td>
-                    <td data-label="<?php echo __('Date', TR_ID); ?>"><?php echo $post_meta[0]['date']; ?></td>
+                    <td data-label="<?php echo __('Start', TR); ?>"><?php echo $post_meta[0]['start']; ?></td>
+                    <td data-label="<?php echo __('Finish', TR); ?>"><?php echo $post_meta[0]['finish']; ?></td>
+                    <td data-label="<?php echo __('Level', TR); ?>"><?php echo $post_meta[0]['level']; ?></td>
+                    <td data-label="<?php echo __('Hours', TR); ?>"><?php echo $post_meta[0]['hours']; ?></td>
+                    <td data-label="<?php echo __('Location', TR); ?>"><?php echo $post_meta[0]['place']; ?></td>
+                    <td data-label="<?php echo __('Date', TR); ?>"><?php echo $post_meta[0]['date']; ?></td>
                     <td class="zpwpcg-table__item-buttons">
                         <button class="zpwpcg-btn zpwpcg-btn--edit">Edit</button>
                         <button class="zpwpcg-btn zpwpcg-btn--del">Delete</button>

@@ -167,7 +167,7 @@ if ( ! class_exists('Options')) {
                 type="button"
                 class="zpwpcg-adm-picture__upload-btn zpwpcg-btn"
                 data-item="<?php echo $id; ?>"
-                value="<?php echo __('Upload image', TR_ID); ?>"
+                value="<?php echo __('Upload image', TR); ?>"
             >
             <input
                 type="hidden"
@@ -211,13 +211,13 @@ if ( ! class_exists('Options')) {
         {
             printf(
                 '<p><label for="zpdevwpcg_option[levels][label]">%s</label><input type="text" name="zpdevwpcg_option[levels][label]" value="%s" ></p>',
-                __('Form and Certificate label', TR_ID),
-                isset($this->options['levels']['label']) ? esc_attr($this->options['levels']['label']) : __('Level', TR_ID)
+                __('Form and Certificate label', TR),
+                isset($this->options['levels']['label']) ? esc_attr($this->options['levels']['label']) : __('Level', TR)
             );
 
             $all_options = get_option('zpdevwpcg_option');
             $options     = $all_options['levels']['list'];
-            echo __('List', TR_ID);
+            echo __('List', TR);
             echo '<div class="zpwpcg-adm-repeater__wrap"><ul id="tracks-repeatable" class="zpwpcg-adm-repeater">';
             if ( ! empty($options)):
                 $i = 1;
@@ -228,12 +228,12 @@ if ( ! class_exists('Options')) {
                             <span>
                                 <input type="text"
                                        name="zpdevwpcg_option[levels][list][level-<?php echo $i; ?>][value]"
-                                       placeholder="<?php echo __('Value', TR_ID); ?>"
+                                       placeholder="<?php echo __('Value', TR); ?>"
                                        value="<?php echo isset($this->options['levels']['list']['level-' . $i]['value']) ?
                                            esc_attr($this->options['levels']['list']['level-' . $i]['value']) : ''; ?>">
                                 <input type="text"
                                        width="500"
-                                       placeholder="<?php echo __('Description', TR_ID); ?>"
+                                       placeholder="<?php echo __('Description', TR); ?>"
                                        name="zpdevwpcg_option[levels][list][level-<?php echo $i; ?>][desc]"
                                        value="<?php echo isset($this->options['levels']['list']['level-' . $i]['desc']) ? esc_attr($this->options['levels']['list']['level-' . $i]['desc']) : ''; ?>">
                             </span>
@@ -248,11 +248,11 @@ if ( ! class_exists('Options')) {
                         <span>
                             <input type="text"
                                    name="zpdevwpcg_option[levels][list][level-1][value]"
-                                   placeholder="<?php echo __('Value', TR_ID); ?>"
+                                   placeholder="<?php echo __('Value', TR); ?>"
                                    value="<?php echo isset($this->options['levels']['list']['level-1']['value']) ? esc_attr($this->options['levels']['list']['level-1']['value']) : ''; ?>">
                             <input type="text"
                                    name="zpdevwpcg_option[levels][list][level-1][desc]"
-                                   placeholder="<?php echo __('Description', TR_ID); ?>"
+                                   placeholder="<?php echo __('Description', TR); ?>"
                                    value="<?php echo isset($this->options['levels']['list']['level-1']['desc']) ? esc_attr($this->options['levels']['list']['level-1']['desc']) : ''; ?>">
                         </span>
                     <a class="repeatable-field-remove button" href="#">X</a>
@@ -265,91 +265,111 @@ if ( ! class_exists('Options')) {
         }
 
         public function field_tuning (
+            $field,
             $v_position = 0,
             $h_position = 0,
             $alight = '',
             $fontsize = 0,
-            $fontweight = 0
+            $fontweight = ''
         ) {
             echo '<div class="zpwpcg-adm-field__tuning zpwpcg-tuning">';
-            echo '<button type="button" class="zpwpcg-tuning__btn--settings">' . __('Settings', TR_ID) . '</button>';
+            echo '<button type="button" class="zpwpcg-tuning__btn--settings">' . __('Settings', TR) . '</button>';
             echo '<div class="zpwpcg-tuning__body">';
             echo '<div class="zdgrid">';
+            
+            
                 if ($v_position): ?>
                     <div class="zdcell lg-6">
                         <label for="vertical">
-                            <?php echo __('Vertical position', TR_ID); ?>
+                            <?php echo __('Vertical position', TR); ?>
                         </label>
                         <div class="zpwpcg-el--flex">
                             <div>
                                 <input class="zpwpcg-range"
                                        type="range"
-                                       name="vertical"
-                                       oninput="this.nextElementSibling.value = this.value">
-                                <output><?php echo $v_position; ?></output>
-                                <span>%</span>
+                                       name="zpdevwpcg_option<?php echo '['.$field.'][v_position]'; ?>"
+                                       value="<?php echo isset($this->options[$field]['v_position']) ? esc_attr($this->options[$field]['v_position']) : 54.5; ?>">
                             </div>
                         </div>
                     </div>
                 <?php endif;
+                
 
                 if ($h_position): ?>
                     <div class="zdcell lg-6">
                         <label for="horisontal">
-                            <?php echo __('Horizontal position', TR_ID); ?>
+                            <?php echo __('Horizontal position', TR); ?>
                         </label>
                         <div class="zpwpcg-el--flex">
                             <div>
                                 <input class="zpwpcg-range"
                                        type="range"
-                                       name="horizontal"
-                                       oninput="this.nextElementSibling.value = this.value">
-                                <output><?php echo $h_position; ?></output>
-                                <span>%</span>
+                                       name="zpdevwpcg_option<?php echo '['.$field.'][h_position]'; ?>"
+                                       value="<?php echo isset($this->options[$field]['h_position']) ? esc_attr($this->options[$field]['h_position']) : 32; ?>">
                             </div>
                         </div>
                     </div>
                 <?php endif;
 
+                
+                
                 if ($alight): ?>
     
                     <fieldset class="zdcell lg-6" id="group1">
-                        <legend><?php echo __('Alignment', TR_ID); ?></legend>
+                        <legend><?php echo __('Alignment', TR); ?></legend>
 
                             <input <?php echo $alight=='left' ? 'checked' : ''; ?> type="radio" id="contactChoice1" name="alight" value="left">
-                            <label for="contactChoice1"><?php echo __('Lft', TR_ID) ?></label>
+                            <label for="contactChoice1"><?php echo __('Lft', TR) ?></label>
 
                             <input <?php echo $alight=='center' ? 'checked' : ''; ?> type="radio" id="contactChoice2" name="alight" value="center">
-                            <label for="contactChoice2"><?php echo __('Cntr', TR_ID); ?></label>
+                            <label for="contactChoice2"><?php echo __('Cntr', TR); ?></label>
 
                             <input <?php echo $alight=='right' ? 'checked' : ''; ?> type="radio" id="contactChoice3" name="alight" value="right">
-                            <label for="contactChoice3"><?php echo __('Rght', TR_ID); ?></label>
+                            <label for="contactChoice3"><?php echo __('Rght', TR); ?></label>
 
                     </fieldset>
                 <?php endif;
     
+                
+                
+                
                 if ($fontsize):?>
                     <div class="zdcell lg-6">
                         <label for="fsize">
-                            <?php echo __('Font size', TR_ID); ?>
+                            <?php echo __('Font size', TR); ?>
                         </label>
                         <div class="zpwpcg-el--flex">
-                            <input  type="number" size="5" value="<?php echo $fontsize; ?>">
+                            <input
+                                type="number"
+                                name="zpdevwpcg_option<?php echo '['.$field.'][font_size]'; ?>"
+                                value="<?php echo isset($this->options[$field]['font_size']) ? esc_attr($this->options[$field]['font_size']) : 200; ?>">
                         </div>
- 
-                    </div>
+                     </div>
                 <?php endif;
     
+                
+                
+                
                 if ($fontweight):?>
                     <div class="zdcell lg-6">
                         <label for="font_weight">
-                            <?php echo __('Font weight', TR_ID); ?>
+                            <?php echo __('Font weight', TR); ?>
                         </label>
                         <div class="zpwpcg-el--flex">
-                            <input type="number" step="100" max="900" value="<?php echo $fontweight; ?>">
+                            <input
+                                type="text"
+                                step="100"
+                                max="900"
+                                name="zpdevwpcg_option<?php echo '['.$field.'][font_weight]'; ?>"
+                                value="<?php echo isset($this->options[$field]['font_weight']) ? esc_attr($this->options[$field]['font_weight']) : 'normal'; ?>"
+                            >
                         </div>
                     </div>
                 <?php endif;
+                
+                
+                
+                
             echo '</div>';
             echo '</div>';
             echo '</div>';

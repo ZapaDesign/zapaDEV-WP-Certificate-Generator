@@ -19,7 +19,7 @@
     define( 'PL_NAME', 'zapaDEV WP Cerificate Generator' );
     define( 'SHORT_PL_NAME', 'ZPdevWPCG' );
     define( 'DIR_PATH', plugin_dir_path( __FILE__ ) );
-    define( 'TR_ID', 'zapadev-wp-certificate-generator' );
+    define( 'TR', 'zapadev-wp-certificate-generator' );
     define( 'PREFIX', 'zpdevwpcg_' );
     define( 'SHORTCODE', 'ZPdevWPCG' );
     
@@ -77,12 +77,12 @@
                  */
                 
                 $labels = [
-                    "name"          => __( "ZPdevWPCG Certificates", TR_ID ),
-                    "singular_name" => __( "ZPdevWPCG Certificate", TR_ID ),
+                    "name"          => __( "ZPdevWPCG Certificates", TR ),
+                    "singular_name" => __( "ZPdevWPCG Certificate", TR ),
                 ];
                 
                 $args = [
-                    "label"                 => __( "ZPdevWPCG Certificates", TR_ID ),
+                    "label"                 => __( "ZPdevWPCG Certificates", TR ),
                     "labels"                => $labels,
                     "description"           => "",
                     "public"                => true,
@@ -116,12 +116,12 @@
                  */
                 
                 $labels = [
-                    "name"          => __( SHORT_PL_NAME . " Students", TR_ID ),
-                    "singular_name" => __( SHORT_PL_NAME . " Student", TR_ID ),
+                    "name"          => __( SHORT_PL_NAME . " Students", TR ),
+                    "singular_name" => __( SHORT_PL_NAME . " Student", TR ),
                 ];
                 
                 $args = [
-                    "label"                 => __( SHORT_PL_NAME . " Students", TR_ID ),
+                    "label"                 => __( SHORT_PL_NAME . " Students", TR ),
                     "labels"                => $labels,
                     "description"           => "",
                     "public"                => true,

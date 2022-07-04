@@ -48,9 +48,31 @@
             drawScaleImage(logo, 15, 88, 400)
             drawScaleImage(signature, 65, 88, 400)
 
-            drawText(certIDInput.value ? certIDInput.value : lastCertID + '/' + new Date().getFullYear().toString().substr(-2), 'center', 54.5, 13.8, 'normal', 60, 'Opinion Pro')
-            drawText(options.text.before, 'center', 54.5, 24, 'normal', 130, 'Opinion Pro')
-            drawText(nameInput.value, 'center', 54.5, 32, 'bold', 200, 'Opinion Pro', '#333')
+            drawText(
+                certIDInput.value ? certIDInput.value : lastCertID + '/' + new Date().getFullYear().toString().substr(-2),
+                'center',
+                54.5,
+                13.8,
+                'normal',
+                60,
+                'Opinion Pro')
+
+            drawText(options.text.before,
+                'center',
+                54.5,
+                24,
+                'normal',
+                130,
+                'Opinion Pro')
+
+            drawText(nameInput.value,
+                'center',
+                54.5,
+                options.name.v_position,
+                options.name.font_weight,
+                options.name.font_size,
+                'Opinion Pro',
+                '#333')
             drawText(options.text.after, 'center', 54.5, 40, 'normal', 130, 'Opinion Pro')
             drawText(options.text.after_strong, 'center', 54.5, 46, 'bold', 130, 'Opinion Pro')
             // TODO Ограничить ширину текста адрес
