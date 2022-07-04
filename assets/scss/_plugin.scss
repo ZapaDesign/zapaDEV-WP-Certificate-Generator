@@ -285,5 +285,31 @@
 		display: flex;
 		align-items: center;
 		gap: 5px;
+
+		& > label,
+		& > legend {
+			flex: 0 1 40px;
+		}
+
+		& > div {
+			flex: 1;
+
+			input {
+				width: 100%;
+			}
+		}
+	}
+
+	&-input {
+
+		&--small {
+			width: 60px;
+		}
+
+		&__warap {
+			&--small {
+
+			}
+		}
 	}
 }

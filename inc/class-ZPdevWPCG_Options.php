@@ -193,7 +193,7 @@ if ( ! class_exists('Options')) {
 
         public function render_input(string $option, string $label, $group = false)
         {
-
+            echo '<div class="zpwpcg-adm__field">';
             printf('<label for="zpdevwpcg_option%s">%s</label>',
                 $group ? '[' . $group . '][' . $option . ']' : '[' . $option . ']',
                 $label);
@@ -202,6 +202,7 @@ if ( ! class_exists('Options')) {
                 $group ? (isset($this->options[$group][$option]) ? esc_attr($this->options[$group][$option]) : '') :
                     (isset($this->options[$option]) ? esc_attr($this->options[$option]) : '')
             );
+            echo '</div>';
         }
 
         public function render_level()
@@ -261,76 +262,94 @@ if ( ! class_exists('Options')) {
             <?php
         }
 
-        public function field_view(
+        public function field_tuning (
             bool $ver = false,
             bool $hor = false,
             bool $alight = false,
             bool $fontsize = false,
             bool $fontweight = false
         ) {
-            if ($ver): ?>
-                <div>
-                    <label for="vertical">
-                        <?php echo __('Vertical position', TR_ID); ?>
-                    </label>
-                    <div class="zpwpcg-el--flex">
-                        <input class="zpwpcg-range"
-                               type="range"
-                               name="vertical"
-                               oninput="this.nextElementSibling.value = this.value">
-                        <output>24</output>
-                        <span>%</span>
+            echo '<div class="zpwpcg zdgrid">';
+                if ($ver): ?>
+                    <div class="zdcell lg-6">
+                        <label for="vertical">
+                            <?php echo __('Vertical position', TR_ID); ?>
+                        </label>
+                        <div class="zpwpcg-el--flex">
+                            <div>
+                                <input class="zpwpcg-range"
+                                       type="range"
+                                       name="vertical"
+                                       oninput="this.nextElementSibling.value = this.value">
+                                <output>24</output>
+                                <span>%</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            <?php endif;
+                <?php endif;
 
-            if ($hor): ?>
-                <div>
-                    <label for="horisontal">
-                        <?php echo __('Horizontal position', TR_ID); ?>
-                    </label>
-                    <div class="zpwpcg-el--flex">
-                        <input class="zpwpcg-range"
-                               type="range"
-                               name="horizontal"
-                               oninput="this.nextElementSibling.value = this.value">
-                        <output>24</output>
-                        <span>%</span>
+                if ($hor): ?>
+                    <div class="zdcell lg-6">
+                        <label for="horisontal">
+                            <?php echo __('Horizontal position', TR_ID); ?>
+                        </label>
+                        <div class="zpwpcg-el--flex">
+                            <div>
+                                <input class="zpwpcg-range"
+                                       type="range"
+                                       name="horizontal"
+                                       oninput="this.nextElementSibling.value = this.value">
+                                <output>24</output>
+                                <span>%</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            <?php endif;
+                <?php endif;
 
-            if ($alight): ?>
-
-                <fieldset id="group1">
-                    <input type="radio" id="contactChoice1" name="contact" value="email">
-                    <label for="contactChoice1">Left</label>
-
-                    <input type="radio" id="contactChoice2" name="contact" value="phone">
-                    <label for="contactChoice2">Center</label>
-
-                    <input type="radio" id="contactChoice3" name="contact" value="mail">
-                    <label for="contactChoice3">Right</label>
-                </fieldset>
-            <?php endif;
-
-            if ($fontsize):?>
-                <div>
-                    <label for="fsize">
-                        <?php echo __('Font size', TR_ID); ?>
-                    </label>
-                    <input type="number" value="32">
-                </div>
-            <?php endif;
-
-            if ($fontweight):?>
-                <div>
-                    <label for="font_weight">
-                        <?php echo __('Font weight', TR_ID); ?>
-                    </label>
-                    <input type="number" step="100" max="900" value="400">
-                </div>
-            <?php endif;
+                if ($alight): ?>
+    
+                    <fieldset class="zdcell lg-6" id="group1">
+                        <legend><?php echo __('Alignment', TR_ID); ?></legend>
+                        <div>
+                            <input type="radio" id="contactChoice1" name="contact" value="email">
+                            <label for="contactChoice1">Left</label>
+                        </div>
+    
+                        <div>
+                            <input checked type="radio" id="contactChoice2" name="contact" value="phone">
+                            <label for="contactChoice2">Center</label>
+                        </div>
+    
+                        <div>
+                            <input type="radio" id="contactChoice3" name="contact" value="mail">
+                            <label for="contactChoice3">Right</label>
+                        </div>
+                    </fieldset>
+                <?php endif;
+    
+                if ($fontsize):?>
+                    <div class="zdcell lg-6">
+                        <label for="fsize">
+                            <?php echo __('Font size', TR_ID); ?>
+                        </label>
+                        <div>
+                            <input  type="number" size="5" value="32">
+                        </div>
+ 
+                    </div>
+                <?php endif;
+    
+                if ($fontweight):?>
+                    <div class="zdcell lg-6">
+                        <label for="font_weight">
+                            <?php echo __('Font weight', TR_ID); ?>
+                        </label>
+                        <div>
+                            <input type="number" step="100" max="900" value="400">
+                        </div>
+                    </div>
+                <?php endif;
+            echo '</div>';
         }
     }
 }

@@ -15,14 +15,14 @@
         <h3>Name</h3>
 
         <?php $this->render_input( 'label', __('Name', TR_ID), 'name' ); ?>
-        <?php $this->field_view( true, true, true, 32, 700 ); ?>
+        <?php $this->field_tuning( true, true, true, 32, 700 ); ?>
 
         <h3>Text</h3>
         <?php $this->render_textarea( 'before', __('Before name text', TR_ID), 'text' ); ?>
-        <?php $this->field_view(); ?>
+        <?php $this->field_tuning(); ?>
         <?php $this->render_textarea( 'after', __('After name text', TR_ID), 'text' ); ?>
-        <?php $this->field_view(); ?>
+        <?php $this->field_tuning(); ?>
         <?php $this->render_textarea( 'after_strong', __('After name strong text', TR_ID), 'text' ); ?>
-        <?php $this->field_view(); ?>
+        <?php $this->field_tuning(); ?>
     </div>
 </div>
