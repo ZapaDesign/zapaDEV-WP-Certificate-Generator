@@ -37,6 +37,10 @@
                   inputLocation = document.getElementById('zpdevwpcg_location_label')
                   inputDate = document.getElementById('zpdevwpcg_date_label')
 
+                  inputAddress = document.getElementById('zpdevwpcg_address')
+                  inputDirectorValue = document.getElementById('zpdevwpcg_director_value')
+                  inputDirectorLabel = document.getElementById('zpdevwpcg_director_label')
+
             alignInput.forEach(el => el.addEventListener('change', () =>  drawCanvas()))
             xInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
             yInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
@@ -48,10 +52,14 @@
             inputTextAfterStrong.addEventListener('input', () => drawCanvas())
 
             inputPeriod.addEventListener('input', () => drawCanvas())
-            // inputLevel.addEventListener('input', () => drawCanvas())
+            inputLevel.addEventListener('input', () => drawCanvas())
             inputHours.addEventListener('input', () => drawCanvas())
             inputLocation.addEventListener('input', () => drawCanvas())
             inputDate.addEventListener('input', () => drawCanvas())
+
+            inputAddress.addEventListener('input', () => drawCanvas())
+            inputDirectorValue.addEventListener('input', () => drawCanvas())
+            inputDirectorLabel.addEventListener('input', () => drawCanvas())
 
 
             const imageCanvas = new Image(),
@@ -78,6 +86,30 @@
                     Array.from(xInput).find(item => item.dataset.field === 'signature').value,
                     Array.from(yInput).find(item => item.dataset.field === 'signature').value,
                     400
+                )
+
+                let indentLeft = 224,
+                    indentRight = 0,
+                    indentTop = 0,
+                    indentBottom = 0
+
+                drawLine(
+                    (canvasWidth-indentLeft-indentRight)/2+indentLeft,
+                    0,
+                    (canvasWidth-indentLeft-indentRight)/2+indentLeft,
+                    canvasHeight
+                )
+                drawLine(
+                    (canvasWidth-indentLeft-indentRight)/4+indentLeft,
+                    0,
+                    (canvasWidth-indentLeft-indentRight)/4+indentLeft,
+                    canvasHeight
+                )
+                drawLine(
+                    (canvasWidth-indentLeft-indentRight)/4*3+indentLeft,
+                    0,
+                    (canvasWidth-indentLeft-indentRight)/4*3+indentLeft,
+                    canvasHeight
                 )
 
                 drawText(
@@ -131,15 +163,15 @@
                     'Opinion Pro',
                 )
 
-                // drawText(
-                //     inputLevel.value ? inputLevel.value + ': ___________' : options.level.label + ': ___________',
-                //     'left',
-                //     15,
-                //     66,
-                //     400,
-                //     '80',
-                //     'Opinion Pro',
-                // )
+                drawText(
+                    inputLevel.value ? inputLevel.value + ': ___________' : options.level.label + ': ___________',
+                    'left',
+                    15,
+                    66,
+                    400,
+                    '80',
+                    'Opinion Pro',
+                )
 
                 drawText(
                     inputHours.value ? inputHours.value + ': ___________' : options.hours.label + ': ___________',
@@ -169,6 +201,25 @@
                     '80',
                     'Opinion Pro',
                 )
+                drawText(
+                    inputAddress.value ? inputAddress.value : options.address.value,
+                    'left',
+                    Array.from(xInput).find(item => item.dataset.field === 'address').value,
+                    Array.from(yInput).find(item => item.dataset.field === 'address').value,
+                    400,
+                    '40',
+                    'Opinion Pro',
+                )
+                drawText(
+                    inputDirector.value ? inputDirector.value : options.date.label,
+                    'left',
+                    15,
+                    78,
+                    400,
+                    '80',
+                    'Opinion Pro',
+                )
+
             }
 
             function drawScaleImage(img, pX = 0, pY = 0, width, height = 0) {
@@ -178,6 +229,7 @@
                     ctx.drawImage(img, canvas.width * pX / 100, canvas.height * pY / 100, width, width * img.height / img.width)
                 }
             }
+
             function drawText(text, alignment = 'start', pX, pY, fontweight, fontsize, fontface, color = '#4c4c4c') {
                 if (alignment === 'center') {
                     ctx.save()
@@ -205,6 +257,17 @@
                     ctx.restore()
                 }
             }
+
+            function drawLine(xStart, yStart, xFinish, yFinish ) {
+                ctx.beginPath()
+                ctx.moveTo(xStart, yStart)
+                ctx.lineWidth = 3
+                ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+                ctx.lineTo(xFinish, yFinish)
+                ctx.stroke()
+            }
+
+
         }
         renderCanvas();
 

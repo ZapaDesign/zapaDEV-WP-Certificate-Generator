@@ -11,7 +11,7 @@
     </div>
     <div class="zpwpcg-cart__body">
         <h3><?php echo __('Address', TR); ?></h3>
-        <?php $this->render_textarea( 'address', __( 'Address', TR ) ); ?>
+        <?php $this->render_textarea( 'value', __( 'Address', TR ), 'address' ); ?>
         <?php $this->field_tuning( 'address',true, true, false ); ?>
         <hr>
         <h3><?php echo __('Director', TR); ?></h3>

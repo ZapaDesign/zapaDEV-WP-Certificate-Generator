@@ -109,7 +109,7 @@
                 'Opinion Pro')
 
             // TODO Ограничить ширину текста адрес
-            drawText(options.address, undefined, 15, 93, 'normal', 32, 'Opinion Pro')
+            drawText(options.address.value, undefined, 15, 93, 'normal', 32, 'Opinion Pro')
             drawText(options.director.value, 'end', 94, 92.5, 'normal', 32, 'Opinion Pro')
             drawText(options.director.label, 'end', 94, 94.5, 'normal', 32, 'Opinion Pro')
 

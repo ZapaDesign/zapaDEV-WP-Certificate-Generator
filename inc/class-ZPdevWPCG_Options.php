@@ -217,8 +217,11 @@ if ( ! class_exists('Options')) {
         public function render_level()
         {
             printf(
-                '<p><label for="zpdevwpcg_option[levels][label]">%s</label><input type="text" name="zpdevwpcg_option[levels][label]" value="%s" ></p>',
+                '<p><label for="zpdevwpcg_option[levels][label]">%s</label>',
                 __('Form and Certificate label', TR),
+            );
+            printf(
+                '<input type="text" id="zpdevwpcg_level_label" name="zpdevwpcg_option[levels][label]" value="%s" ></p>',
                 isset($this->options['levels']['label']) ? esc_attr($this->options['levels']['label']) : __('Level', TR)
             );
 
@@ -294,6 +297,7 @@ if ( ! class_exists('Options')) {
                             <div>
                                 <input class="zpwpcg-tuning__field zpwpcg-tuning__field--y"
                                        type="range"
+                                       step="0.1"
                                        data-field ="<?php echo $field; ?>"
                                        name="zpdevwpcg_option<?php echo '['.$field.'][y_position]'; ?>"
                                        value="<?php echo isset($this->options[$field]['y_position']) ? esc_attr($this->options[$field]['y_position']) : 55; ?>">
@@ -312,6 +316,7 @@ if ( ! class_exists('Options')) {
                             <div>
                                 <input class="zpwpcg-tuning__field zpwpcg-tuning__field--x"
                                        type="range"
+                                       step="0.1"
                                        data-field ="<?php echo $field; ?>"
                                        name="zpdevwpcg_option<?php echo '['.$field.'][x_position]'; ?>"
                                        value="<?php echo isset($this->options[$field]['x_position']) ? esc_attr($this->options[$field]['x_position']) : 32; ?>">

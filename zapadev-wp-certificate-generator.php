@@ -1,5 +1,7 @@
 <?php
-    
+    // TODO Global: Add front name font size
+
+
     /**
      * Plugin Name: zapaDEV Certificate Generator
      * Description:
@@ -16,7 +18,7 @@
         exit;
     }
     
-    define( 'PL_NAME', 'zapaDEV WP Cerificate Generator' );
+    define( 'PL_NAME', 'zapaDEV WP Certificate Generator' );
     define( 'SHORT_PL_NAME', 'ZPdevWPCG' );
     define( 'DIR_PATH', plugin_dir_path( __FILE__ ) );
     define( 'TR', 'zapadev-wp-certificate-generator' );
