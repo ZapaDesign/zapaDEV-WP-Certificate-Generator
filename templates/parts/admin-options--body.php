@@ -24,11 +24,11 @@
             'bold' ); ?>
 
         <h3>Text</h3>
-        <?php $this->render_textarea( 'before', __('Before name text', TR), 'text' ); ?>
-        <?php $this->field_tuning( 'before', true, true, true, 32, 'bold' ); ?>
-        <?php $this->render_textarea( 'after', __('After name text', TR), 'text' ); ?>
-        <?php $this->field_tuning( 'after',true, true, true, 32, 700 ); ?>
-        <?php $this->render_textarea( 'after_strong', __('After name strong text', TR), 'text' ); ?>
-        <?php $this->field_tuning( 'after_strong',true, true, true, 32, 700 ); ?>
+        <?php $this->render_textarea( 'value', __('Before name text', TR), 'text_before' ); ?>
+        <?php $this->field_tuning( 'text_before', true, true, 'center', 32, 'bold' ); ?>
+        <?php $this->render_textarea( 'value', __('After name text', TR), 'text_after' ); ?>
+        <?php $this->field_tuning( 'text_after',true, true, 'center', 32, 700 ); ?>
+        <?php $this->render_textarea( 'value', __('After name strong text', TR), 'text_after_strong' ); ?>
+        <?php $this->field_tuning( 'text_after_strong',true, true, 'center', 32, 700 ); ?>
     </div>
 </div>

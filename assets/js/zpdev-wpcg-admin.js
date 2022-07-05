@@ -2,8 +2,6 @@
     $(document).ready(function () {
 
 
-
-
         /*
         * Image Canvas
         */
@@ -22,50 +20,205 @@
 
             canvas.height = canvas.width * heightRatio
 
-            const image = new Image()
 
-            image.src = options.img.src
-            image.onload = () => {
-                drawImage()
+            const xInput = document.querySelectorAll('.zpwpcg-tuning__field--x[data-field]'),
+                  yInput = document.querySelectorAll('.zpwpcg-tuning__field--y[data-field]'),
+                  fontSizeInput = document.querySelectorAll('.zpwpcg-tuning__field--font-size[data-field]'),
+                  fontWeightInput = document.querySelectorAll('.zpwpcg-tuning__field--font-weight[data-field]'),
+                  alignInput = document.querySelectorAll('.zpwpcg-tuning__field--align[data-field]'),
+
+                  inputTextBefore = document.getElementById('zpdevwpcg_text_before'),
+                  inputTextAfter = document.getElementById('zpdevwpcg_text_after'),
+                  inputTextAfterStrong = document.getElementById('zpdevwpcg_text_after_strong')
+
+                  inputPeriod = document.getElementById('zpdevwpcg_period_label')
+                  inputLevel = document.getElementById('zpdevwpcg_level_label')
+                  inputHours = document.getElementById('zpdevwpcg_hours_label')
+                  inputLocation = document.getElementById('zpdevwpcg_location_label')
+                  inputDate = document.getElementById('zpdevwpcg_date_label')
+
+            alignInput.forEach(el => el.addEventListener('change', () =>  drawCanvas()))
+            xInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
+            yInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
+            fontSizeInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
+            fontWeightInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
+
+            inputTextBefore.addEventListener('input', () => drawCanvas())
+            inputTextAfter.addEventListener('input', () => drawCanvas())
+            inputTextAfterStrong.addEventListener('input', () => drawCanvas())
+
+            inputPeriod.addEventListener('input', () => drawCanvas())
+            // inputLevel.addEventListener('input', () => drawCanvas())
+            inputHours.addEventListener('input', () => drawCanvas())
+            inputLocation.addEventListener('input', () => drawCanvas())
+            inputDate.addEventListener('input', () => drawCanvas())
+
+
+            const imageCanvas = new Image(),
+                logo = new Image(),
+                signature = new Image()
+
+            imageCanvas.src = options.img.src
+            logo.src = options.logo.src
+            signature.src = options.signature.src
+            imageCanvas.onload = () => {
+                drawCanvas()
             }
 
-            function drawImage() {
-                ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+            function drawCanvas() {
+                ctx.drawImage(imageCanvas, 0, 0, canvas.width, canvas.height)
+                drawScaleImage(
+                    logo,
+                    Array.from(xInput).find(item => item.dataset.field === 'logo').value,
+                    Array.from(yInput).find(item => item.dataset.field === 'logo').value,
+                    400
+                )
+                drawScaleImage(
+                    signature,
+                    Array.from(xInput).find(item => item.dataset.field === 'signature').value,
+                    Array.from(yInput).find(item => item.dataset.field === 'signature').value,
+                    400
+                )
+
+                drawText(
+                    inputTextBefore.value ? inputTextBefore.value : options.text_before.value,
+                    Array.from(alignInput).filter(item => item.dataset.field === 'text_before').find(item => item.checked === true).value,
+                    Array.from(xInput).find(item => item.dataset.field === 'text_before').value,
+                    Array.from(yInput).find(item => item.dataset.field === 'text_before').value,
+                    Array.from(fontWeightInput).find(item => item.dataset.field === 'text_before').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.field === 'text_before').value,
+                    'Opinion Pro',
+                )
+
+                drawText(
+                    'Name Surname',
+                    Array.from(alignInput).filter(item => item.dataset.field === 'name').find(item => item.checked === true).value,
+                    Array.from(xInput).find(item => item.dataset.field === 'name').value,
+                    Array.from(yInput).find(item => item.dataset.field === 'name').value,
+                    Array.from(fontWeightInput).find(item => item.dataset.field === 'name').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.field === 'name').value,
+                    'Opinion Pro',
+                    '#333'
+                )
+
+                drawText(
+                    inputTextAfter.value ? inputTextAfter.value : options.text_after.value,
+                    Array.from(alignInput).filter(item => item.dataset.field === 'text_after').find(item => item.checked === true).value,
+                    Array.from(xInput).find(item => item.dataset.field === 'text_after').value,
+                    Array.from(yInput).find(item => item.dataset.field === 'text_after').value,
+                    Array.from(fontWeightInput).find(item => item.dataset.field === 'text_after').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.field === 'text_after').value,
+                    'Opinion Pro',
+                )
+
+                drawText(
+                    inputTextAfterStrong.value ? inputTextAfterStrong.value : options.text_after_strong.value,
+                    options.text_after_strong.align,
+                    Array.from(xInput).find(item => item.dataset.field === 'text_after_strong').value,
+                    Array.from(yInput).find(item => item.dataset.field === 'text_after_strong').value,
+                    Array.from(fontWeightInput).find(item => item.dataset.field === 'text_after_strong').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.field === 'text_after_strong').value,
+                    'Opinion Pro',
+                )
+
+                drawText(
+                    inputPeriod.value ? inputPeriod.value + ': ___________ - ___________' : options.period.label + ': ___________ - ___________',
+                    'left',
+                    15,
+                    62,
+                    400,
+                    '80',
+                    'Opinion Pro',
+                )
+
+                // drawText(
+                //     inputLevel.value ? inputLevel.value + ': ___________' : options.level.label + ': ___________',
+                //     'left',
+                //     15,
+                //     66,
+                //     400,
+                //     '80',
+                //     'Opinion Pro',
+                // )
+
+                drawText(
+                    inputHours.value ? inputHours.value + ': ___________' : options.hours.label + ': ___________',
+                    'left',
+                    15,
+                    70,
+                    400,
+                    '80',
+                    'Opinion Pro',
+                )
+
+                drawText(
+                    inputLocation.value ? inputLocation.value + ': ___________' : options.location.label + ': ___________',
+                    'left',
+                    15,
+                    74,
+                    400,
+                    '80',
+                    'Opinion Pro',
+                )
+                drawText(
+                    inputDate.value ? inputDate.value + ': ___________' : options.date.label + ': ___________',
+                    'left',
+                    15,
+                    78,
+                    400,
+                    '80',
+                    'Opinion Pro',
+                )
+            }
+
+            function drawScaleImage(img, pX = 0, pY = 0, width, height = 0) {
+                if (height) {
+                    ctx.drawImage(img, canvas.width * pX / 100, canvas.height * pY / 100, width, height)
+                } else {
+                    ctx.drawImage(img, canvas.width * pX / 100, canvas.height * pY / 100, width, width * img.height / img.width)
+                }
+            }
+            function drawText(text, alignment = 'start', pX, pY, fontweight, fontsize, fontface, color = '#4c4c4c') {
+                if (alignment === 'center') {
+                    ctx.save()
+                    ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface
+                    ctx.textAlign = 'center'
+                    ctx.textBaseline = 'middle'
+                    ctx.fillStyle = color
+                    ctx.fillText(text, canvas.width * pX / 100, canvas.height * pY / 100)
+                    ctx.restore()
+                }
+                if (alignment === 'left') {
+                    ctx.save()
+                    ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface
+                    ctx.fillStyle = color
+                    ctx.fillText(text, canvas.width * pX / 100, canvas.height * pY / 100)
+                    ctx.restore()
+                }
+                if (alignment === 'right') {
+                    ctx.save()
+                    ctx.font = fontweight + ' ' + fontsize + 'px ' + fontface
+                    ctx.textAlign = 'end'
+                    ctx.textBaseline = 'middle'
+                    ctx.fillStyle = color
+                    ctx.fillText(text, canvas.width * pX / 100, canvas.height * pY / 100)
+                    ctx.restore()
+                }
             }
         }
-
         renderCanvas();
 
+        // Add output number for input range
+        document.querySelectorAll('.zpwpcg-tuning__field[type=range]').forEach(el => {
+            el.addEventListener('input',  () => {
+                el.nextElementSibling.innerHTML = el.value
+            }, false);
+        })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            $('.zpwpcg-tuning__btn--settings').on('click', function (e) {
-                e.preventDefault
-                $(this).nextAll('.zpwpcg-tuning__body').slideToggle()
-            })
-
-
-
-
-
-
-
-
-
+        $('.zpwpcg-tuning__btn--settings').on('click', function (e) {
+            e.preventDefault
+            $(this).nextAll('.zpwpcg-tuning__body').slideToggle()
+        })
 
 
         // Image upload in ZPdevWPCG Options page
@@ -144,7 +297,7 @@
                         id: certID
                     },
                     dataType: 'text',
-                    beforeSend:function() {
+                    beforeSend: function () {
                         $('.zpwpcg-ajax__loader').show()
                     },
                     success: function () {

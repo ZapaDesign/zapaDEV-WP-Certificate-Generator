@@ -31,9 +31,9 @@
             hoursInput = document.getElementById('zpwpcg-front__hours-input'),
             locationInput = document.getElementById('zpwpcg-front__location-input'),
             dateInput = document.getElementById('zpwpcg-front__date-input'),
-            downloadBtn = document.getElementById('zpwpcg-front__btn--download')
+            downloadBtn = document.getElementById('zpwpcg-front__btn--download'),
 
-        const image = new Image(),
+            image = new Image(),
             logo = new Image(),
             signature = new Image()
 
@@ -46,8 +46,18 @@
 
         function drawImage() {
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
-            drawScaleImage(logo, 15, 88, 400)
-            drawScaleImage(signature, 65, 88, 400)
+            drawScaleImage(
+                logo,
+                options.logo.x_position,
+                options.logo.y_position,
+                400
+            )
+            drawScaleImage(
+                signature,
+                options.signature.x_position,
+                options.signature.y_position,
+                400
+            )
 
             drawText(
                 certIDInput.value ? certIDInput.value : flow.lastCertID + '/' + new Date().getFullYear().toString().substr(-2),
@@ -56,9 +66,11 @@
                 13.8,
                 'normal',
                 60,
-                'Opinion Pro')
+                'Opinion Pro'
+            )
 
-            drawText(options.text.before,
+            drawText(
+                options.text_before.value,
                 'center',
                 54.5,
                 24,
@@ -66,16 +78,36 @@
                 130,
                 'Opinion Pro')
 
-            drawText(nameInput.value,
+            drawText(
+                nameInput.value,
                 'center',
-                54.5,
+                options.name.x_position,
                 options.name.y_position,
                 options.name.font_weight,
                 options.name.font_size,
                 'Opinion Pro',
-                '#333')
-            drawText(options.text.after, 'center', 54.5, 40, 'normal', 130, 'Opinion Pro')
-            drawText(options.text.after_strong, 'center', 54.5, 46, 'bold', 130, 'Opinion Pro')
+                '#333'
+            )
+
+            drawText(
+                options.text_after.value,
+                'center',
+                options.text_after.x_position,
+                options.text_after.y_position,
+                options.text_after.font_weight,
+                options.text_after.font_size,
+                'Opinion Pro'
+            )
+
+            drawText(
+                options.text_after_strong.value,
+                'center',
+                options.text_after_strong.x_position,
+                options.text_after_strong.y_position,
+                options.text_after_strong.font_weight,
+                options.text_after_strong.font_size,
+                'Opinion Pro')
+
             // TODO Ограничить ширину текста адрес
             drawText(options.address, undefined, 15, 93, 'normal', 32, 'Opinion Pro')
             drawText(options.director.value, 'end', 94, 92.5, 'normal', 32, 'Opinion Pro')
@@ -84,7 +116,14 @@
             drawText(options.period.label + ': ' + dateFormat(startInput.value, 'month') + ' - ' + dateFormat(finishInput.value, 'month'), undefined, 15, 62, 'normal', 80, 'Opinion Pro')
             drawText(options.levels.label + ': ' + levelSelect.value, undefined, 15, 66, 'normal', 80, 'Opinion Pro')
             drawText(options.hours.label + ': ' + hoursInput.value, undefined, 15, 70, 'normal', 80, 'Opinion Pro')
-            drawText(options.location.label + ': ' + locationInput.value, undefined, 15, 74, 'normal', 80, 'Opinion Pro')
+            drawText(
+                options.location.label + ': ' + locationInput.value,
+                undefined,
+                15,
+                74,
+                'normal',
+                80,
+                'Opinion Pro')
             drawText(options.date.label + ': ' + dateFormat(dateInput.value), undefined, 15, 78, 'normal', 80, 'Opinion Pro')
         }
 

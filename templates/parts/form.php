@@ -2,7 +2,6 @@
 /*
 * @var $options
 * */
-
 ?>
 
 <div class="zpwpcg__form">
