@@ -1,5 +1,7 @@
 <?php
     // TODO Global: Add front name font size
+    // TODO Global: Add canvas size functionality
+    // TODO Global: Add canvas indent functionality
 
 
     /**

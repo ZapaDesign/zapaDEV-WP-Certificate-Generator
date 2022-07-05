@@ -88,30 +88,6 @@
                     400
                 )
 
-                let indentLeft = 224,
-                    indentRight = 0,
-                    indentTop = 0,
-                    indentBottom = 0
-
-                drawLine(
-                    (canvasWidth-indentLeft-indentRight)/2+indentLeft,
-                    0,
-                    (canvasWidth-indentLeft-indentRight)/2+indentLeft,
-                    canvasHeight
-                )
-                drawLine(
-                    (canvasWidth-indentLeft-indentRight)/4+indentLeft,
-                    0,
-                    (canvasWidth-indentLeft-indentRight)/4+indentLeft,
-                    canvasHeight
-                )
-                drawLine(
-                    (canvasWidth-indentLeft-indentRight)/4*3+indentLeft,
-                    0,
-                    (canvasWidth-indentLeft-indentRight)/4*3+indentLeft,
-                    canvasHeight
-                )
-
                 drawText(
                     inputTextBefore.value ? inputTextBefore.value : options.text_before.value,
                     Array.from(alignInput).filter(item => item.dataset.field === 'text_before').find(item => item.checked === true).value,
@@ -201,6 +177,7 @@
                     '80',
                     'Opinion Pro',
                 )
+
                 drawText(
                     inputAddress.value ? inputAddress.value : options.address.value,
                     'left',
@@ -210,6 +187,7 @@
                     '40',
                     'Opinion Pro',
                 )
+
                 drawText(
                     inputDirector.value ? inputDirector.value : options.date.label,
                     'left',
@@ -218,6 +196,30 @@
                     400,
                     '80',
                     'Opinion Pro',
+                )
+
+                let indentLeft = 224,
+                    indentRight = 0,
+                    indentTop = 0,
+                    indentBottom = 0
+
+                drawLine(
+                    (canvasWidth-indentLeft-indentRight)/2+indentLeft,
+                    0,
+                    (canvasWidth-indentLeft-indentRight)/2+indentLeft,
+                    canvasHeight
+                )
+                drawLine(
+                    (canvasWidth-indentLeft-indentRight)/4+indentLeft,
+                    0,
+                    (canvasWidth-indentLeft-indentRight)/4+indentLeft,
+                    canvasHeight
+                )
+                drawLine(
+                    (canvasWidth-indentLeft-indentRight)/4*3+indentLeft,
+                    0,
+                    (canvasWidth-indentLeft-indentRight)/4*3+indentLeft,
+                    canvasHeight
                 )
 
             }
@@ -229,7 +231,6 @@
                     ctx.drawImage(img, canvas.width * pX / 100, canvas.height * pY / 100, width, width * img.height / img.width)
                 }
             }
-
             function drawText(text, alignment = 'start', pX, pY, fontweight, fontsize, fontface, color = '#4c4c4c') {
                 if (alignment === 'center') {
                     ctx.save()
@@ -257,7 +258,6 @@
                     ctx.restore()
                 }
             }
-
             function drawLine(xStart, yStart, xFinish, yFinish ) {
                 ctx.beginPath()
                 ctx.moveTo(xStart, yStart)
@@ -266,7 +266,6 @@
                 ctx.lineTo(xFinish, yFinish)
                 ctx.stroke()
             }
-
 
         }
         renderCanvas();
