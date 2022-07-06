@@ -2,9 +2,8 @@
     $(document).ready(function () {
 
 
-        /*
-        * Image Canvas
-        */
+
+        // Admin Canvas preview
 
         function renderCanvas() {
             const options = JSON.parse(flow.options),
@@ -12,13 +11,12 @@
                 ctx = canvas.getContext('2d')
 
             // TODO (УДАЛИТЬ) console.log массив опций переданный в JS фронта
-            console.log(options);
+            console.log(options)
 
             let canvasWidth = options.canvas.width ? options.canvas.width : 2480,
                 canvasHeight = options.canvas.height ? options.canvas.height : 3508
                 // heightRatio = canvasHeight / canvasWidth
-
-            // canvas.height = canvas.width * heightRatio
+                // canvas.height = canvas.width * heightRatio
 
 
             const xInput = document.querySelectorAll('.zpwpcg-tuning__field--x[data-field]'),
@@ -27,9 +25,8 @@
                   fontWeightInput = document.querySelectorAll('.zpwpcg-tuning__field--font-weight[data-field]'),
                   alignInput = document.querySelectorAll('.zpwpcg-tuning__field--align[data-field]'),
 
-                    inputCanvasWidth = document.querySelector('.zpwpcg-controller--range[data-param=canvas-width]'),
-                    // inputCanvasWidth = document.getElementById('zpdevwpcg_canvas_width'),
-                    inputCanvasHeight = document.querySelector('.zpwpcg-controller--range[data-param=canvas-height]'),
+                  inputCanvasWidth = document.querySelector('.zpwpcg-controller--range[data-param=canvas-width]'),
+                  inputCanvasHeight = document.querySelector('.zpwpcg-controller--range[data-param=canvas-height]'),
 
                   inputTextBefore = document.getElementById('zpdevwpcg_text_before'),
                   inputTextAfter = document.getElementById('zpdevwpcg_text_after'),
@@ -45,12 +42,6 @@
                   // inputDirectorValue = document.getElementById('zpdevwpcg_director_value')
                   // inputDirectorLabel = document.getElementById('zpdevwpcg_director_label')
 
-            alignInput.forEach(el => el.addEventListener('change', () =>  drawCanvas()))
-            xInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
-            yInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
-            fontSizeInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
-            fontWeightInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
-
             inputCanvasWidth.querySelectorAll('input').forEach( el => {
                 el.addEventListener('input', (e) => {
                     canvas.width = e.target.value
@@ -58,7 +49,6 @@
                     drawCanvas()
                 })
             })
-
             inputCanvasHeight.querySelectorAll('input').forEach( el => {
                 el.addEventListener('input', (e) => {
                     canvas.height = e.target.value
@@ -66,11 +56,14 @@
                     drawCanvas()
                 })
             })
-
+            alignInput.forEach(el => el.addEventListener('change', () =>  drawCanvas()))
+            xInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
+            yInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
+            fontSizeInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
+            fontWeightInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
             inputTextBefore.addEventListener('input', () => drawCanvas())
             inputTextAfter.addEventListener('input', () => drawCanvas())
             inputTextAfterStrong.addEventListener('input', () => drawCanvas())
-
             inputPeriod.addEventListener('input', () => drawCanvas())
             inputLevel.addEventListener('input', () => drawCanvas())
             inputHours.addEventListener('input', () => drawCanvas())
@@ -86,12 +79,12 @@
                 logo = new Image(),
                 signature = new Image()
 
+
             imageCanvas.src = options.img.src
             logo.src = options.logo.src
             signature.src = options.signature.src
-            imageCanvas.onload = () => {
-                drawCanvas()
-            }
+
+            imageCanvas.onload = () => drawCanvas()
 
             function drawCanvas() {
 
@@ -211,7 +204,6 @@
                 )
 
                 // TODO Check director field
-
                 // drawText(
                 //     inputDirector.value ? inputDirector.value : options.date.label,
                 //     'left',
@@ -222,32 +214,7 @@
                 //     'Opinion Pro',
                 // )
 
-                // TODO Global: Add canvas indent functionality
-
-                let indentLeft = 224,
-                    indentRight = 0,
-                    indentTop = 0,
-                    indentBottom = 0
-
-                drawLine(
-                    (canvasWidth-indentLeft-indentRight)/2+indentLeft,
-                    0,
-                    (canvasWidth-indentLeft-indentRight)/2+indentLeft,
-                    canvasHeight
-                )
-                drawLine(
-                    (canvasWidth-indentLeft-indentRight)/4+indentLeft,
-                    0,
-                    (canvasWidth-indentLeft-indentRight)/4+indentLeft,
-                    canvasHeight
-                )
-                drawLine(
-                    (canvasWidth-indentLeft-indentRight)/4*3+indentLeft,
-                    0,
-                    (canvasWidth-indentLeft-indentRight)/4*3+indentLeft,
-                    canvasHeight
-                )
-
+                drawGrid()
             }
 
             function drawScaleImage(img, pX = 0, pY = 0, width, height = 0) {
@@ -292,18 +259,55 @@
                 ctx.lineTo(xFinish, yFinish)
                 ctx.stroke()
             }
+            function drawGrid() {
+                // TODO Global: Add canvas indent functionality
+                let indentLeft = 224,
+                    indentRight = 0,
+                    indentTop = 0,
+                    indentBottom = 0
+
+                drawLine(
+                    (canvasWidth-indentLeft-indentRight)/2+indentLeft,
+                    0,
+                    (canvasWidth-indentLeft-indentRight)/2+indentLeft,
+                    canvasHeight
+                )
+                drawLine(
+                    (canvasWidth-indentLeft-indentRight)/4+indentLeft,
+                    0,
+                    (canvasWidth-indentLeft-indentRight)/4+indentLeft,
+                    canvasHeight
+                )
+                drawLine(
+                    (canvasWidth-indentLeft-indentRight)/4*3+indentLeft,
+                    0,
+                    (canvasWidth-indentLeft-indentRight)/4*3+indentLeft,
+                    canvasHeight
+                )
+                drawLine(
+                    0,
+                    (canvasHeight-indentTop-indentBottom)/2+indentTop,
+                    canvasWidth,
+                    (canvasHeight-indentTop-indentBottom)/2+indentTop
+                )
+                drawLine(
+                    0,
+                    (canvasHeight-indentTop-indentBottom)/4+indentTop,
+                    canvasWidth,
+                    (canvasHeight-indentTop-indentBottom)/4+indentTop
+                )
+                drawLine(
+                    0,
+                    (canvasHeight-indentTop-indentBottom)/4*3+indentTop,
+                    canvasWidth,
+                    (canvasHeight-indentTop-indentBottom)/4*3+indentTop
+                )
+            }
 
         }
         renderCanvas();
 
 
-
-
-
-
-        // document.querySelectorAll('.zpwpcg-tuning__field[type=range]').forEach(el => {
-        //     el.preventDefault
-        // })
 
 
         // Add output number for input range
@@ -318,7 +322,7 @@
 
 
 
-
+        // Show/Hide field tuning options
         $('.zpwpcg-tuning__btn--settings').on('click', function (e) {
             e.preventDefault
             $(this).nextAll('.zpwpcg-tuning__body').slideToggle()

@@ -8,7 +8,7 @@
      * Plugin Name: zapaDEV Certificate Generator
      * Description:
      * Plugin URI:  https://dev-zapadesign.netlify.app/ru/aboutme
-     * Version:     1.0.0
+     * Version:     0.0.1
      * Author:      zapaDEV
      * Author URI:  https://dev-zapadesign.netlify.app/ru/aboutme
      * Text Domain: zapadev-certificate-generator.php
