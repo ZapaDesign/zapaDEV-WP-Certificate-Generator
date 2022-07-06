@@ -9,11 +9,19 @@ $breakpoints: (
 	xxlg: 1920px,
 );
 
+
+
 .zdcontainer {
 	max-width: $global-width;
 	margin-left: auto;
 	padding-left: $grid-gutters / 2;
 	padding-right: $grid-gutters / 2;
+
+	&--full {
+		max-width: $global-width;
+		margin-left: auto;
+		//overflow: hidden;
+	}
 }
 
 .zdgrid {
@@ -38,9 +46,9 @@ $breakpoints: (
 
 .zdgrid {
 	&--x {
-		margin-left: $grid-gutters / -2;
-		margin-right: $grid-gutters / -2;
-		.zdcell {
+		margin-left: -$grid-gutters / 2;
+		margin-right: -$grid-gutters / 2;
+		& > .zdcell {
 			margin-left: $grid-gutters / 2;
 			margin-right: $grid-gutters / 2;
 
@@ -59,7 +67,7 @@ $breakpoints: (
 	&--y {
 		margin-top: $grid-gutters / -2;
 		margin-bottom: $grid-gutters / -2;
-		.zdcell {
+		& > .zdcell {
 			margin-top: $grid-gutters / 2;
 			margin-bottom: $grid-gutters / 2;
 
@@ -78,7 +86,7 @@ $breakpoints: (
 
 	&--x-y {
 		margin: $grid-gutters / -2;
-		.zdcell {
+		& > .zdcell {
 			margin: $grid-gutters / 2;
 
 			@each $breakpoint, $value in $breakpoints {

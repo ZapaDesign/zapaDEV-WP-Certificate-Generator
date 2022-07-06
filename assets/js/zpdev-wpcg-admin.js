@@ -27,8 +27,9 @@
                   fontWeightInput = document.querySelectorAll('.zpwpcg-tuning__field--font-weight[data-field]'),
                   alignInput = document.querySelectorAll('.zpwpcg-tuning__field--align[data-field]'),
 
-                    inputCanvasWidth = document.getElementById('zpdevwpcg_canvas_width'),
-                    inputCanvasHeight = document.getElementById('zpdevwpcg_canvas_height'),
+                    inputCanvasWidth = document.querySelector('.zpwpcg-controller--range[data-param=canvas-width]'),
+                    // inputCanvasWidth = document.getElementById('zpdevwpcg_canvas_width'),
+                    inputCanvasHeight = document.querySelector('.zpwpcg-controller--range[data-param=canvas-height]'),
 
                   inputTextBefore = document.getElementById('zpdevwpcg_text_before'),
                   inputTextAfter = document.getElementById('zpdevwpcg_text_after'),
@@ -50,15 +51,20 @@
             fontSizeInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
             fontWeightInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
 
-            inputCanvasWidth.addEventListener('input', (e) => {
-                canvas.width = e.target.value
-                canvasWidth = e.target.value
-                drawCanvas()
+            inputCanvasWidth.querySelectorAll('input').forEach( el => {
+                el.addEventListener('input', (e) => {
+                    canvas.width = e.target.value
+                    canvasWidth = e.target.value
+                    drawCanvas()
+                })
             })
-            inputCanvasHeight.addEventListener('input', (e) => {
-                canvas.height = e.target.value
-                canvasHeight = e.target.value
-                drawCanvas()
+
+            inputCanvasHeight.querySelectorAll('input').forEach( el => {
+                el.addEventListener('input', (e) => {
+                    canvas.height = e.target.value
+                    canvasHeight = e.target.value
+                    drawCanvas()
+                })
             })
 
             inputTextBefore.addEventListener('input', () => drawCanvas())
@@ -290,12 +296,28 @@
         }
         renderCanvas();
 
+
+
+
+
+
+        // document.querySelectorAll('.zpwpcg-tuning__field[type=range]').forEach(el => {
+        //     el.preventDefault
+        // })
+
+
         // Add output number for input range
-        document.querySelectorAll('.zpwpcg-tuning__field[type=range]').forEach(el => {
-            el.addEventListener('input',  () => {
-                el.nextElementSibling.innerHTML = el.value
+        document.querySelectorAll('.zpwpcg-controller--range').forEach(el => {
+            el.querySelector(".zpwpcg-controller--range__range").addEventListener('input',  (i) => {
+                i.target.nextElementSibling.value = i.target.value
+            }, false);
+            el.querySelector(".zpwpcg-controller--range__input").addEventListener('input',  (i) => {
+                i.target.previousElementSibling.value = i.target.value
             }, false);
         })
+
+
+
 
         $('.zpwpcg-tuning__btn--settings').on('click', function (e) {
             e.preventDefault

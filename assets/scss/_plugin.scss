@@ -329,4 +329,26 @@
 		}
 
 	}
+
+	&-controller {
+
+		&--range {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+
+			label {
+				flex: 0 1 70px;
+			}
+
+
+			input {
+				width: 100%;
+
+				&[type="number"] {
+					flex: 0 1 120px;
+				}
+			}
+		}
+	}
 }

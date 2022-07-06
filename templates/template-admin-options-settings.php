@@ -10,13 +10,13 @@
     <h1 class="zpwpcg-adm__title"><?php echo __('Settings', TR) ?></h1>
     <p><?php echo __('List of saved certificates. You can edit, delete the certificate entry, and view or download the certificate.', TR); ?></p>
 
-    <div class="zdcontainer">
+    <div class="zdcontainer--full">
         <div class="zdgrid zdgrid--x zdgrid--y">
             <div class="zdcell md-6">
                 <form method="post" action="options.php" enctype="multipart/form-data">
                     <?php settings_fields(PREFIX . 'settings_option_group'); ?>
 
-                        <div class="zdgrid">
+                        <div class="zdgrid zdgrid--x zdgrid--y">
                             <div class="zdcell lg-6">
                                 <?php include_once(DIR_PATH . 'templates/parts/admin-options--layout.php'); ?>
                             </div>
