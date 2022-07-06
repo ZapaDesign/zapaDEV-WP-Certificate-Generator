@@ -8,17 +8,17 @@
 
         function renderCanvas() {
             const options = JSON.parse(flow.options),
-                canvas = document.getElementById('zpwpcg-canvas'),
+                canvas = document.getElementById('zpwpcg-adm-canvas'),
                 ctx = canvas.getContext('2d')
 
             // TODO (УДАЛИТЬ) console.log массив опций переданный в JS фронта
             console.log(options);
 
-            let canvasWidth = 2480,
-                canvasHeight = 3508,
-                heightRatio = canvasHeight / canvasWidth
+            let canvasWidth = options.canvas.width ? options.canvas.width : 2480,
+                canvasHeight = options.canvas.height ? options.canvas.height : 3508
+                // heightRatio = canvasHeight / canvasWidth
 
-            canvas.height = canvas.width * heightRatio
+            // canvas.height = canvas.width * heightRatio
 
 
             const xInput = document.querySelectorAll('.zpwpcg-tuning__field--x[data-field]'),
@@ -26,6 +26,9 @@
                   fontSizeInput = document.querySelectorAll('.zpwpcg-tuning__field--font-size[data-field]'),
                   fontWeightInput = document.querySelectorAll('.zpwpcg-tuning__field--font-weight[data-field]'),
                   alignInput = document.querySelectorAll('.zpwpcg-tuning__field--align[data-field]'),
+
+                    inputCanvasWidth = document.getElementById('zpdevwpcg_canvas_width'),
+                    inputCanvasHeight = document.getElementById('zpdevwpcg_canvas_height'),
 
                   inputTextBefore = document.getElementById('zpdevwpcg_text_before'),
                   inputTextAfter = document.getElementById('zpdevwpcg_text_after'),
@@ -38,14 +41,25 @@
                   inputDate = document.getElementById('zpdevwpcg_date_label')
 
                   inputAddress = document.getElementById('zpdevwpcg_address')
-                  inputDirectorValue = document.getElementById('zpdevwpcg_director_value')
-                  inputDirectorLabel = document.getElementById('zpdevwpcg_director_label')
+                  // inputDirectorValue = document.getElementById('zpdevwpcg_director_value')
+                  // inputDirectorLabel = document.getElementById('zpdevwpcg_director_label')
 
             alignInput.forEach(el => el.addEventListener('change', () =>  drawCanvas()))
             xInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
             yInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
             fontSizeInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
             fontWeightInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
+
+            inputCanvasWidth.addEventListener('input', (e) => {
+                canvas.width = e.target.value
+                canvasWidth = e.target.value
+                drawCanvas()
+            })
+            inputCanvasHeight.addEventListener('input', (e) => {
+                canvas.height = e.target.value
+                canvasHeight = e.target.value
+                drawCanvas()
+            })
 
             inputTextBefore.addEventListener('input', () => drawCanvas())
             inputTextAfter.addEventListener('input', () => drawCanvas())
@@ -58,8 +72,8 @@
             inputDate.addEventListener('input', () => drawCanvas())
 
             inputAddress.addEventListener('input', () => drawCanvas())
-            inputDirectorValue.addEventListener('input', () => drawCanvas())
-            inputDirectorLabel.addEventListener('input', () => drawCanvas())
+            // inputDirectorValue.addEventListener('input', () => drawCanvas())
+            // inputDirectorLabel.addEventListener('input', () => drawCanvas())
 
 
             const imageCanvas = new Image(),
@@ -74,7 +88,9 @@
             }
 
             function drawCanvas() {
-                ctx.drawImage(imageCanvas, 0, 0, canvas.width, canvas.height)
+
+                ctx.drawImage(imageCanvas, 0, 0, canvasWidth, canvasHeight)
+
                 drawScaleImage(
                     logo,
                     Array.from(xInput).find(item => item.dataset.field === 'logo').value,
@@ -188,15 +204,17 @@
                     'Opinion Pro',
                 )
 
-                drawText(
-                    inputDirector.value ? inputDirector.value : options.date.label,
-                    'left',
-                    15,
-                    78,
-                    400,
-                    '80',
-                    'Opinion Pro',
-                )
+                // drawText(
+                //     inputDirector.value ? inputDirector.value : options.date.label,
+                //     'left',
+                //     15,
+                //     78,
+                //     400,
+                //     '80',
+                //     'Opinion Pro',
+                // )
+
+                // TODO Global: Add canvas indent functionality
 
                 let indentLeft = 224,
                     indentRight = 0,

@@ -217,7 +217,7 @@ if ( ! class_exists('Options')) {
         public function render_level()
         {
             printf(
-                '<p><label for="zpdevwpcg_option[levels][label]">%s</label>',
+                '<p><label for="zpdevwpcg_level_label">%s</label>',
                 __('Form and Certificate label', TR),
             );
             printf(

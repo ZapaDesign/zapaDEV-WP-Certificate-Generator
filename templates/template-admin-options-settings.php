@@ -1,6 +1,8 @@
 <?php
-
-use function ZPdevWPCG\ZPdevWPCG;
+    /**
+     * @var ZPdevWPCG\Options $this
+     */
+    use function ZPdevWPCG\ZPdevWPCG;
 
 ?>
 
@@ -37,12 +39,13 @@ use function ZPdevWPCG\ZPdevWPCG;
                 <div class="zpwpcg-canvas__wrap zpwpcg-adm-canvas__wrap">
                     <div class="zpwpcg-canvas__wrap zpwpcg-adm-canvas__wrap">
                         <!--// TODO Добавить асинхронную загрузку изображений-->
+                        
                             <canvas
                                 class="zpwpcg-canvas zpwpcg-adm-canvas"
-                                id="zpwpcg-canvas"
+                                id="zpwpcg-adm-canvas"
                                 data-imgsrc="<?php echo ZPdevWPCG()->plugin_url() . '/assets/img/certificate-template-demo.svg' ?>"
-                                width="2480"
-                                height="3508"
+                                width="<?php echo $this->options['canvas']['width']; ?>"
+                                height="<?php echo $this->options['canvas']['height'];  ?>"
                             ></canvas>
                     </div>
                 </div>
