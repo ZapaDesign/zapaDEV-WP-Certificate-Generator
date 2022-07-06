@@ -204,6 +204,8 @@
                     'Opinion Pro',
                 )
 
+                // TODO Check director field
+
                 // drawText(
                 //     inputDirector.value ? inputDirector.value : options.date.label,
                 //     'left',
