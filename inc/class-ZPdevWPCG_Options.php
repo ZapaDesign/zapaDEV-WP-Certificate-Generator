@@ -186,17 +186,17 @@ if ( ! class_exists('Options')) {
         public function render_textarea($option, $label, $group = false)
         {
 
-            echo '<p>';
+            echo '<div>';
             printf('<label for="zpdevwpcg_option%s">%s</label>',
                 $group ? '[' . $group . '][' . $option . ']' : '[' . $option . ']',
                 $label);
-            printf('<textarea cols="40" rows="3" id="zpdevwpcg_%s" name="zpdevwpcg_option%s">%s</textarea>',
+            printf('<textarea cols="40" rows="2" id="zpdevwpcg_%s" name="zpdevwpcg_option%s">%s</textarea>',
                 $group,
                 $group ? '[' . $group . '][' . $option . ']' : '[' . $option . ']',
                 $group ? (isset($this->options[$group][$option]) ? esc_attr($this->options[$group][$option]) : '') :
                     (isset($this->options[$option]) ? esc_attr($this->options[$option]) : '')
             );
-            echo '</p>';
+            echo '</div>';
         }
 
         public function render_input(string $option, string $label, $group = false)
