@@ -360,6 +360,16 @@
 				}
 			}
 		}
+
+		&__toggle {
+			border: 0;
+			background-color: transparent;
+			border-radius: 0;
+			svg {
+				vertical-align: middle;
+				margin-right: 4px;
+			}
+		}
 	}
 
 	&-control {
@@ -387,6 +397,16 @@
 				&[type="number"] {
 					flex: 0 1 100px;
 				}
+			}
+		}
+
+		&__toggle {
+			border: 0;
+			background-color: transparent;
+			border-radius: 0;
+			svg {
+				vertical-align: middle;
+				margin-right: 4px;
 			}
 		}
 	}

@@ -20,39 +20,39 @@
         
         <?php
             $this->render_input( 'label', __( 'Label for form field', TR ), 'name' ); ?>
-        <?php
-            ( new Controller(
-                [
-                    'type'  => 'range',
-                    'field' => 'name',
-                    'param' => 'fontSize',
-                    'label' => __( 'Font Size', TR ),
-                    'args'  => [
-                        'max' => 1000
-                    ]
-                ],
-                [
-                    'type'  => 'range',
-                    'field' => 'name',
-                    'param' => 'xPosition',
-                    'label' => __( 'X position', TR ),
-                    'args'  => [
-                        'step' => 0.1
-                    ]
-                
-                ],
-                [
-                    'type'  => 'range',
-                    'field' => 'name',
-                    'param' => 'yPosition',
-                    'label' => __( 'Y position', TR ),
-                    'args'  => [
-                        'step' => 0.1
-                    ]
-                
-                ],
-            ) )->render();
-        ?>
+<!--        --><?php
+//            ( new Controller(
+//                [
+//                    'type'  => 'range',
+//                    'field' => 'name',
+//                    'param' => 'fontSize',
+//                    'label' => __( 'Font Size', TR ),
+//                    'args'  => [
+//                        'max' => 1000
+//                    ]
+//                ],
+//                [
+//                    'type'  => 'range',
+//                    'field' => 'name',
+//                    'param' => 'xPosition',
+//                    'label' => __( 'X position', TR ),
+//                    'args'  => [
+//                        'step' => 0.1
+//                    ]
+//
+//                ],
+//                [
+//                    'type'  => 'range',
+//                    'field' => 'name',
+//                    'param' => 'yPosition',
+//                    'label' => __( 'Y position', TR ),
+//                    'args'  => [
+//                        'step' => 0.1
+//                    ]
+//
+//                ],
+//            ) )->render();
+//        ?>
         <?php
             $this->field_tuning(
                 'name',

@@ -26,8 +26,6 @@
                   alignInput = document.querySelectorAll('.zpwpcg-tuning__field--align[data-field]'),
 
 
-
-
                   inputTextBefore = document.getElementById('zpdevwpcg_text_before'),
                   inputTextAfter = document.getElementById('zpdevwpcg_text_after'),
                   inputTextAfterStrong = document.getElementById('zpdevwpcg_text_after_strong')
@@ -48,7 +46,7 @@
 
 
 
-            inputNameFontSize = document.querySelector('.zpwpcg-controller--range[data-param=name-fontSize]')
+/*            inputNameFontSize = document.querySelector('.zpwpcg-controller--range[data-param=name-fontSize]')
             inputNameFontSize.querySelectorAll('input').forEach(el => {
                 el.addEventListener('input', e => {
                     options.name.font_size = e.target.value
@@ -70,7 +68,7 @@
                     options.name.yPosition = e.target.value
                     drawCanvas()
                 }  )
-            })
+            })*/
 
 
             inputCanvasWidth = document.querySelector('.zpwpcg-controller--range[data-param=canvas-width]')
@@ -154,10 +152,10 @@
                 drawText(
                     'Name Surname',
                     Array.from(alignInput).filter(item => item.dataset.field === 'name').find(item => item.checked === true).value,
-                    options.name.xPosition,
-                    options.name.yPosition,
+                    Array.from(xInput).find(item => item.dataset.field === 'name').value,
+                    Array.from(yInput).find(item => item.dataset.field === 'name').value,
                     Array.from(fontWeightInput).find(item => item.dataset.field === 'name').value,
-                    options.name.font_size,
+                    Array.from(fontSizeInput).find(item => item.dataset.field === 'name').value,
                     'Opinion Pro',
                     '#333'
                 )
@@ -370,7 +368,7 @@
         })
 
 
-        $('.zpwpcg-tuning__btn--settings').on('click', function (e) {
+        $('.zpwpcg-control__toggle').on('click', function (e) {
             e.preventDefault
             $(this).nextAll('.zpwpcg-tuning__body').slideToggle()
         })
