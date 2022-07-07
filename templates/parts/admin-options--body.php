@@ -2,6 +2,9 @@
 /**
  * @var ZPdevWPCG\Options $this
  */
+    
+    use ZPdevWPCG\Controller;
+
 ?>
 
 <div class="zpwpcg-cart">
@@ -15,6 +18,19 @@
         <h3>Name</h3>
 
         <?php $this->render_input( 'label', __('Label for form field', TR), 'name' ); ?>
+        <?php
+            ( new Controller(
+                [
+                    'type' => 'range',
+                    'field' => 'name',
+                    'param' => 'font_size',
+                    'label' => __('Font Size', TR),
+                    'args' => [
+                        'max' => 1000
+                    ]
+                ],
+            ) )->render();
+        ?>
         <?php $this->field_tuning(
             'name',
             40,

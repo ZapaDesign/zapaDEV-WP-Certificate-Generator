@@ -332,24 +332,33 @@
 
 	&-controller {
 
+		&__list {
+			padding: 5px 0;
+		}
+
+		&__item {
+			margin-bottom: 5px;
+		}
+
 		&--range {
 			display: flex;
 			align-items: center;
 			gap: 5px;
 
 			label {
-				flex: 0 1 70px;
+				flex: 0 1 100px;
 			}
 
 
 			input {
 				width: 100%;
+				line-height: 1;
+				min-height: inherit;
 
 				&[type="number"] {
-					flex: 0 1 120px;
+					flex: 0 1 100px;
 				}
 			}
 		}
 	}
-
 }

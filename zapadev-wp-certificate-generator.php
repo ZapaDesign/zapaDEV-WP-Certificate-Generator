@@ -58,7 +58,7 @@
                 Options::instance();
                 Shortcode::instance();
                 AJAX::instance();
-                Metabox::instance();
+//                Metabox::instance();
                 
                 add_action( 'init', array( $this, 'register_zpdevwpcg_certificat_post_type' ) );
                 add_action( 'init', array( $this, 'register_zpdevwpcg_student_post_type' ) );
@@ -72,7 +72,8 @@
                 require_once( 'inc/class-ZPdevWPCG_AJAX.php' );
                 require_once( 'inc/class-ZPdevWPCG_Certificate.php' );
                 require_once( 'inc/class-ZPdevWPCG_Student.php' );
-                require_once( 'inc/class-ZPdevWPCG_Metabox.php' );
+                require_once( 'inc/class-ZPdevWPCG_Controller.php' );
+//                require_once( 'inc/class-ZPdevWPCG_Metabox.php' );
             }
             
             public function register_zpdevwpcg_certificat_post_type() {

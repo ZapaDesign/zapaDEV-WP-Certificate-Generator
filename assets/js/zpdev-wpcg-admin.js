@@ -323,9 +323,9 @@
 
 
         // Show/Hide field tuning options
-        $('.zpwpcg-tuning__btn--settings').on('click', function (e) {
+        $('.zpwpcg-controller__toggle').on('click', function (e) {
             e.preventDefault
-            $(this).nextAll('.zpwpcg-tuning__body').slideToggle()
+            $(this).nextAll('.zpwpcg-controller__list').slideToggle()
         })
 
 
