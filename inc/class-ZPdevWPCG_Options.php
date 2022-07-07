@@ -285,51 +285,50 @@ if ( ! class_exists('Options')) {
             echo '<div class="zpwpcg-adm-field__tuning zpwpcg-tuning">';
             echo '<button type="button" class="zpwpcg-tuning__btn--settings">' . __('Settings', TR) . '</button>';
             echo '<div class="zpwpcg-tuning__body">';
-            echo '<div class="zdgrid">';
+            echo '<div class="zpwpcg-control__list">';
             
             
                 if ($y_position): ?>
-                    <div class="zdcell lg-6">
+                    <div class="zpwpcg-control__item">
                         <label for="zpdevwpcg_option<?php echo '['.$field.'][y_position]'; ?>">
                             <?php echo __('Y position', TR); ?>
                         </label>
-                        <div class="zpwpcg-el--flex">
-                            <div>
-                                <input class="zpwpcg-tuning__field zpwpcg-tuning__field--y"
-                                       type="range"
-                                       step="0.1"
-                                       data-field ="<?php echo $field; ?>"
-                                       name="zpdevwpcg_option<?php echo '['.$field.'][y_position]'; ?>"
-                                       value="<?php echo isset($this->options[$field]['y_position']) ? esc_attr($this->options[$field]['y_position']) : 55; ?>">
-                                <output><?php echo isset($this->options[$field]['y_position']) ? esc_attr($this->options[$field]['y_position']) : 55; ?></output>
-                            </div>
-                        </div>
+
+                        <input class="zpwpcg-tuning__field zpwpcg-tuning__field--y"
+                               type="range"
+                               step="0.1"
+                               data-field ="<?php echo $field; ?>"
+                               name="zpdevwpcg_option<?php echo '['.$field.'][y_position]'; ?>"
+                               value="<?php echo isset($this->options[$field]['y_position']) ? esc_attr($this->options[$field]['y_position']) : 55; ?>">
+                        <input
+                            type="number"
+                        >
                     </div>
                 <?php endif;
                 
                 if ($x_position): ?>
-                    <div class="zdcell lg-6">
+                    <div class="zpwpcg-control__item">
                         <label for="zpdevwpcg_option<?php echo '['.$field.'][x_position]'; ?>">
                             <?php echo __('X position', TR); ?>
                         </label>
-                        <div class="zpwpcg-el--flex">
-                            <div>
-                                <input class="zpwpcg-tuning__field zpwpcg-tuning__field--x"
-                                       type="range"
-                                       step="0.1"
-                                       data-field ="<?php echo $field; ?>"
-                                       name="zpdevwpcg_option<?php echo '['.$field.'][x_position]'; ?>"
-                                       value="<?php echo isset($this->options[$field]['x_position']) ? esc_attr($this->options[$field]['x_position']) : 32; ?>">
-                                <output><?php echo isset($this->options[$field]['x_position']) ? esc_attr($this->options[$field]['x_position']) : 32; ?></output>
-                            </div>
-                        </div>
+
+                            <input class="zpwpcg-tuning__field zpwpcg-tuning__field--x"
+                                   type="range"
+                                   step="0.1"
+                                   data-field ="<?php echo $field; ?>"
+                                   name="zpdevwpcg_option<?php echo '['.$field.'][x_position]'; ?>"
+                                   value="<?php echo isset($this->options[$field]['x_position']) ? esc_attr($this->options[$field]['x_position']) : 32; ?>">
+                        <input type="number">
                     </div>
                 <?php endif;
                 
                 if ($align): ?>
-                    <fieldset class="zdcell lg-6" id="group1">
-                        <legend><?php echo __('Alignment', TR); ?></legend>
+                    <fieldset class="zpwpcg-control__item" id="group1">
+                        <div>
+                            <legend><?php echo __('Alignment', TR); ?></legend>
+                        </div>
     
+                        <div>
                             <input
                                 class="zpwpcg-tuning__field--align"
                                 data-field="<?php echo $field; ?>"
@@ -338,7 +337,7 @@ if ( ! class_exists('Options')) {
                                 name="zpdevwpcg_option<?php echo '['.$field.'][align]'; ?>"
                                 <?php echo checked( 'left', $this->options[$field]['align'] ? $this->options[$field]['align'] : $align, true ); ?>
                                 value="left">
-                            <label for="contactChoice1"><?php echo __('Lft', TR) ?></label>
+                            <label for="contactChoice1"><?php echo __('Left', TR) ?></label>
 
                             <input
                                 class="zpwpcg-tuning__field--align"
@@ -348,7 +347,7 @@ if ( ! class_exists('Options')) {
                                 name="zpdevwpcg_option<?php echo '['.$field.'][align]'; ?>"
                                 <?php echo checked( 'center', $this->options[$field]['align'] ? $this->options[$field]['align']  : $align, true ); ?>
                                 value="center">
-                            <label for="contactChoice2"><?php echo __('Cntr', TR); ?></label>
+                            <label for="contactChoice2"><?php echo __('Center', TR); ?></label>
 
                             <input
                                 class="zpwpcg-tuning__field--align"
@@ -358,34 +357,40 @@ if ( ! class_exists('Options')) {
                                 name="zpdevwpcg_option<?php echo '['.$field.'][align]'; ?>"
                                 <?php echo checked( 'right', $this->options[$field]['align'] ? $this->options[$field]['align'] : $align, true ); ?>
                                 value="right">
-                            <label for="contactChoice3"><?php echo __('Rght', TR); ?></label>
-                        
-                        
+                            <label for="contactChoice3"><?php echo __('Right', TR); ?></label>
+                        </div>
                         
                     </fieldset>
                 <?php endif;
                 
                 if ($fontsize):?>
-                    <div class="zdcell lg-6">
+                    <div class="zpwpcg-control__item">
                         <label for="fsize">
                             <?php echo __('Font size', TR); ?>
                         </label>
-                        <div class="zpwpcg-el--flex">
-                            <input class="zpwpcg-tuning__field zpwpcg-tuning__field--font-size"
-                                   data-field ="<?php echo $field; ?>"
-                                   type="number"
-                                   name="zpdevwpcg_option<?php echo '['.$field.'][font_size]'; ?>"
-                                   value="<?php echo isset($this->options[$field]['font_size']) ? esc_attr($this->options[$field]['font_size']) : 200; ?>">
-                        </div>
+
+                        <input class="zpwpcg-tuning__field zpwpcg-tuning__field--y"
+                               type="range"
+                               step="0.1"
+                               data-field ="<?php echo $field; ?>"
+                               name="zpdevwpcg_option<?php echo '['.$field.'][font_size]'; ?>"
+                               value="<?php echo isset($this->options[$field]['font_size']) ? esc_attr($this->options[$field]['font_size']) : 55; ?>">
+                        <input class="zpwpcg-tuning__field zpwpcg-tuning__field--font-size"
+                               type="number"
+                               name="zpdevwpcg_option<?php echo '['.$field.'][font_size]'; ?>"
+                               data-field ="<?php echo $field; ?>"
+                               value="<?php echo isset($this->options[$field]['font_size']) ? esc_attr($this->options[$field]['font_size']) : 200; ?>"
+                        >
+
                      </div>
                 <?php endif;
                 
                 if ($fontweight):?>
-                    <div class="zdcell lg-6">
+                    <div class="zpwpcg-control__item">
                         <label for="font_weight">
                             <?php echo __('Font weight', TR); ?>
                         </label>
-                        <div class="zpwpcg-el--flex">
+
                             <input class="zpwpcg-tuning__field zpwpcg-tuning__field--font-weight"
                                    data-field ="<?php echo $field; ?>"
                                    type="text"
@@ -394,7 +399,7 @@ if ( ! class_exists('Options')) {
                                    name="zpdevwpcg_option<?php echo '['.$field.'][font_weight]'; ?>"
                                    value="<?php echo isset($this->options[$field]['font_weight']) ? esc_attr($this->options[$field]['font_weight']) : 'normal'; ?>"
                             >
-                        </div>
+
                     </div>
                 <?php endif;
                 

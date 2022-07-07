@@ -361,4 +361,35 @@
 			}
 		}
 	}
+
+	&-control {
+
+		&__list {
+			margin-bottom: 5px;
+		}
+
+		&__item {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			padding: 5px 0;
+
+			& > label {
+				flex: 0 1 100px;
+			}
+
+
+			& > input {
+				width: 100%;
+				line-height: 1;
+				min-height: inherit;
+
+				&[type="number"] {
+					flex: 0 1 100px;
+				}
+			}
+		}
+	}
+
+
 }

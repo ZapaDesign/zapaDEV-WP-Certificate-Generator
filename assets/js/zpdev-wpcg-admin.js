@@ -25,8 +25,8 @@
                   fontWeightInput = document.querySelectorAll('.zpwpcg-tuning__field--font-weight[data-field]'),
                   alignInput = document.querySelectorAll('.zpwpcg-tuning__field--align[data-field]'),
 
-                  inputCanvasWidth = document.querySelector('.zpwpcg-controller--range[data-param=canvas-width]'),
-                  inputCanvasHeight = document.querySelector('.zpwpcg-controller--range[data-param=canvas-height]'),
+
+
 
                   inputTextBefore = document.getElementById('zpdevwpcg_text_before'),
                   inputTextAfter = document.getElementById('zpdevwpcg_text_after'),
@@ -42,6 +42,38 @@
                   // inputDirectorValue = document.getElementById('zpdevwpcg_director_value')
                   // inputDirectorLabel = document.getElementById('zpdevwpcg_director_label')
 
+
+
+
+
+
+
+            inputNameFontSize = document.querySelector('.zpwpcg-controller--range[data-param=name-fontSize]')
+            inputNameFontSize.querySelectorAll('input').forEach(el => {
+                el.addEventListener('input', e => {
+                    options.name.font_size = e.target.value
+                    drawCanvas()
+                }  )
+            })
+
+            inputNamePositionX = document.querySelector('.zpwpcg-controller--range[data-param=name-xPosition]')
+            inputNamePositionX.querySelectorAll('input').forEach(el => {
+                el.addEventListener('input', e => {
+                    options.name.xPosition = e.target.value
+                    drawCanvas()
+                }  )
+            })
+
+            inputNamePositionY = document.querySelector('.zpwpcg-controller--range[data-param=name-yPosition]')
+            inputNamePositionY.querySelectorAll('input').forEach(el => {
+                el.addEventListener('input', e => {
+                    options.name.yPosition = e.target.value
+                    drawCanvas()
+                }  )
+            })
+
+
+            inputCanvasWidth = document.querySelector('.zpwpcg-controller--range[data-param=canvas-width]')
             inputCanvasWidth.querySelectorAll('input').forEach( el => {
                 el.addEventListener('input', (e) => {
                     canvas.width = e.target.value
@@ -49,6 +81,8 @@
                     drawCanvas()
                 })
             })
+
+            inputCanvasHeight = document.querySelector('.zpwpcg-controller--range[data-param=canvas-height]')
             inputCanvasHeight.querySelectorAll('input').forEach( el => {
                 el.addEventListener('input', (e) => {
                     canvas.height = e.target.value
@@ -56,6 +90,10 @@
                     drawCanvas()
                 })
             })
+
+
+
+
             alignInput.forEach(el => el.addEventListener('change', () =>  drawCanvas()))
             xInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
             yInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
@@ -116,10 +154,10 @@
                 drawText(
                     'Name Surname',
                     Array.from(alignInput).filter(item => item.dataset.field === 'name').find(item => item.checked === true).value,
-                    Array.from(xInput).find(item => item.dataset.field === 'name').value,
-                    Array.from(yInput).find(item => item.dataset.field === 'name').value,
+                    options.name.xPosition,
+                    options.name.yPosition,
                     Array.from(fontWeightInput).find(item => item.dataset.field === 'name').value,
-                    Array.from(fontSizeInput).find(item => item.dataset.field === 'name').value,
+                    options.name.font_size,
                     'Opinion Pro',
                     '#333'
                 )
@@ -322,11 +360,21 @@
 
 
 
+
+
+
         // Show/Hide field tuning options
         $('.zpwpcg-controller__toggle').on('click', function (e) {
             e.preventDefault
             $(this).nextAll('.zpwpcg-controller__list').slideToggle()
         })
+
+
+        $('.zpwpcg-tuning__btn--settings').on('click', function (e) {
+            e.preventDefault
+            $(this).nextAll('.zpwpcg-tuning__body').slideToggle()
+        })
+
 
 
         // Image upload in ZPdevWPCG Options page

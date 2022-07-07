@@ -27,7 +27,7 @@
                             <input
                                 class="zpwpcg-tuning__field zpwpcg-controller--range__range"
                                 type="range"
-                                step="1"
+                                step="<?php echo $control['args']['step'] ? $control['args']['step'] : 1; ?>"
                                 max="<?php echo $control['args']['max'] ? $control['args']['max'] : 100; ?>"
                                 name="zpdevwpcg_option[<?php echo  $control['field']; ?>][<?php echo $control['param']; ?>]"
                                 value="<?php
@@ -38,6 +38,7 @@
                             <input
                                 class="zpwpcg-tuning__field zpwpcg-controller--range__input"
                                 type="number"
+                                step="<?php echo $control['args']['step'] ? $control['args']['step'] : 1; ?>"
                                 name="zpdevwpcg_option[<?php echo  $control['field']; ?>][<?php echo $control['param']; ?>]"
                                 value="<?php
                                     echo isset( $options[$control['field']][$control['param']] ) ?
