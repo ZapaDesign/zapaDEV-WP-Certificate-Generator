@@ -66,7 +66,7 @@
         <?php
             $this->render_textarea( 'value', __( 'Before name text', TR ), 'text_before' ); ?>
         <?php
-            $this->field_tuning( 'text_before', true, true, 'center', 32, 'bold' ); ?>
+            $this->field_tuning( 'text_before', true, true, 'center', 32, 400 ); ?>
         <?php
             $this->render_textarea( 'value', __( 'After name text', TR ), 'text_after' ); ?>
         <?php

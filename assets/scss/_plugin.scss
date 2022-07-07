@@ -373,6 +373,7 @@
 	}
 
 	&-control {
+		padding: 5px 0;
 
 		&__list {
 			margin-bottom: 5px;
@@ -389,7 +390,9 @@
 			}
 
 
-			& > input {
+			& > input,
+			& > select {
+				font-size: 1rem;
 				width: 100%;
 				line-height: 1;
 				min-height: inherit;
@@ -397,6 +400,9 @@
 				&[type="number"] {
 					flex: 0 1 100px;
 				}
+			}
+			& > select {
+				padding: 5px;
 			}
 		}
 

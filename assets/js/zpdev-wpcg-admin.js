@@ -96,7 +96,7 @@
             xInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
             yInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
             fontSizeInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
-            fontWeightInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
+            fontWeightInput.forEach(el => el.addEventListener('change', () => drawCanvas()))
             inputTextBefore.addEventListener('input', () => drawCanvas())
             inputTextAfter.addEventListener('input', () => drawCanvas())
             inputTextAfterStrong.addEventListener('input', () => drawCanvas())
