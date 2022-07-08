@@ -14,12 +14,27 @@ if ( ! class_exists('Options')) {
 
         public function __construct()
         {
-            add_action('admin_menu', array($this, 'add_plugin_admin_panel_pages'));
             add_action('admin_init', array($this, 'page_init'));
-
+            add_action('admin_menu', array($this, 'add_plugin_admin_panel_pages'));
+            
             add_action('admin_enqueue_scripts', array($this, 'load_scripts_admin'));
         }
-
+    
+        public function page_init()
+        {
+            wp_register_script( 'fabric', plugins_url('../assets/js/lib/fabric.min.js', __FILE__), [], '5.2.1', true );
+            wp_register_script( 'zpdev-wpcg-admin-script', plugins_url('../assets/js/zpdev-wpcg-admin.js', __FILE__), [], '5.2.1', true );
+            
+            wp_register_style('zpdev-wpcg-admin-style', plugins_url('../assets/css/zpdev-wpcg-admin.css', __FILE__), [], null, 'all');
+            
+            register_setting(PREFIX . 'settings_option_group', PREFIX . 'option',
+            // TODO Fix sanitize method
+        
+            //  array( $this, 'sanitize' )
+            );
+        }
+        
+        
         public function add_plugin_admin_panel_pages()
         {
             $this->add_plugin_admin_panel_page();
@@ -56,6 +71,7 @@ if ( ! class_exists('Options')) {
             $callback    = array($this, 'create_plugin_admin_panel_students_subpage');
 
             add_submenu_page($parent_page, $page_title, $menu_title, $capability, $slug, $callback);
+            
         }
 
         public function create_plugin_admin_panel_students_subpage()
@@ -82,28 +98,25 @@ if ( ! class_exists('Options')) {
             include_once(DIR_PATH . 'templates/template-admin-options-settings.php');
         }
 
-        public function load_scripts_admin()
+        public function load_scripts_admin($page)
         {
-            if ( ! did_action('wp_enqueue_media')) {
-                wp_enqueue_media();
+            if( str_contains($page, PREFIX.'settings') ) {
+                wp_enqueue_script( 'fabric' );
             }
-            wp_enqueue_script('zpdev-wpcg-admin', ZPdevWPCG()->plugin_url() . '/assets/js/zpdev-wpcg-admin.js', ['jquery'], '1.0', true);
-            wp_localize_script('zpdev-wpcg-admin', 'flow', [
-                'url'     => admin_url('admin-ajax.php'),
-                'nonce'   => wp_create_nonce(PREFIX . '_nonce'),
-                'options' => json_encode(get_option(PREFIX.'option')),
-            ]);
-
-            wp_enqueue_style('zpdev-wpcg-front', ZPdevWPCG()->plugin_url() . '/assets/css/zpdev-wpcg-admin.css', false, null, 'all');
-        }
-
-        public function page_init()
-        {
-            register_setting(PREFIX . 'settings_option_group', PREFIX . 'option',
-            // TODO Fix sanitize method
-
-            //  array( $this, 'sanitize' )
-            );
+            
+            if( str_contains( $page, 'zpdevwpcg' ) ) {
+                if ( ! did_action( 'wp_enqueue_media' ) ) {
+                    wp_enqueue_media();
+                }
+                wp_enqueue_script( 'zpdev-wpcg-admin-script' );
+                wp_localize_script( 'zpdev-wpcg-admin-script', 'flow', [
+                    'url'     => admin_url( 'admin-ajax.php' ),
+                    'nonce'   => wp_create_nonce( PREFIX . '_nonce' ),
+                    'options' => json_encode( get_option( PREFIX . 'option' ) ),
+                ] );
+    
+                wp_enqueue_style( 'zpdev-wpcg-admin-style' );
+            }
         }
 
         // TODO Fix sanitize method
