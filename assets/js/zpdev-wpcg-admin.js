@@ -4,7 +4,6 @@
 
 
         // Admin Canvas preview
-
         function renderCanvas() {
             const options = JSON.parse(flow.options),
                 canvas = document.getElementById('zpwpcg-adm-canvas'),
@@ -339,9 +338,33 @@
                     (canvasHeight-indentTop-indentBottom)/4*3+indentTop
                 )
             }
-
         }
-        renderCanvas();
+
+        // Canvas with fabric.js
+        // function renderCanvas() {
+        //
+        //     const options = JSON.parse(flow.options)
+        //
+        //     var canvas = new fabric.Canvas('zpwpcg-adm-canvas', {
+        //         backgroundColor: '#fff',
+        //         // backgroundImage: 'options.img.src',
+        //     });
+        //
+        //     // Create a new Text instance
+        //     var text = new fabric.Text('Name Surname', {
+        //         fontFamily: 'Arial',
+        //         fill: '#000',
+        //         left: 100,
+        //         top: 100,
+        //         width: 150,
+        //         fontSize: 20
+        //     });
+        //
+        //     // Render the Text on Canvas
+        //     canvas.add(text);
+        // }
+        //
+        // renderCanvas();
 
 
 
