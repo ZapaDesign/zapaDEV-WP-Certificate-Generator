@@ -17,16 +17,16 @@
                     <?php settings_fields(PREFIX . 'settings_option_group'); ?>
 
                         <div class="zdgrid zdgrid--x zdgrid--y">
-                            <div class="zdcell lg-6">
+                            <div class="zdcell xlg-6">
                                 <?php include_once(DIR_PATH . 'templates/parts/admin-options--layout.php'); ?>
                             </div>
-                            <div class="zdcell lg-6">
+                            <div class="zdcell xlg-6">
                                 <?php include_once(DIR_PATH . 'templates/parts/admin-options--body.php'); ?>
                             </div>
-                            <div class="zdcell lg-6">
+                            <div class="zdcell xlg-6">
                                 <?php include_once(DIR_PATH . 'templates/parts/admin-options--list.php'); ?>
                             </div>
-                            <div class="zdcell lg-6">
+                            <div class="zdcell xlg-6">
                                 <?php include_once(DIR_PATH . 'templates/parts/admin-options--footer.php'); ?>
                             </div>
                         </div>

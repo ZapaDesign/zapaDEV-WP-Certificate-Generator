@@ -1,8 +1,6 @@
 (function ($) {
     $(document).ready(function () {
 
-
-
         // Admin Canvas preview
         function renderCanvas() {
             const options = JSON.parse(flow.options),
@@ -18,11 +16,11 @@
                 // canvas.height = canvas.width * heightRatio
 
 
-            const xInput = document.querySelectorAll('.zpwpcg-tuning__field--x[data-field]'),
-                  yInput = document.querySelectorAll('.zpwpcg-tuning__field--y[data-field]'),
-                  fontSizeInput = document.querySelectorAll('.zpwpcg-tuning__field--font-size[data-field]'),
-                  fontWeightInput = document.querySelectorAll('.zpwpcg-tuning__field--font-weight[data-field]'),
-                  alignInput = document.querySelectorAll('.zpwpcg-tuning__field--align[data-field]'),
+            const xInput = document.querySelectorAll('.zpwpcg-field-tuning__item--x[data-param]'),
+                  yInput = document.querySelectorAll('.zpwpcg-field-tuning__item--y[data-param]'),
+                  fontSizeInput = document.querySelectorAll('.zpwpcg-field-tuning__item--font-size[data-param]'),
+                  fontWeightInput = document.querySelectorAll('.zpwpcg-field-tuning__item--font-weight[data-param]'),
+                  alignInput = document.querySelectorAll('.zpwpcg-field-tuning__item--align[data-param]'),
 
 
                   inputTextBefore = document.getElementById('zpdevwpcg_text_before'),
@@ -38,36 +36,6 @@
                   inputAddress = document.getElementById('zpdevwpcg_address')
                   // inputDirectorValue = document.getElementById('zpdevwpcg_director_value')
                   // inputDirectorLabel = document.getElementById('zpdevwpcg_director_label')
-
-
-
-
-
-
-
-/*            inputNameFontSize = document.querySelector('.zpwpcg-controller--range[data-param=name-fontSize]')
-            inputNameFontSize.querySelectorAll('input').forEach(el => {
-                el.addEventListener('input', e => {
-                    options.name.font_size = e.target.value
-                    drawCanvas()
-                }  )
-            })
-
-            inputNamePositionX = document.querySelector('.zpwpcg-controller--range[data-param=name-xPosition]')
-            inputNamePositionX.querySelectorAll('input').forEach(el => {
-                el.addEventListener('input', e => {
-                    options.name.xPosition = e.target.value
-                    drawCanvas()
-                }  )
-            })
-
-            inputNamePositionY = document.querySelector('.zpwpcg-controller--range[data-param=name-yPosition]')
-            inputNamePositionY.querySelectorAll('input').forEach(el => {
-                el.addEventListener('input', e => {
-                    options.name.yPosition = e.target.value
-                    drawCanvas()
-                }  )
-            })*/
 
 
             inputCanvasWidth = document.querySelector('.zpwpcg-controller--range[data-param=canvas-width]')
@@ -127,55 +95,55 @@
 
                 drawScaleImage(
                     logo,
-                    Array.from(xInput).find(item => item.dataset.field === 'logo').value,
-                    Array.from(yInput).find(item => item.dataset.field === 'logo').value,
+                    Array.from(xInput).find(item => item.dataset.param === 'logo').value,
+                    Array.from(yInput).find(item => item.dataset.param === 'logo').value,
                     400
                 )
                 drawScaleImage(
                     signature,
-                    Array.from(xInput).find(item => item.dataset.field === 'signature').value,
-                    Array.from(yInput).find(item => item.dataset.field === 'signature').value,
+                    Array.from(xInput).find(item => item.dataset.param === 'signature').value,
+                    Array.from(yInput).find(item => item.dataset.param === 'signature').value,
                     400
                 )
 
                 drawText(
                     inputTextBefore.value ? inputTextBefore.value : options.text_before.value,
-                    Array.from(alignInput).filter(item => item.dataset.field === 'text_before').find(item => item.checked === true).value,
-                    Array.from(xInput).find(item => item.dataset.field === 'text_before').value,
-                    Array.from(yInput).find(item => item.dataset.field === 'text_before').value,
-                    Array.from(fontWeightInput).find(item => item.dataset.field === 'text_before').value,
-                    Array.from(fontSizeInput).find(item => item.dataset.field === 'text_before').value,
+                    Array.from(alignInput).filter(item => item.dataset.param === 'text_before').find(item => item.checked === true).value,
+                    Array.from(xInput).find(item => item.dataset.param === 'text_before').value,
+                    Array.from(yInput).find(item => item.dataset.param === 'text_before').value,
+                    Array.from(fontWeightInput).find(item => item.dataset.param === 'text_before').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.param === 'text_before').value,
                     'Opinion Pro',
                 )
 
                 drawText(
                     'Name Surname',
-                    Array.from(alignInput).filter(item => item.dataset.field === 'name').find(item => item.checked === true).value,
-                    Array.from(xInput).find(item => item.dataset.field === 'name').value,
-                    Array.from(yInput).find(item => item.dataset.field === 'name').value,
-                    Array.from(fontWeightInput).find(item => item.dataset.field === 'name').value,
-                    Array.from(fontSizeInput).find(item => item.dataset.field === 'name').value,
+                    Array.from(alignInput).filter(item => item.dataset.param === 'name').find(item => item.checked === true).value,
+                    Array.from(xInput).find(item => item.dataset.param === 'name').value,
+                    Array.from(yInput).find(item => item.dataset.param === 'name').value,
+                    Array.from(fontWeightInput).find(item => item.dataset.param === 'name').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.param === 'name').value,
                     'Opinion Pro',
                     '#333'
                 )
 
                 drawText(
                     inputTextAfter.value ? inputTextAfter.value : options.text_after.value,
-                    Array.from(alignInput).filter(item => item.dataset.field === 'text_after').find(item => item.checked === true).value,
-                    Array.from(xInput).find(item => item.dataset.field === 'text_after').value,
-                    Array.from(yInput).find(item => item.dataset.field === 'text_after').value,
-                    Array.from(fontWeightInput).find(item => item.dataset.field === 'text_after').value,
-                    Array.from(fontSizeInput).find(item => item.dataset.field === 'text_after').value,
+                    Array.from(alignInput).filter(item => item.dataset.param === 'text_after').find(item => item.checked === true).value,
+                    Array.from(xInput).find(item => item.dataset.param === 'text_after').value,
+                    Array.from(yInput).find(item => item.dataset.param === 'text_after').value,
+                    Array.from(fontWeightInput).find(item => item.dataset.param === 'text_after').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.param === 'text_after').value,
                     'Opinion Pro',
                 )
 
                 drawText(
                     inputTextAfterStrong.value ? inputTextAfterStrong.value : options.text_after_strong.value,
                     options.text_after_strong.align,
-                    Array.from(xInput).find(item => item.dataset.field === 'text_after_strong').value,
-                    Array.from(yInput).find(item => item.dataset.field === 'text_after_strong').value,
-                    Array.from(fontWeightInput).find(item => item.dataset.field === 'text_after_strong').value,
-                    Array.from(fontSizeInput).find(item => item.dataset.field === 'text_after_strong').value,
+                    Array.from(xInput).find(item => item.dataset.param === 'text_after_strong').value,
+                    Array.from(yInput).find(item => item.dataset.param === 'text_after_strong').value,
+                    Array.from(fontWeightInput).find(item => item.dataset.param === 'text_after_strong').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.param === 'text_after_strong').value,
                     'Opinion Pro',
                 )
 
@@ -231,8 +199,8 @@
                 drawText(
                     inputAddress.value ? inputAddress.value : options.address.value,
                     'left',
-                    Array.from(xInput).find(item => item.dataset.field === 'address').value,
-                    Array.from(yInput).find(item => item.dataset.field === 'address').value,
+                    Array.from(xInput).find(item => item.dataset.param === 'address').value,
+                    Array.from(yInput).find(item => item.dataset.param === 'address').value,
                     400,
                     '40',
                     'Opinion Pro',
@@ -363,18 +331,18 @@
         //     // Render the Text on Canvas
         //     canvas.add(text);
         // }
-        //
-        // renderCanvas();
+
+        renderCanvas();
 
 
 
 
         // Add output number for input range
-        document.querySelectorAll('.zpwpcg-controller--range').forEach(el => {
-            el.querySelector(".zpwpcg-controller--range__range").addEventListener('input',  (i) => {
+        document.querySelectorAll('.zpwpcg-field-tuning__item--range').forEach(el => {
+            el.querySelector(".zpwpcg-field-tuning__item--range-range").addEventListener('input',  (i) => {
                 i.target.nextElementSibling.value = i.target.value
             }, false);
-            el.querySelector(".zpwpcg-controller--range__input").addEventListener('input',  (i) => {
+            el.querySelector(".zpwpcg-field-tuning__item--range-input").addEventListener('input',  (i) => {
                 i.target.previousElementSibling.value = i.target.value
             }, false);
         })
@@ -385,13 +353,13 @@
 
 
         // Show/Hide field tuning options
-        $('.zpwpcg-controller__toggle').on('click', function (e) {
+        $('.zpwpcg-field-tuning__toggle').on('click', function (e) {
             e.preventDefault
-            $(this).nextAll('.zpwpcg-controller__list').slideToggle()
+            $(this).nextAll('.zpwpcg-field-tuning__list').slideToggle()
         })
 
 
-        $('.zpwpcg-control__toggle').on('click', function (e) {
+        $('.zpwpcg-controller__toggle').on('click', function (e) {
             e.preventDefault
             $(this).nextAll('.zpwpcg-tuning__body').slideToggle()
         })

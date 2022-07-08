@@ -72,6 +72,7 @@
                 require_once( 'inc/class-ZPdevWPCG_AJAX.php' );
                 require_once( 'inc/class-ZPdevWPCG_Certificate.php' );
                 require_once( 'inc/class-ZPdevWPCG_Student.php' );
+                require_once( 'inc/class-ZPdevWPCG_Control.php' );
                 require_once( 'inc/class-ZPdevWPCG_Controller.php' );
 //                require_once( 'inc/class-ZPdevWPCG_Metabox.php' );
             }
