@@ -1,23 +1,23 @@
 @import "vars";
 @import "plugin";
 
-body.toplevel_page_zpdevwpcg,
-body.zpdev-wpcg_page_zpdevwpcg_students,
-body.zpdev-wpcg_page_zpdevwpcg_settings {
-	background: linear-gradient(45deg,#4158d0,#c850c0);
-	background-attachment: fixed;
-	.zpwpcg-adm {
-		&__wrap {
-			& > p {
-				color: var(--white);
-			}
-		}
-
-		&__title {
-			color: var(--white);
-		}
-	}
-}
+//body.toplevel_page_zpdevwpcg,
+//body.zpdev-wpcg_page_zpdevwpcg_students,
+//body.zpdev-wpcg_page_zpdevwpcg_settings {
+//	background: linear-gradient(45deg,#4158d0,#c850c0);
+//	background-attachment: fixed;
+//	.zpwpcg-adm {
+//		&__wrap {
+//			& > p {
+//				color: var(--white);
+//			}
+//		}
+//
+//		&__title {
+//			color: var(--white);
+//		}
+//	}
+//}
 
 
 

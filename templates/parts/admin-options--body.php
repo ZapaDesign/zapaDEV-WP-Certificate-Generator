@@ -19,7 +19,7 @@ use ZPdevWPCG\Controller;
         <h3>Name</h3>
         
         <?php $this->render_input('label', __('Label for form field', TR), 'name'); ?>
-        <?php $this->field_tuning('name', 40, true, 'center', 200, 'bold'); ?>
+        <?php $this->field_tuning('name', 40, true, 'center', 200, 'bold', ['max'=>400] ); ?>
 
         <h3>Text</h3>
         <?php

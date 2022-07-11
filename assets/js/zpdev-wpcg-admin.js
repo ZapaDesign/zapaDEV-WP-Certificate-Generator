@@ -16,12 +16,8 @@
                 // canvas.height = canvas.width * heightRatio
 
 
-            const xInput = document.querySelectorAll('.zpwpcg-field-tuning__item--x[data-param]'),
-                  yInput = document.querySelectorAll('.zpwpcg-field-tuning__item--y[data-param]'),
-                  fontSizeInput = document.querySelectorAll('.zpwpcg-field-tuning__item--font-size[data-param]'),
-                  fontWeightInput = document.querySelectorAll('.zpwpcg-field-tuning__item--font-weight[data-param]'),
+            const fontWeightInput = document.querySelectorAll('.zpwpcg-field-tuning__item--font-weight[data-param]'),
                   alignInput = document.querySelectorAll('.zpwpcg-field-tuning__item--align[data-param]'),
-
 
                   inputTextBefore = document.getElementById('zpdevwpcg_text_before'),
                   inputTextAfter = document.getElementById('zpdevwpcg_text_after'),
@@ -57,12 +53,20 @@
             })
 
 
+            const xInput = document.querySelectorAll('.zpwpcg-field-tuning__item--range-x[data-param]'),
+                yInput = document.querySelectorAll('.zpwpcg-field-tuning__item--range-y[data-param]'),
+                fontSizeInput = document.querySelectorAll('.zpwpcg-field-tuning__item--font-size[data-param]')
+            let rangeInputs = [xInput, yInput, fontSizeInput]
 
+            rangeInputs.forEach( arr => {
+                arr.forEach(el => {
+                    el.querySelectorAll('input').forEach( elm => {
+                        elm.addEventListener('input', () => drawCanvas() )
+                    })
+                })
+            })
 
             alignInput.forEach(el => el.addEventListener('change', () =>  drawCanvas()))
-            xInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
-            yInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
-            fontSizeInput.forEach(el => el.addEventListener('input', () => drawCanvas()))
             fontWeightInput.forEach(el => el.addEventListener('change', () => drawCanvas()))
             inputTextBefore.addEventListener('input', () => drawCanvas())
             inputTextAfter.addEventListener('input', () => drawCanvas())
@@ -95,34 +99,34 @@
 
                 drawScaleImage(
                     logo,
-                    Array.from(xInput).find(item => item.dataset.param === 'logo').value,
-                    Array.from(yInput).find(item => item.dataset.param === 'logo').value,
+                    Array.from(xInput).find(item => item.dataset.param === 'logo').querySelector(".zpwpcg-field-tuning__item--range-range").value,
+                    Array.from(yInput).find(item => item.dataset.param === 'logo').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     400
                 )
                 drawScaleImage(
                     signature,
-                    Array.from(xInput).find(item => item.dataset.param === 'signature').value,
-                    Array.from(yInput).find(item => item.dataset.param === 'signature').value,
+                    Array.from(xInput).find(item => item.dataset.param === 'signature').querySelector(".zpwpcg-field-tuning__item--range-range").value,
+                    Array.from(yInput).find(item => item.dataset.param === 'signature').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     400
                 )
 
                 drawText(
                     inputTextBefore.value ? inputTextBefore.value : options.text_before.value,
                     Array.from(alignInput).filter(item => item.dataset.param === 'text_before').find(item => item.checked === true).value,
-                    Array.from(xInput).find(item => item.dataset.param === 'text_before').value,
-                    Array.from(yInput).find(item => item.dataset.param === 'text_before').value,
+                    Array.from(xInput).find(item => item.dataset.param === 'text_before').querySelector(".zpwpcg-field-tuning__item--range-range").value,
+                    Array.from(yInput).find(item => item.dataset.param === 'text_before').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     Array.from(fontWeightInput).find(item => item.dataset.param === 'text_before').value,
-                    Array.from(fontSizeInput).find(item => item.dataset.param === 'text_before').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.param === 'text_before').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     'Opinion Pro',
                 )
 
                 drawText(
                     'Name Surname',
                     Array.from(alignInput).filter(item => item.dataset.param === 'name').find(item => item.checked === true).value,
-                    Array.from(xInput).find(item => item.dataset.param === 'name').value,
-                    Array.from(yInput).find(item => item.dataset.param === 'name').value,
+                    Array.from(xInput).find(item => item.dataset.param === 'name').querySelector(".zpwpcg-field-tuning__item--range-range").value,
+                    Array.from(yInput).find(item => item.dataset.param === 'name').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     Array.from(fontWeightInput).find(item => item.dataset.param === 'name').value,
-                    Array.from(fontSizeInput).find(item => item.dataset.param === 'name').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.param === 'name').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     'Opinion Pro',
                     '#333'
                 )
@@ -130,22 +134,23 @@
                 drawText(
                     inputTextAfter.value ? inputTextAfter.value : options.text_after.value,
                     Array.from(alignInput).filter(item => item.dataset.param === 'text_after').find(item => item.checked === true).value,
-                    Array.from(xInput).find(item => item.dataset.param === 'text_after').value,
-                    Array.from(yInput).find(item => item.dataset.param === 'text_after').value,
+                    Array.from(xInput).find(item => item.dataset.param === 'text_after').querySelector(".zpwpcg-field-tuning__item--range-range").value,
+                    Array.from(yInput).find(item => item.dataset.param === 'text_after').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     Array.from(fontWeightInput).find(item => item.dataset.param === 'text_after').value,
-                    Array.from(fontSizeInput).find(item => item.dataset.param === 'text_after').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.param === 'text_after').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     'Opinion Pro',
                 )
 
                 drawText(
                     inputTextAfterStrong.value ? inputTextAfterStrong.value : options.text_after_strong.value,
-                    options.text_after_strong.align,
-                    Array.from(xInput).find(item => item.dataset.param === 'text_after_strong').value,
-                    Array.from(yInput).find(item => item.dataset.param === 'text_after_strong').value,
+                    Array.from(alignInput).filter(item => item.dataset.param === 'text_after_strong').find(item => item.checked === true).value,
+                    Array.from(xInput).find(item => item.dataset.param === 'text_after_strong').querySelector(".zpwpcg-field-tuning__item--range-range").value,
+                    Array.from(yInput).find(item => item.dataset.param === 'text_after_strong').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     Array.from(fontWeightInput).find(item => item.dataset.param === 'text_after_strong').value,
-                    Array.from(fontSizeInput).find(item => item.dataset.param === 'text_after_strong').value,
+                    Array.from(fontSizeInput).find(item => item.dataset.param === 'text_after_strong').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     'Opinion Pro',
                 )
+
 
                 drawText(
                     inputPeriod.value ? inputPeriod.value + ': ___________ - ___________' : options.period.label + ': ___________ - ___________',
