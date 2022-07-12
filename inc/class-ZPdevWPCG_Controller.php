@@ -20,12 +20,12 @@
             foreach ($controlArr as $control) {
                 if ( $control['type'] === 'range' ): ?>
                     <div class="zpwpcg-controller__item">
-                        <div class="zpwpcg-controller--range" data-param="<?php echo $control['field'] . '-' . $control['param']; ?>">
+                        <div class="zpwpcg-field-tuning__item--range" data-param="<?php echo $control['field'] . '-' . $control['param']; ?>">
                             <label for="zpdevwpcg_option[<?php echo  $control['field']; ?>][<?php echo $control['param']; ?>]">
                                 <?php echo $control['label']; ?>
                             </label>
                             <input
-                                class="zpwpcg-tuning__field zpwpcg-controller--range__range"
+                                class="zpwpcg-field-tuning__item zpwpcg-field-tuning__item--range-range"
                                 type="range"
                                 step="<?php echo $control['args']['step'] ? $control['args']['step'] : 1; ?>"
                                 max="<?php echo $control['args']['max'] ? $control['args']['max'] : 100; ?>"
@@ -36,7 +36,7 @@
                                         2480; ?>"
                             >
                             <input
-                                class="zpwpcg-tuning__field zpwpcg-controller--range__input"
+                                class="zpwpcg-field-tuning__item zpwpcg-field-tuning__item--range-input"
                                 type="number"
                                 step="<?php echo $control['args']['step'] ? $control['args']['step'] : 1; ?>"
                                 name="zpdevwpcg_option[<?php echo  $control['field']; ?>][<?php echo $control['param']; ?>]"

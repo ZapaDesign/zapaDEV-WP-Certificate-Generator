@@ -29,5 +29,7 @@
         <?php $this->render_input( 'label', __('Label', TR), 'date' ); ?>
         <hr>
         <?php $this->field_tuning( 'list', true, true, false ); ?>
+    
+        <?php submit_button(); ?>
     </div>
 </div>

@@ -34,7 +34,7 @@
                   // inputDirectorLabel = document.getElementById('zpdevwpcg_director_label')
 
 
-            inputCanvasWidth = document.querySelector('.zpwpcg-controller--range[data-param=canvas-width]')
+            inputCanvasWidth = document.querySelector('.zpwpcg-field-tuning__item--canvas-width')
             inputCanvasWidth.querySelectorAll('input').forEach( el => {
                 el.addEventListener('input', (e) => {
                     canvas.width = e.target.value
@@ -43,7 +43,8 @@
                 })
             })
 
-            inputCanvasHeight = document.querySelector('.zpwpcg-controller--range[data-param=canvas-height]')
+
+            inputCanvasHeight = document.querySelector('.zpwpcg-field-tuning__item--canvas-height')
             inputCanvasHeight.querySelectorAll('input').forEach( el => {
                 el.addEventListener('input', (e) => {
                     canvas.height = e.target.value
@@ -117,7 +118,7 @@
                     Array.from(yInput).find(item => item.dataset.param === 'text_before').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     Array.from(fontWeightInput).find(item => item.dataset.param === 'text_before').value,
                     Array.from(fontSizeInput).find(item => item.dataset.param === 'text_before').querySelector(".zpwpcg-field-tuning__item--range-range").value,
-                    'Opinion Pro',
+                    'opinionpro',
                 )
 
                 drawText(
@@ -127,7 +128,7 @@
                     Array.from(yInput).find(item => item.dataset.param === 'name').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     Array.from(fontWeightInput).find(item => item.dataset.param === 'name').value,
                     Array.from(fontSizeInput).find(item => item.dataset.param === 'name').querySelector(".zpwpcg-field-tuning__item--range-range").value,
-                    'Opinion Pro',
+                    'opinionpro',
                     '#333'
                 )
 
@@ -138,7 +139,7 @@
                     Array.from(yInput).find(item => item.dataset.param === 'text_after').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     Array.from(fontWeightInput).find(item => item.dataset.param === 'text_after').value,
                     Array.from(fontSizeInput).find(item => item.dataset.param === 'text_after').querySelector(".zpwpcg-field-tuning__item--range-range").value,
-                    'Opinion Pro',
+                    'opinionpro',
                 )
 
                 drawText(
@@ -148,57 +149,57 @@
                     Array.from(yInput).find(item => item.dataset.param === 'text_after_strong').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     Array.from(fontWeightInput).find(item => item.dataset.param === 'text_after_strong').value,
                     Array.from(fontSizeInput).find(item => item.dataset.param === 'text_after_strong').querySelector(".zpwpcg-field-tuning__item--range-range").value,
-                    'Opinion Pro',
+                    'opinionpro',
                 )
 
 
                 drawText(
                     inputPeriod.value ? inputPeriod.value + ': ___________ - ___________' : options.period.label + ': ___________ - ___________',
                     'left',
-                    15,
-                    62,
+                    Array.from(xInput).find(item => item.dataset.param === 'list').querySelector(".zpwpcg-field-tuning__item--range-range").value,
+                    Array.from(yInput).find(item => item.dataset.param === 'list').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     400,
                     '80',
-                    'Opinion Pro',
+                    'opinionpro',
                 )
 
                 drawText(
                     inputLevel.value ? inputLevel.value + ': ___________' : options.level.label + ': ___________',
                     'left',
-                    15,
+                    Array.from(xInput).find(item => item.dataset.param === 'list').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     66,
                     400,
                     '80',
-                    'Opinion Pro',
+                    'opinionpro',
                 )
 
                 drawText(
                     inputHours.value ? inputHours.value + ': ___________' : options.hours.label + ': ___________',
                     'left',
-                    15,
+                    Array.from(xInput).find(item => item.dataset.param === 'list').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     70,
                     400,
                     '80',
-                    'Opinion Pro',
+                    'opinionpro',
                 )
 
                 drawText(
                     inputLocation.value ? inputLocation.value + ': ___________' : options.location.label + ': ___________',
                     'left',
-                    15,
+                    Array.from(xInput).find(item => item.dataset.param === 'list').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     74,
                     400,
                     '80',
-                    'Opinion Pro',
+                    'opinionpro',
                 )
                 drawText(
                     inputDate.value ? inputDate.value + ': ___________' : options.date.label + ': ___________',
                     'left',
-                    15,
+                    Array.from(xInput).find(item => item.dataset.param === 'list').querySelector(".zpwpcg-field-tuning__item--range-range").value,
                     78,
                     400,
                     '80',
-                    'Opinion Pro',
+                    'opinionpro',
                 )
 
                 drawText(
@@ -208,7 +209,7 @@
                     Array.from(yInput).find(item => item.dataset.param === 'address').value,
                     400,
                     '40',
-                    'Opinion Pro',
+                    'opinionpro',
                 )
 
                 // TODO Check director field
@@ -219,7 +220,7 @@
                 //     78,
                 //     400,
                 //     '80',
-                //     'Opinion Pro',
+                //     'opinionpro',
                 // )
 
                 drawGrid()

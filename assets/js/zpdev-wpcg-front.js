@@ -66,7 +66,7 @@
                 13.8,
                 'normal',
                 60,
-                'Opinion Pro'
+                'opinionpro'
             )
 
             drawText(
@@ -76,7 +76,7 @@
                 24,
                 'normal',
                 130,
-                'Opinion Pro')
+                'opinionpro')
 
             drawText(
                 nameInput.value,
@@ -85,7 +85,7 @@
                 options.name.y_position,
                 options.name.font_weight,
                 options.name.font_size,
-                'Opinion Pro',
+                'opinionpro',
                 '#333'
             )
 
@@ -96,7 +96,7 @@
                 options.text_after.y_position,
                 options.text_after.font_weight,
                 options.text_after.font_size,
-                'Opinion Pro'
+                'opinionpro'
             )
 
             drawText(
@@ -106,16 +106,16 @@
                 options.text_after_strong.y_position,
                 options.text_after_strong.font_weight,
                 options.text_after_strong.font_size,
-                'Opinion Pro')
+                'opinionpro')
 
             // TODO Ограничить ширину текста адрес
-            drawText(options.address.value, undefined, 15, 93, 'normal', 32, 'Opinion Pro')
-            drawText(options.director.value, 'end', 94, 92.5, 'normal', 32, 'Opinion Pro')
-            drawText(options.director.label, 'end', 94, 94.5, 'normal', 32, 'Opinion Pro')
+            drawText(options.address.value, undefined, 15, 93, 'normal', 32, 'opinionpro')
+            drawText(options.director.value, 'end', 94, 92.5, 'normal', 32, 'opinionpro')
+            drawText(options.director.label, 'end', 94, 94.5, 'normal', 32, 'opinionpro')
 
-            drawText(options.period.label + ': ' + dateFormat(startInput.value, 'month') + ' - ' + dateFormat(finishInput.value, 'month'), undefined, 15, 62, 'normal', 80, 'Opinion Pro')
-            drawText(options.levels.label + ': ' + levelSelect.value, undefined, 15, 66, 'normal', 80, 'Opinion Pro')
-            drawText(options.hours.label + ': ' + hoursInput.value, undefined, 15, 70, 'normal', 80, 'Opinion Pro')
+            drawText(options.period.label + ': ' + dateFormat(startInput.value, 'month') + ' - ' + dateFormat(finishInput.value, 'month'), undefined, 15, 62, 'normal', 80, 'opinionpro')
+            drawText(options.levels.label + ': ' + levelSelect.value, undefined, 15, 66, 'normal', 80, 'opinionpro')
+            drawText(options.hours.label + ': ' + hoursInput.value, undefined, 15, 70, 'normal', 80, 'opinionpro')
             drawText(
                 options.location.label + ': ' + locationInput.value,
                 undefined,
@@ -123,8 +123,8 @@
                 74,
                 'normal',
                 80,
-                'Opinion Pro')
-            drawText(options.date.label + ': ' + dateFormat(dateInput.value), undefined, 15, 78, 'normal', 80, 'Opinion Pro')
+                'opinionpro')
+            drawText(options.date.label + ': ' + dateFormat(dateInput.value), undefined, 15, 78, 'normal', 80, 'opinionpro')
         }
 
         nameInput.addEventListener('input', () => drawImage())

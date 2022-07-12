@@ -13,31 +13,10 @@
     </div>
     <div class="zpwpcg-cart__body">
 
-        <?php
-            $this->render_img( 'img', '/assets/img/certificate-template-demo.svg' );
-        echo '<hr>';
-        ( new Controller(
-            [
-                'type' => 'range',
-                'field' => 'canvas',
-                'param' => 'width',
-                'label' => __('Width', TR),
-                'args' => [
-                    'max' => 10000
-                ]
-            ],
-            [
-                'type' => 'range',
-                'field' => 'canvas',
-                'param' => 'height',
-                'label' => __('Height', TR),
-                'args' => [
-                    'max' => 10000
-                ]
-            ]
-        ) )->render();
-
+        <?php $this->render_img( 'img', '/assets/img/certificate-template-demo.svg' ); ?>
+        <hr>
+        <?php $this->canvas_tuning(true, true, [ 'max'=>10000, 'step'=>1 ] ); ?>
     
-        submit_button(); ?>
+        <?php submit_button(); ?>
     </div>
 </div>

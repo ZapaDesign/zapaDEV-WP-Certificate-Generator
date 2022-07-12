@@ -32,5 +32,7 @@ use ZPdevWPCG\Controller;
         
         $this->render_textarea('value', __('After name strong text', TR), 'text_after_strong');
         $this->field_tuning('text_after_strong', true, true, 'center', 32, 700); ?>
+    
+        <?php submit_button(); ?>
     </div>
 </div>
